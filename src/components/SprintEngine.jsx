@@ -506,6 +506,7 @@ Antworte NUR mit JSON:
       if (parsed.generated) parsed.generated.sort((a, b) => (b.relevance || 0) - (a.relevance || 0));
 
       setResult(parsed);
+      if (parsed.generated?.length) saveGeneratedSprints(parsed.generated);
       setScreen("result");
     } catch (e) {
       // Fallback: simulate result
@@ -559,4 +560,39 @@ Antworte NUR mit JSON:
       </div>
     </div>
   );
+}
+
+// === DB SAVE: Neue Sprints in Supabase speichern ===
+async function saveGeneratedSprints(sprints) {
+  const supabaseUrl = import.meta.env?.VITE_SUPABASE_URL;
+  const supabaseKey = import.meta.env?.VITE_SUPABASE_ANON_KEY;
+  if (!supabaseUrl || !supabaseKey || !sprints?.length) return;
+
+  for (const s of sprints) {
+    try {
+      await fetch(supabaseUrl + "/rest/v1/sprint_templates", {
+        method: "POST",
+        headers: {
+          apikey: supabaseKey,
+          Authorization: "Bearer " + supabaseKey,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          name: s.name,
+          description: s.desc,
+          department_id: ({ "Automation HQ": "auto", "Design Studio": "design", "App Lab": "apps", "Conversational AI": "chat", "Content Factory": "content", "Data Intelligence": "data", "Business School": "biz", "Selbstschutz": "shield" })[s.dept] || "apps",
+          min_level: s.level || "B1",
+          sprint_type: (s.hours || 4) <= 2 ? "micro" : (s.hours || 4) <= 5 ? "standard" : "deep",
+          estimated_hours: s.hours || 4,
+          deliverable: s.deliverable || "",
+          tools_used: s.tools || [],
+          skills_taught: [],
+          phases: JSON.stringify(s.phases || []),
+          is_active: true,
+          universal: true,
+        }),
+      });
+    } catch (e) { /* skip */ }
+  }
 }
