@@ -1,3 +1,4 @@
+import Legal from "./Legal";
 import NewsroomFull from "./Newsroom";
 import AIReadiness from "./AIReadiness";
 import { useState, useEffect, useCallback } from "react";
@@ -185,7 +186,7 @@ function Nav({ screen, setScreen, section, setSection }) {
             {screen === "home" && ["Departments", "Sprints", "Enterprise"].map(i => (
               <span key={i} style={{ fontSize: 13, color: Z.g500, fontWeight: 600, cursor: "pointer" }} onMouseEnter={e => e.target.style.color = Z.x} onMouseLeave={e => e.target.style.color = Z.g500}>{i}</span>
             ))}
-            <button onClick={() => setScreen("newsroom")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Newsroom</button><button onClick={() => setScreen("readiness")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>X-SCORE</button>{screen === "home" && <button onClick={() => setScreen("assess")} style={{ padding: "7px 18px", borderRadius: 8, border: "none", background: Z.x, color: Z.w, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Starten →</button>}
+            <button onClick={() => setScreen("newsroom")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Newsroom</button><button onClick={() => setScreen("legal")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Impressum</button><button onClick={() => setScreen("readiness")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>X-SCORE</button>{screen === "home" && <button onClick={() => setScreen("assess")} style={{ padding: "7px 18px", borderRadius: 8, border: "none", background: Z.x, color: Z.w, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Starten →</button>}
           </div>
         ) : (
           <div style={{ display: "flex", gap: 2 }}>
@@ -692,9 +693,10 @@ export default function ZehnxAcademy() {
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
       `}</style>
       <Nav screen={screen} setScreen={setScreen} section={section} setSection={setSection} />
-      {screen === "home" && <Home go={setScreen} />}
+      {screen === "home" && <><Home go={setScreen} />}
       {screen === "assess" && <Assessment onDone={(s) => { setScores(s); setScreen("results"); }} />}
       {screen === "results" && <Results scores={scores} onContinue={() => setScreen("goal")} />}
+      {screen === "legal" && <div style={{maxWidth:720,margin:"0 auto",padding:"20px 20px 60px"}}><Legal /></div>}
       {screen === "newsroom" && <div style={{maxWidth:1100,margin:"0 auto",padding:"20px 20px 60px"}}><NewsroomFull /></div>}
       {screen === "readiness" && <div style={{maxWidth:640,margin:"0 auto",padding:"20px 20px 60px"}}><AIReadiness /></div>}
       {screen === "goal" && <GoalScreen onDone={(p) => { setPath(p); setScreen("pwa"); setSection("dash"); }} />}
