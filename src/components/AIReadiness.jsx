@@ -125,7 +125,7 @@ export default function AIReadiness() {
   if (phase === "intro") return (
     <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center", padding: "20px 0" }}>
       <div style={{ fontSize: 44, marginBottom: 12 }}>🧠</div>
-      <h2 style={{ fontSize: 24, fontWeight: 900, color: C.x, letterSpacing: "-0.03em", margin: "0 0 6px" }}>AI Readiness Score</h2>
+      <h2 style={{ fontSize: 24, fontWeight: 900, color: C.x, letterSpacing: "-0.03em", margin: "0 0 6px" }}>X-SCORE</h2>
       <p style={{ fontSize: 14, color: C.g600, lineHeight: 1.6, margin: "0 0 16px" }}>
         Finde heraus, wo KI dich unterstützen kann — und wo deine menschlichen Stärken unersetzbar sind. Keine Angstmache, sondern fundierte Analyse.
       </p>
@@ -190,7 +190,7 @@ export default function AIReadiness() {
     <div style={{ maxWidth: 600, margin: "0 auto" }}>
       <div style={{ textAlign: "center", marginBottom: 20 }}>
         <div style={{ fontSize: 44, marginBottom: 6 }}>{p.emoji}</div>
-        <div style={{ fontSize: 10, fontWeight: 800, color: C.bl, letterSpacing: "0.06em", textTransform: "uppercase" }}>Dein AI Readiness Profil</div>
+        <div style={{ fontSize: 10, fontWeight: 800, color: C.bl, letterSpacing: "0.06em", textTransform: "uppercase" }}>Dein X-SCORE Profil</div>
         <h2 style={{ fontSize: 28, fontWeight: 900, color: C.x, margin: "4px 0" }}>{p.profile}</h2>
         <span style={{ padding: "3px 12px", borderRadius: 16, background: p.avg <= 2.5 ? C.gnL : p.avg <= 3.5 ? C.blXL : C.amL, color: p.avg <= 2.5 ? C.gn : p.avg <= 3.5 ? C.bl : C.am, fontSize: 13, fontWeight: 800 }}>
           Score: {p.avg.toFixed(1)} / 5.0
