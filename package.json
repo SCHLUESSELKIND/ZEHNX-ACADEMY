@@ -1,0 +1,26 @@
+{
+  "name": "zehnx-academy",
+  "version": "1.0.0",
+  "description": "ZEHNX ACADEMY — Die AI Sprint-Akademie. Verzehnfache dein Wissen.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "recharts": "^2.12.0",
+    "lucide-react": "^0.441.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.0",
+    "vite-plugin-pwa": "^0.20.0",
+    "eslint": "^8.57.0"
+  }
+}
