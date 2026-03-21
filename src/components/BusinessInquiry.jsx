@@ -166,7 +166,7 @@ const QUESTIONS = [
 
 // ═══ ESTIMATE SYSTEM PROMPT ═══
 
-const ESTIMATE_SYSTEM = `Du bist der Projektkalkulationsassistent von ZEHNX ACADEMY. Du erstellst praezise, realistische Kostenvoranschlaege.
+const ESTIMATE_SYSTEM = `Du bist der Projektkalkulationsassistent von ZEHNX AGENTUR. Du erstellst praezise, realistische Kostenvoranschlaege.
 
 UNSER TECH-STACK:
 - Frontend: React/Vite, Astro, Tailwind CSS, PWA
@@ -418,7 +418,7 @@ function EstimateCard({ estimate }) {
           <div style={{ fontSize: 13, color: Z.text, lineHeight: 1.5, fontStyle: "italic" }}>
             "{e.recommendation}"
           </div>
-          <div style={{ fontSize: 11, color: Z.hint, marginTop: 4 }}>— ZEHNX ACADEMY</div>
+          <div style={{ fontSize: 11, color: Z.hint, marginTop: 4 }}>— ZEHNX AGENTUR</div>
         </div>
       )}
     </div>
@@ -517,7 +517,7 @@ Antworte NUR mit JSON gemaess dem definierten Format.`;
       <div style={{ maxWidth: 800, margin: "0 auto", padding: "40px 16px 60px" }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: Z.blue, letterSpacing: "0.08em", marginBottom: 8 }}>ZEHNX ACADEMY</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: Z.blue, letterSpacing: "0.08em", marginBottom: 8 }}>ZEHNX AGENTUR</div>
           <h2 style={{
             fontFamily: "'Instrument Serif', Georgia, serif",
             fontSize: 36, fontWeight: 400, color: Z.text,

@@ -13,6 +13,8 @@ import EnterpriseBot from "./EnterpriseBot";
 import PaywallGate from "./PaywallGate";
 import StripeCheckout from "./StripeCheckout";
 import CollectiveBrain from "./CollectiveBrain";
+import Enterprise from "./Enterprise";
+import Agentur from "./Agentur";
 import BusinessInquiry from "./BusinessInquiry";
 import Legal from "./Legal";
 import NewsroomFull from "./Newsroom";
@@ -199,8 +201,8 @@ function Nav({ screen, setScreen, section, setSection }) {
         <div style={{ cursor: "pointer" }} onClick={() => setScreen("home")}><Logo /></div>
         {!isPwa ? (
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            {screen === "home" && ["Departments", "Sprints", "Business", "Brain"].map(i => (
-              <span key={i} style={{ fontSize: 13, color: Z.g500, fontWeight: 600, cursor: "pointer" }} onMouseEnter={e => e.target.style.color = Z.x} onClick={() => { if(i==="Business") setScreen("business"); if(i==="Brain") setScreen("brain"); if(i==="Departments") { const el = document.getElementById("departments"); if(el) el.scrollIntoView({behavior:"smooth"}); } if(i==="Sprints") { setScreen("assess"); } }} onMouseLeave={e => e.target.style.color = Z.g500}>{i}</span>
+            {screen === "home" && ["Enterprise", "Agentur", "Brain"].map(i => (
+              <span key={i} style={{ fontSize: 13, color: Z.g500, fontWeight: 600, cursor: "pointer" }} onMouseEnter={e => e.target.style.color = Z.x} onClick={() => { if(i==="Enterprise") setScreen("enterprise"); if(i==="Agentur") setScreen("agentur"); if(i==="Brain") setScreen("brain"); if(i==="Departments") { const el = document.getElementById("departments"); if(el) el.scrollIntoView({behavior:"smooth"}); } if(i==="Sprints") { setScreen("assess"); } }} onMouseLeave={e => e.target.style.color = Z.g500}>{i}</span>
             ))}
             <button onClick={() => setScreen("newsroom")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Newsroom</button><button onClick={() => setScreen("readiness")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>X-SCORE</button><button onClick={() => setScreen("engine")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Sprint Engine</button>{screen === "home" && <button onClick={() => setScreen("assess")} style={{ padding: "7px 18px", borderRadius: 8, border: "none", background: Z.x, color: Z.w, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Starten →</button>}
           </div>
@@ -235,7 +237,7 @@ function Home({ go }) {
         <p style={{ fontSize: 18, color: Z.g500, lineHeight: 1.6, margin: "0 0 30px" }}>Keine Kurse. Sprints an deinem echten Projekt —<br />mit sofort sichtbaren Ergebnissen.</p>
         <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
           <Btn primary onClick={() => go("assess")}>Kostenlos starten</Btn>
-          <Btn>Business Anfragen</Btn>
+          <Btn>Enterprise Demo</Btn>
         </div>
       </div>
     </section>
@@ -730,8 +732,10 @@ export default function ZehnxAcademy() {
       {screen === "skills" && <SkillProfile user={user} />}
           {screen === "path" && <LearningPath />}
           {screen === "checkout" && <StripeCheckout onBack={() => setScreen("home")} />}
+          {screen === "enterprise" && <Enterprise onContact={(type) => { if(type==="assessment") setScreen("readiness"); }} />}
+          {screen === "agentur" && <Agentur />}
           {screen === "brain" && <CollectiveBrain />}
-          {screen === "business" && <><BusinessInquiry /><EnterpriseBot /></>}
+          {screen === "business" && <Agentur />}
           {screen === "pricing" && <Pricing onSelect={(plan) => console.log(plan)} />}
       {screen === "legal" && <div style={{maxWidth:720,margin:"0 auto",padding:"20px 20px 60px"}}><Legal /></div>}
       {screen === "newsroom" && <div style={{maxWidth:1100,margin:"0 auto",padding:"20px 20px 60px"}}><NewsroomFull /></div>}
