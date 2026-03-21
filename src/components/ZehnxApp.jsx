@@ -320,71 +320,6 @@ function Assessment({ onDone }) {
   };
 
   // ═══ SPLASH SCREEN ═══
-  if (showSplash) {
-    return (
-      <div onClick={() => setShowSplash(false)} style={{
-        position: "fixed", inset: 0, zIndex: 9999,
-        background: "#0A0A0A",
-        display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center",
-        cursor: "pointer", overflow: "hidden",
-      }}>
-        <style>{`
-          @keyframes zehnxFadeIn { from { opacity: 0; transform: scale(0.8) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-          @keyframes zehnxGlow { 0%,100% { text-shadow: 0 0 40px rgba(37,99,235,0.0); } 50% { text-shadow: 0 0 60px rgba(37,99,235,0.4); } }
-          @keyframes zehnxLine { from { width: 0; } to { width: 200px; } }
-          @keyframes zehnxSubFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 0.6; transform: translateY(0); } }
-          @keyframes zehnxPulseOut { 0% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; transform: scale(1.02); } }
-          .splash-wrap { animation: zehnxPulseOut 6.5s ease forwards; }
-        `}</style>
-        <div className="splash-wrap" style={{ textAlign: "center" }}>
-          <div style={{
-            animation: "zehnxFadeIn 1.2s ease 0.3s both",
-            fontSize: "clamp(48px, 10vw, 96px)",
-            fontWeight: 900,
-            color: "#FFFFFF",
-            letterSpacing: "-0.05em",
-            lineHeight: 1,
-            fontFamily: "'Plus Jakarta Sans', -apple-system, sans-serif",
-          }}>
-            ZEHN<span style={{ color: "#2563EB", animation: "zehnxGlow 3s ease infinite 1s" }}>X</span>
-          </div>
-          <div style={{
-            width: 0, height: 1, background: "linear-gradient(90deg, transparent, #2563EB, transparent)",
-            margin: "20px auto", animation: "zehnxLine 1.5s ease 1.2s forwards",
-          }} />
-          <div style={{
-            animation: "zehnxSubFade 1s ease 2s both",
-            fontSize: "clamp(14px, 2.5vw, 20px)",
-            fontWeight: 500,
-            color: "#94A3B8",
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-          }}>
-            Academy
-          </div>
-          <div style={{
-            animation: "zehnxSubFade 1s ease 3.5s both",
-            fontSize: "clamp(12px, 1.5vw, 15px)",
-            fontWeight: 400,
-            color: "#475569",
-            marginTop: 32,
-            letterSpacing: "0.02em",
-          }}>
-            Verzehnfache dein Wissen.
-          </div>
-        </div>
-        <div style={{
-          position: "absolute", bottom: 32,
-          animation: "zehnxSubFade 0.8s ease 5s both",
-          fontSize: 11, color: "#334155",
-        }}>
-          Tippe zum Überspringen
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div style={{ maxWidth: 580, margin: "0 auto", padding: "36px 20px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
@@ -754,17 +689,39 @@ function Progress({ scores }) {
 // ═══ MAIN APP ═════════════════════════════════════════════════
 
 export default function ZehnxAcademy() {
-  const [showSplash, setShowSplash] = useState(true);
-  const [screen, setScreen] = useState("home");
+    const [screen, setScreen] = useState("home");
   const [section, setSection] = useState("dash");
 
   // Splash screen auto-dismiss
-  useEffect(() => {
-    if (showSplash) {
-      const t = setTimeout(() => setShowSplash(false), 6500);
-      return () => clearTimeout(t);
-    }
-  }, [showSplash]);
+
+  if (showSplash) {
+    return (
+      <div onClick={() => setShowSplash(false)} style={{
+        position: "fixed", inset: 0, zIndex: 9999, background: "#0A0A0A",
+        display: "flex", flexDirection: "column", alignItems: "center",
+        justifyContent: "center", cursor: "pointer", overflow: "hidden",
+      }}>
+        <style>{`
+          @keyframes zxIn{from{opacity:0;transform:scale(0.85) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
+          @keyframes zxGlow{0%,100%{text-shadow:0 0 40px rgba(37,99,235,0)}50%{text-shadow:0 0 60px rgba(37,99,235,0.4)}}
+          @keyframes zxLine{from{width:0}to{width:180px}}
+          @keyframes zxSub{from{opacity:0;transform:translateY(8px)}to{opacity:0.6;transform:translateY(0)}}
+          @keyframes zxOut{0%{opacity:1}80%{opacity:1}100%{opacity:0;transform:scale(1.02)}}
+          .zx-wrap{animation:zxOut 6.5s ease forwards}
+        `}</style>
+        <div className="zx-wrap" style={{ textAlign: "center" }}>
+          <div style={{ animation: "zxIn 1.2s ease 0.3s both", fontSize: "clamp(52px,12vw,100px)", fontWeight: 900, color: "#FFFFFF", letterSpacing: "-0.05em", lineHeight: 1, fontFamily: "'Plus Jakarta Sans',-apple-system,sans-serif" }}>
+            ZEHN<span style={{ color: "#2563EB", animation: "zxGlow 3s ease infinite 1s" }}>X</span>
+          </div>
+          <div style={{ width: 0, height: 1, background: "linear-gradient(90deg,transparent,#2563EB,transparent)", margin: "20px auto", animation: "zxLine 1.5s ease 1.2s forwards" }} />
+          <div style={{ animation: "zxSub 1s ease 2s both", fontSize: "clamp(14px,2.5vw,20px)", fontWeight: 500, color: "#94A3B8", letterSpacing: "0.15em", textTransform: "uppercase" }}>Academy</div>
+          <div style={{ animation: "zxSub 1s ease 3.5s both", fontSize: "clamp(12px,1.5vw,15px)", fontWeight: 400, color: "#475569", marginTop: 32 }}>Verzehnfache dein Wissen.</div>
+        </div>
+        <div style={{ position: "absolute", bottom: 32, animation: "zxSub 0.8s ease 5s both", fontSize: 11, color: "#334155" }}>Tippe zum Ueberspringen</div>
+      </div>
+    );
+  }
+
 
   const [scores, setScores] = useState(null);
   const [path, setPath] = useState("auto");
