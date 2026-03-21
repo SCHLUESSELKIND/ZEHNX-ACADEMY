@@ -7,7 +7,7 @@ import ResponsiveShell from "./ResponsiveShell";
 import Pricing from "./Pricing";
 import SkillProfile from "./SkillProfile";
 import LearningPath from "./LearningPath";
-import AITutor from "./StudyBot";
+import AITutor from "./AcademyBot";
 import AcademyBot from "./AcademyBot";
 import EnterpriseBot from "./EnterpriseBot";
 import PaywallGate from "./PaywallGate";
