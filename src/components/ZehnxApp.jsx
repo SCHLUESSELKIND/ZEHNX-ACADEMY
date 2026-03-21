@@ -1,5 +1,16 @@
 import SprintEngine from "./SprintEngine";
-import SprintEngine from "./SprintEngine";
+import LiveTab from "./LiveTab";
+import NetworkTab from "./NetworkTab";
+import SprintRunner from "./SprintRunner";
+import SprintCatalog from "./SprintCatalog";
+import ResponsiveShell from "./ResponsiveShell";
+import Pricing from "./Pricing";
+import SkillProfile from "./SkillProfile";
+import LearningPath from "./LearningPath";
+import AITutor from "./StudyBot";
+import AcademyBot from "./AcademyBot";
+import EnterpriseBot from "./EnterpriseBot";
+import BusinessInquiry from "./BusinessInquiry";
 import Legal from "./Legal";
 import NewsroomFull from "./Newsroom";
 import AIReadiness from "./AIReadiness";
@@ -178,15 +189,15 @@ function Radar({ scores, size = 200 }) {
 
 function Nav({ screen, setScreen, section, setSection }) {
   const isPwa = !["home", "assess", "goal", "results", "import"].includes(screen);
-  const tabs = [{ id: "dash", l: "Dashboard" }, { id: "sprints", l: "Sprints" }, { id: "news", l: "Newsroom" }, { id: "deep", l: "Deep Dive" }, { id: "progress", l: "Fortschritt" }];
+  const tabs = [{ id: "dash", l: "Dashboard" }, { id: "sprints", l: "Sprints" }, { id: "news", l: "Newsroom" }, { id: "deep", l: "Deep Dive" }, { id: "live", l: "Live" }, { id: "network", l: "Netzwerk" }, { id: "progress", l: "Fortschritt" }];
   return (
     <nav style={{ position: "sticky", top: 0, zIndex: 200, background: `${Z.bg}D8`, backdropFilter: "blur(20px) saturate(180%)", borderBottom: `0.5px solid ${Z.g200}` }}>
       <div style={{ maxWidth: 1060, margin: "0 auto", padding: "0 20px", display: "flex", justifyContent: "space-between", alignItems: "center", height: 52 }}>
         <div style={{ cursor: "pointer" }} onClick={() => setScreen("home")}><Logo /></div>
         {!isPwa ? (
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            {screen === "home" && ["Departments", "Sprints", "Enterprise"].map(i => (
-              <span key={i} style={{ fontSize: 13, color: Z.g500, fontWeight: 600, cursor: "pointer" }} onMouseEnter={e => e.target.style.color = Z.x} onMouseLeave={e => e.target.style.color = Z.g500}>{i}</span>
+            {screen === "home" && ["Departments", "Sprints", "Business", "Enterprise"].map(i => (
+              <span key={i} style={{ fontSize: 13, color: Z.g500, fontWeight: 600, cursor: "pointer" }} onMouseEnter={e => e.target.style.color = Z.x} onClick={() => { if(i==="Business") setScreen("business"); }} onMouseLeave={e => e.target.style.color = Z.g500}>{i}</span>
             ))}
             <button onClick={() => setScreen("newsroom")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Newsroom</button><button onClick={() => setScreen("legal")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Impressum</button><button onClick={() => setScreen("readiness")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>X-SCORE</button><button onClick={() => setScreen("engine")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Sprint Engine</button><button onClick={() => setScreen("engine")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Sprint Engine</button>{screen === "home" && <button onClick={() => setScreen("assess")} style={{ padding: "7px 18px", borderRadius: 8, border: "none", background: Z.x, color: Z.w, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Starten →</button>}
           </div>
@@ -694,21 +705,29 @@ export default function ZehnxAcademy() {
         textarea:focus{border-color:${Z.bl}!important}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
       `}</style>
-      <Nav screen={screen} setScreen={setScreen} section={section} setSection={setSection} />
-      {screen === "home" && <><Home go={setScreen} />}
+      {screen !== "pwa" && <Nav screen={screen} setScreen={setScreen} section={section} setSection={setSection} />}
+      {screen === "home" && <><Home go={setScreen} /><StudyBot onNavigate={setScreen} /></>}
       {screen === "assess" && <Assessment onDone={(s) => { setScores(s); setScreen("results"); }} />}
       {screen === "results" && <Results scores={scores} onContinue={() => setScreen("goal")} />}
       {screen === "engine" && <div style={{maxWidth:780,margin:"0 auto",padding:"20px 20px 60px"}}><SprintEngine /></div>}
       {screen === "engine" && <div style={{maxWidth:780,margin:"0 auto",padding:"20px 20px 60px"}}><SprintEngine /></div>}
+      {screen === "skills" && <SkillProfile user={user} />}
+          {screen === "path" && <LearningPath />}
+          {screen === "business" && <><BusinessInquiry /><EnterpriseBot /></>}
+          {screen === "pricing" && <Pricing onSelect={(plan) => console.log(plan)} />}
       {screen === "legal" && <div style={{maxWidth:720,margin:"0 auto",padding:"20px 20px 60px"}}><Legal /></div>}
       {screen === "newsroom" && <div style={{maxWidth:1100,margin:"0 auto",padding:"20px 20px 60px"}}><NewsroomFull /></div>}
       {screen === "readiness" && <div style={{maxWidth:640,margin:"0 auto",padding:"20px 20px 60px"}}><AIReadiness /></div>}
       {screen === "goal" && <GoalScreen onDone={(p) => { setPath(p); setScreen("pwa"); setSection("dash"); }} />}
-      {screen === "pwa" && section === "dash" && <Dash scores={scores} goSection={goSection} />}
-      {screen === "pwa" && section === "sprints" && <SprintLib />}
-      {screen === "pwa" && section === "news" && <NewsroomPWA />}
-      {screen === "pwa" && section === "deep" && <DeepDive />}
-      {screen === "pwa" && section === "progress" && <Progress scores={scores} />}
+      {screen === "pwa" && <ResponsiveShell section={section} setSection={setSection}>
+      {section === "dash" && <Dash scores={scores} goSection={goSection} />}
+      {section === "sprints" && <SprintCatalog />}
+      {section === "news" && <NewsroomPWA />}
+      {section === "deep" && <DeepDive />}
+      {section === "live" && <div style={{maxWidth:720,margin:"0 auto",padding:"20px 20px 60px"}}><LiveTab /></div>}
+      {section === "network" && <div style={{maxWidth:720,margin:"0 auto",padding:"20px 20px 60px"}}><NetworkTab /></div>}
+      {section === "progress" && <Progress scores={scores} />}
+      </ResponsiveShell>}
     </div>
   );
 }

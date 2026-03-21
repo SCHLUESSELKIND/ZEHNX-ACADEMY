@@ -1,57 +1,38 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig, loadEnv } from 'vite'
+import react from '@vitejs/plugin-react'
 
-export default defineConfig({
-  plugins: [
-    react(),
-    VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
-      manifest: {
-        name: 'ZEHNX ACADEMY',
-        short_name: 'ZEHNX',
-        description: 'Die AI Sprint-Akademie. Verzehnfache dein Wissen.',
-        theme_color: '#18181B',
-        background_color: '#F5F5F7',
-        display: 'standalone',
-        orientation: 'portrait-primary',
-        start_url: '/',
-        scope: '/',
-        icons: [
-          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
-          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
-        ],
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: { cacheName: 'google-fonts-cache', expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 } },
-          },
-          {
-            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: { cacheName: 'gstatic-fonts-cache', expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 } },
-          },
-        ],
-      },
-    }),
-  ],
-  server: { port: 3000 },
-  build: {
-    target: 'esnext',
-    sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          supabase: ['@supabase/supabase-js'],
+export default defineConfig(({ mode }) => {
+  // Load .env file (ANTHROPIC_API_KEY without VITE_ prefix = server-side only)
+  const env = loadEnv(mode, process.cwd(), '')
+
+  return {
+    plugins: [react()],
+    server: {
+      port: 3001,
+      proxy: {
+        // Supabase REST API proxy
+        '/rest': {
+          target: 'http://178.104.103.37:8000',
+          changeOrigin: true,
         },
-      },
-    },
-  },
-});
+        // Anthropic API proxy — solves CORS + hides API key
+        '/anthropic': {
+          target: 'https://api.anthropic.com',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/anthropic/, ''),
+          configure: (proxy) => {
+            proxy.on('proxyReq', (proxyReq) => {
+              // Inject API key server-side — never reaches the browser
+              if (env.ANTHROPIC_API_KEY) {
+                proxyReq.setHeader('x-api-key', env.ANTHROPIC_API_KEY)
+              }
+              proxyReq.setHeader('anthropic-version', '2023-06-01')
+              // Remove browser origin header that Anthropic might reject
+              proxyReq.removeHeader('origin')
+            })
+          }
+        }
+      }
+    }
+  }
+})
