@@ -10,6 +10,8 @@ import LearningPath from "./LearningPath";
 import AITutor from "./StudyBot";
 import AcademyBot from "./AcademyBot";
 import EnterpriseBot from "./EnterpriseBot";
+import PaywallGate from "./PaywallGate";
+import StripeCheckout from "./StripeCheckout";
 import BusinessInquiry from "./BusinessInquiry";
 import Legal from "./Legal";
 import NewsroomFull from "./Newsroom";
@@ -232,7 +234,7 @@ function Home({ go }) {
         <p style={{ fontSize: 18, color: Z.g500, lineHeight: 1.6, margin: "0 0 30px" }}>Keine Kurse. Sprints an deinem echten Projekt —<br />mit sofort sichtbaren Ergebnissen.</p>
         <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
           <Btn primary onClick={() => go("assess")}>Kostenlos starten</Btn>
-          <Btn>Enterprise Demo</Btn>
+          <Btn>Business Anfragen</Btn>
         </div>
       </div>
     </section>
@@ -790,6 +792,7 @@ export default function ZehnxAcademy() {
       {screen === "engine" && <div style={{maxWidth:780,margin:"0 auto",padding:"20px 20px 60px"}}><SprintEngine /></div>}
       {screen === "skills" && <SkillProfile user={user} />}
           {screen === "path" && <LearningPath />}
+          {screen === "checkout" && <StripeCheckout onBack={() => setScreen("home")} />}
           {screen === "business" && <><BusinessInquiry /><EnterpriseBot /></>}
           {screen === "pricing" && <Pricing onSelect={(plan) => console.log(plan)} />}
       {screen === "legal" && <div style={{maxWidth:720,margin:"0 auto",padding:"20px 20px 60px"}}><Legal /></div>}
