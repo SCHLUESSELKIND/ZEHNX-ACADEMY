@@ -196,10 +196,10 @@ function Nav({ screen, setScreen, section, setSection }) {
         <div style={{ cursor: "pointer" }} onClick={() => setScreen("home")}><Logo /></div>
         {!isPwa ? (
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            {screen === "home" && ["Departments", "Sprints", "Business", "Enterprise"].map(i => (
-              <span key={i} style={{ fontSize: 13, color: Z.g500, fontWeight: 600, cursor: "pointer" }} onMouseEnter={e => e.target.style.color = Z.x} onClick={() => { if(i==="Business") setScreen("business"); }} onMouseLeave={e => e.target.style.color = Z.g500}>{i}</span>
+            {screen === "home" && ["Departments", "Sprints", "Business"].map(i => (
+              <span key={i} style={{ fontSize: 13, color: Z.g500, fontWeight: 600, cursor: "pointer" }} onMouseEnter={e => e.target.style.color = Z.x} onClick={() => { if(i==="Business") setScreen("business"); if(i==="Departments") { const el = document.getElementById("departments"); if(el) el.scrollIntoView({behavior:"smooth"}); } if(i==="Sprints") { setScreen("assess"); } }} onMouseLeave={e => e.target.style.color = Z.g500}>{i}</span>
             ))}
-            <button onClick={() => setScreen("newsroom")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Newsroom</button><button onClick={() => setScreen("legal")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Impressum</button><button onClick={() => setScreen("readiness")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>X-SCORE</button><button onClick={() => setScreen("engine")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Sprint Engine</button><button onClick={() => setScreen("engine")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Sprint Engine</button>{screen === "home" && <button onClick={() => setScreen("assess")} style={{ padding: "7px 18px", borderRadius: 8, border: "none", background: Z.x, color: Z.w, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Starten →</button>}
+            <button onClick={() => setScreen("newsroom")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Newsroom</button><button onClick={() => setScreen("readiness")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>X-SCORE</button><button onClick={() => setScreen("engine")} style={{padding:"7px 14px",borderRadius:8,border:"1px solid #E5E7EB",background:"#FFF",color:"#18181B",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Sprint Engine</button>{screen === "home" && <button onClick={() => setScreen("assess")} style={{ padding: "7px 18px", borderRadius: 8, border: "none", background: Z.x, color: Z.w, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Starten →</button>}
           </div>
         ) : (
           <div style={{ display: "flex", gap: 2 }}>
@@ -238,7 +238,7 @@ function Home({ go }) {
     </section>
     <section style={{ maxWidth: 720, margin: "-10px auto 0", padding: "0 20px", position: "relative", zIndex: 10 }}>
       <div style={{ display: "flex", background: Z.w, borderRadius: 14, border: `1px solid ${Z.g200}`, overflow: "hidden", boxShadow: `0 2px 10px ${Z.x}06` }}>
-        {[{ v: "130+", l: "Module" }, { v: "8", l: "Departments" }, { v: "A1→C2", l: "Sprachlevel" }, { v: "0 €", l: "Für immer frei" }].map((s, i) => (
+        {[{ v: "324", l: "Sprints" }, { v: "14", l: "Departments" }, { v: "A1→C2", l: "Sprachlevel" }, { v: "0 €", l: "Für immer frei" }].map((s, i) => (
           <div key={i} style={{ flex: 1, padding: "18px 12px", textAlign: "center", borderRight: i < 3 ? `1px solid ${Z.g100}` : "none" }}>
             <div style={{ fontSize: 24, fontWeight: 900, color: Z.x }}>{s.v}</div>
             <div style={{ fontSize: 11, color: Z.g400, marginTop: 2 }}>{s.l}</div>
@@ -295,7 +295,7 @@ function Home({ go }) {
     </section>
     <footer style={{ borderTop: `1px solid ${Z.g200}`, padding: "20px", background: Z.w }}>
       <div style={{ maxWidth: 860, margin: "0 auto", display: "flex", justifyContent: "space-between", fontSize: 11, color: Z.g400 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 4 }}><Logo s={12} /><span>· Frerich United Ventures GmbH · Köln</span></div>
+        <div style={{ display: "flex", alignItems: "center", gap: 4 }}><Logo s={12} /><span>· ZEHNX Academy · Köln</span></div>
         <div style={{ display: "flex", gap: 14 }}><span style={{ cursor: "pointer" }}>Impressum</span><span style={{ cursor: "pointer" }}>Datenschutz</span><span style={{ cursor: "pointer" }}>AI Act</span></div>
       </div>
     </footer>
@@ -315,6 +315,73 @@ function Assessment({ onDone }) {
     if (cur < QS.length - 1) setCur(cur + 1);
     else { const sc = {}, ct = {}; Object.values(na).forEach(a => { sc[a.dim] = (sc[a.dim] || 0) + a.s; ct[a.dim] = (ct[a.dim] || 0) + 1; }); const avg = {}; Object.keys(sc).forEach(k => avg[k] = sc[k] / ct[k]); onDone(avg); }
   };
+
+  // ═══ SPLASH SCREEN ═══
+  if (showSplash) {
+    return (
+      <div onClick={() => setShowSplash(false)} style={{
+        position: "fixed", inset: 0, zIndex: 9999,
+        background: "#0A0A0A",
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        cursor: "pointer", overflow: "hidden",
+      }}>
+        <style>{`
+          @keyframes zehnxFadeIn { from { opacity: 0; transform: scale(0.8) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+          @keyframes zehnxGlow { 0%,100% { text-shadow: 0 0 40px rgba(37,99,235,0.0); } 50% { text-shadow: 0 0 60px rgba(37,99,235,0.4); } }
+          @keyframes zehnxLine { from { width: 0; } to { width: 200px; } }
+          @keyframes zehnxSubFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 0.6; transform: translateY(0); } }
+          @keyframes zehnxPulseOut { 0% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; transform: scale(1.02); } }
+          .splash-wrap { animation: zehnxPulseOut 6.5s ease forwards; }
+        `}</style>
+        <div className="splash-wrap" style={{ textAlign: "center" }}>
+          <div style={{
+            animation: "zehnxFadeIn 1.2s ease 0.3s both",
+            fontSize: "clamp(48px, 10vw, 96px)",
+            fontWeight: 900,
+            color: "#FFFFFF",
+            letterSpacing: "-0.05em",
+            lineHeight: 1,
+            fontFamily: "'Plus Jakarta Sans', -apple-system, sans-serif",
+          }}>
+            ZEHN<span style={{ color: "#2563EB", animation: "zehnxGlow 3s ease infinite 1s" }}>X</span>
+          </div>
+          <div style={{
+            width: 0, height: 1, background: "linear-gradient(90deg, transparent, #2563EB, transparent)",
+            margin: "20px auto", animation: "zehnxLine 1.5s ease 1.2s forwards",
+          }} />
+          <div style={{
+            animation: "zehnxSubFade 1s ease 2s both",
+            fontSize: "clamp(14px, 2.5vw, 20px)",
+            fontWeight: 500,
+            color: "#94A3B8",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+          }}>
+            Academy
+          </div>
+          <div style={{
+            animation: "zehnxSubFade 1s ease 3.5s both",
+            fontSize: "clamp(12px, 1.5vw, 15px)",
+            fontWeight: 400,
+            color: "#475569",
+            marginTop: 32,
+            letterSpacing: "0.02em",
+          }}>
+            Verzehnfache dein Wissen.
+          </div>
+        </div>
+        <div style={{
+          position: "absolute", bottom: 32,
+          animation: "zehnxSubFade 0.8s ease 5s both",
+          fontSize: 11, color: "#334155",
+        }}>
+          Tippe zum Überspringen
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ maxWidth: 580, margin: "0 auto", padding: "36px 20px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
@@ -684,8 +751,18 @@ function Progress({ scores }) {
 // ═══ MAIN APP ═════════════════════════════════════════════════
 
 export default function ZehnxAcademy() {
+  const [showSplash, setShowSplash] = useState(true);
   const [screen, setScreen] = useState("home");
   const [section, setSection] = useState("dash");
+
+  // Splash screen auto-dismiss
+  useEffect(() => {
+    if (showSplash) {
+      const t = setTimeout(() => setShowSplash(false), 6500);
+      return () => clearTimeout(t);
+    }
+  }, [showSplash]);
+
   const [scores, setScores] = useState(null);
   const [path, setPath] = useState("auto");
 
