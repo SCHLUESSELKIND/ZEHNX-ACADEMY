@@ -706,7 +706,7 @@ export default function ZehnxAcademy() {
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
       `}</style>
       {screen !== "pwa" && <Nav screen={screen} setScreen={setScreen} section={section} setSection={setSection} />}
-      {screen === "home" && <><Home go={setScreen} /><StudyBot onNavigate={setScreen} /></>}
+      {screen === "home" && <><Home go={setScreen} /><AcademyBot onNavigate={setScreen} /></>}
       {screen === "assess" && <Assessment onDone={(s) => { setScores(s); setScreen("results"); }} />}
       {screen === "results" && <Results scores={scores} onContinue={() => setScreen("goal")} />}
       {screen === "engine" && <div style={{maxWidth:780,margin:"0 auto",padding:"20px 20px 60px"}}><SprintEngine /></div>}
