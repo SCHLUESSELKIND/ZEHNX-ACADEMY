@@ -12,6 +12,7 @@ import AcademyBot from "./AcademyBot";
 import EnterpriseBot from "./EnterpriseBot";
 import PaywallGate from "./PaywallGate";
 import StripeCheckout from "./StripeCheckout";
+import CollectiveBrain from "./CollectiveBrain";
 import BusinessInquiry from "./BusinessInquiry";
 import Legal from "./Legal";
 import NewsroomFull from "./Newsroom";
@@ -265,7 +266,7 @@ function Home({ go }) {
         ))}
       </div>
     </section>
-    <section style={{ background: Z.w, padding: "48px 20px", borderTop: `1px solid ${Z.g100}`, borderBottom: `1px solid ${Z.g100}` }}>
+    <section style={{ background: Z.w, padding: "48px 20px", borderTop: `1px solid ${Z.g100}`, borderBottom: `1px solid ${Z.g100}` }} id="departments">
       <div style={{ maxWidth: 920, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 28 }}>
           <div style={{ fontSize: 11, color: Z.am, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 6 }}>8 DEPARTMENTS</div>
@@ -789,10 +790,10 @@ export default function ZehnxAcademy() {
       {screen === "assess" && <Assessment onDone={(s) => { setScores(s); setScreen("results"); }} />}
       {screen === "results" && <Results scores={scores} onContinue={() => setScreen("goal")} />}
       {screen === "engine" && <div style={{maxWidth:780,margin:"0 auto",padding:"20px 20px 60px"}}><SprintEngine /></div>}
-      {screen === "engine" && <div style={{maxWidth:780,margin:"0 auto",padding:"20px 20px 60px"}}><SprintEngine /></div>}
       {screen === "skills" && <SkillProfile user={user} />}
           {screen === "path" && <LearningPath />}
           {screen === "checkout" && <StripeCheckout onBack={() => setScreen("home")} />}
+          {screen === "brain" && <CollectiveBrain />}
           {screen === "business" && <><BusinessInquiry /><EnterpriseBot /></>}
           {screen === "pricing" && <Pricing onSelect={(plan) => console.log(plan)} />}
       {screen === "legal" && <div style={{maxWidth:720,margin:"0 auto",padding:"20px 20px 60px"}}><Legal /></div>}
