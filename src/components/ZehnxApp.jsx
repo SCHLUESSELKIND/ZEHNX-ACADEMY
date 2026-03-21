@@ -691,7 +691,12 @@ function Progress({ scores }) {
 export default function ZehnxAcademy() {
     const [screen, setScreen] = useState("home");
   const [section, setSection] = useState("dash");
+  const [scores, setScores] = useState(null);
+  const [path, setPath] = useState("auto");
 
+  const goSection = (s) => { setScreen("pwa"); setSection(s); };
+
+  return (
     <div style={{ minHeight: "100vh", background: Z.bg, fontFamily: "'Plus Jakarta Sans', -apple-system, sans-serif", color: Z.x }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
