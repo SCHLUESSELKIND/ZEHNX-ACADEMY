@@ -194,7 +194,7 @@ function Nav({ screen, setScreen, section, setSection }) {
   const isPwa = !["home", "assess", "goal", "results", "import"].includes(screen);
   const tabs = [{ id: "dash", l: "Dashboard" }, { id: "sprints", l: "Sprints" }, { id: "news", l: "Newsroom" }, { id: "deep", l: "Deep Dive" }, { id: "live", l: "Live" }, { id: "network", l: "Netzwerk" }, { id: "progress", l: "Fortschritt" }];
   return (
-    <nav style={{ position: "sticky", top: 0, zIndex: 200, background: `${Z.bg}D8`, backdropFilter: "blur(20px) saturate(180%)", borderBottom: `0.5px solid ${Z.g200}` }}>
+    <nav style={{ position: "sticky", top: 0, zIndex: 200, background: `${Z.bg}B8`, backdropFilter: "blur(24px) saturate(200%)", WebkitBackdropFilter: "blur(24px) saturate(200%)", borderBottom: `0.5px solid ${Z.g200}` }}>
       <div style={{ maxWidth: 1060, margin: "0 auto", padding: "0 20px", display: "flex", justifyContent: "space-between", alignItems: "center", height: 52 }}>
         <div style={{ cursor: "pointer" }} onClick={() => setScreen("home")}><Logo /></div>
         {!isPwa ? (
@@ -592,7 +592,13 @@ function NewsroomPWA() {
           </div>
         </div>
       ))}
-      <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}`}</style>
+      <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes scaleIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+        .zx-fade{animation:fadeUp 0.6s ease both}
+        .zx-fade-d1{animation-delay:0.1s}.zx-fade-d2{animation-delay:0.2s}.zx-fade-d3{animation-delay:0.3s}
+        .zx-scale{animation:scaleIn 0.5s ease both}
+        @media(prefers-reduced-motion:reduce){.zx-fade,.zx-scale{animation:none!important}}`}</style>
     </div>
   );
 }
@@ -702,13 +708,19 @@ export default function ZehnxAcademy() {
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
         *{box-sizing:border-box;margin:0}
         button{font-family:'Plus Jakarta Sans',sans-serif}
-        button:hover{filter:brightness(0.96)}
+        button{transition:all 0.15s ease}button:hover{filter:brightness(0.96);transform:translateY(-0.5px)}
         ::selection{background:${Z.blL};color:${Z.x}}
-        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar{width:5px}
         ::-webkit-scrollbar-track{background:${Z.bg}}
         ::-webkit-scrollbar-thumb{background:${Z.g300};border-radius:3px}
         textarea:focus{border-color:${Z.bl}!important}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes scaleIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+        .zx-fade{animation:fadeUp 0.6s ease both}
+        .zx-fade-d1{animation-delay:0.1s}.zx-fade-d2{animation-delay:0.2s}.zx-fade-d3{animation-delay:0.3s}
+        .zx-scale{animation:scaleIn 0.5s ease both}
+        @media(prefers-reduced-motion:reduce){.zx-fade,.zx-scale{animation:none!important}}
       `}</style>
       {screen !== "pwa" && <Nav screen={screen} setScreen={setScreen} section={section} setSection={setSection} />}
       {screen === "home" && <><Home go={setScreen} /><AcademyBot onNavigate={setScreen} /></>}
