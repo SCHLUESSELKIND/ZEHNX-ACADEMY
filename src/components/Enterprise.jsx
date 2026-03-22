@@ -176,6 +176,7 @@ export default function Enterprise({ onContact }) {
             fontSize: 15, fontWeight: 600, cursor: "pointer",
             fontFamily: "'Space Grotesk', sans-serif", transition: "border-color 0.2s",
           }}>Demo anfragen</button>
+          <a href="/enterprise-studio.html" target="_blank" rel="noopener" style={{ padding: "14px 32px", borderRadius: 12, border: "1px solid " + D.border, background: D.surf, color: D.text, fontSize: 15, fontWeight: 600, textDecoration: "none", fontFamily: "'Space Grotesk', sans-serif", display: "inline-flex", alignItems: "center", gap: 8, transition: "border-color 0.2s" }}>Dashboard Demo ↗</a>
         </div>
       </div>
 

@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZehnX Enterprise Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   ZehnX Enterprise Studio
+   Manager Magazin × Techbro × Apple × Campus
+   3 Themes: Dark · Light · Phosphor
+   ================================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ---- DARK (default) ---- */
+:root, [data-theme="dark"] {
+  --bg: #09090B; --bg-warm: #0D0D0F;
+  --surface: #131316; --surface-raised: #1A1A1E; --surface-3: #252530;
+  --text: #ECECEC; --text-sec: #8E8E93; --text-muted: #5A5A5E; --text-dim: #38383C;
+  --border: rgba(255,255,255,0.07); --border-strong: rgba(255,255,255,0.14);
+  --accent: #6366F1; --accent-glow: rgba(99,102,241,0.15); --accent-subtle: rgba(99,102,241,0.08);
+  --gold: #D4A853; --green: #10B981; --green-bg: rgba(16,185,129,0.1);
+  --amber: #F59E0B; --amber-bg: rgba(245,158,11,0.1);
+  --red: #EF4444; --red-bg: rgba(239,68,68,0.1);
+  --stat-color: #ECECEC; --stat-sub: #5A5A5E; --stat-border: rgba(255,255,255,0.08); --stat-glow: none;
+  --logo-enterprise: #D4A853; --logo-academy: #6366F1;
+  --code-bg: #0A0A0B; --selection: rgba(99,102,241,0.3);
+  --gradient: linear-gradient(135deg, #4F46E5, #7C3AED);
+  --nav-active-bg: rgba(99,102,241,0.12); --nav-active-text: #818CF8;
+  --theme-toggle-bg: #131316;
+  --chart-1: #6366F1; --chart-2: #34D399; --chart-3: #F59E0B; --chart-4: #EC4899;
+  --danger: #EF4444; --success: #10B981; --warning: #F59E0B;
+}
+
+/* ---- LIGHT ---- */
+[data-theme="light"] {
+  --bg: #FAFAF8; --bg-warm: #F5F5F0;
+  --surface: #FFFFFF; --surface-raised: #F0F0EC; --surface-3: #E8E8EC;
+  --text: #1A1A1A; --text-sec: #6B6B6B; --text-muted: #9A9A9A; --text-dim: #CDCDCD;
+  --border: rgba(0,0,0,0.06); --border-strong: rgba(0,0,0,0.12);
+  --accent: #4F46E5; --accent-glow: rgba(79,70,229,0.08); --accent-subtle: rgba(79,70,229,0.04);
+  --gold: #A07C28; --green: #059669; --green-bg: rgba(5,150,105,0.08);
+  --amber: #B45309; --amber-bg: rgba(180,83,9,0.08);
+  --red: #DC2626; --red-bg: rgba(220,38,38,0.06);
+  --stat-color: #1A1A1A; --stat-sub: #9A9A9A; --stat-border: rgba(0,0,0,0.08); --stat-glow: none;
+  --logo-enterprise: #A07C28; --logo-academy: #4F46E5;
+  --code-bg: #1a1a23; --selection: rgba(79,70,229,0.15);
+  --gradient: linear-gradient(135deg, #4F46E5, #7C3AED);
+  --nav-active-bg: rgba(79,70,229,0.08); --nav-active-text: #4F46E5;
+  --theme-toggle-bg: #FFFFFF;
+  --chart-1: #4F46E5; --chart-2: #059669; --chart-3: #B45309; --chart-4: #DB2777;
+  --danger: #DC2626; --success: #059669; --warning: #B45309;
+}
+
+/* ---- PHOSPHOR ---- */
+[data-theme="phosphor"] {
+  --bg: #030D03; --bg-warm: #051205;
+  --surface: #0A1A0A; --surface-raised: #0F220F; --surface-3: #142814;
+  --text: #B8F4B8; --text-sec: #5DA65D; --text-muted: #2F6B2F; --text-dim: #1A3D1A;
+  --border: rgba(52,211,153,0.08); --border-strong: rgba(52,211,153,0.16);
+  --accent: #34D399; --accent-glow: rgba(52,211,153,0.12); --accent-subtle: rgba(52,211,153,0.05);
+  --gold: #34D399; --green: #4ADE80; --green-bg: rgba(74,222,128,0.08);
+  --amber: #34D399; --amber-bg: rgba(52,211,153,0.08);
+  --red: #4ADE80; --red-bg: rgba(74,222,128,0.06);
+  --stat-color: #4ADE80; --stat-sub: #2F6B2F; --stat-border: rgba(52,211,153,0.12);
+  --stat-glow: 0 0 40px rgba(52,211,153,0.06);
+  --logo-enterprise: #34D399; --logo-academy: #34D399;
+  --code-bg: #030D03; --selection: rgba(52,211,153,0.25);
+  --gradient: linear-gradient(135deg, #34D399, #4ADE80);
+  --nav-active-bg: rgba(52,211,153,0.12); --nav-active-text: #4ADE80;
+  --theme-toggle-bg: #0A1A0A;
+  --chart-1: #34D399; --chart-2: #4ADE80; --chart-3: #6EE7B7; --chart-4: #A7F3D0;
+  --danger: #4ADE80; --success: #4ADE80; --warning: #34D399;
+}
+[data-theme="phosphor"] body { text-shadow: 0 0 1px rgba(74,222,128,0.15); }
+[data-theme="phosphor"] .kpi-val,
+[data-theme="phosphor"] .stat-val { text-shadow: 0 0 20px rgba(74,222,128,0.3); }
+[data-theme="phosphor"] .sidebar-logo,
+[data-theme="phosphor"] .screen-title { text-shadow: 0 0 20px rgba(74,222,128,0.1); }
+::selection { background: var(--selection); }
+
+/* ---- BASE ---- */
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg); color: var(--text);
+  height: 100vh; overflow: hidden; display: flex;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.4s, color 0.4s;
+}
+
+/* ================================================================
+   SIDEBAR
+   ================================================================ */
+.sidebar {
+  width: 260px; min-width: 260px; background: var(--surface);
+  border-right: 1px solid var(--border); display: flex; flex-direction: column;
+  height: 100vh; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.sidebar.collapsed { width: 64px; min-width: 64px; }
+.sidebar.collapsed .sidebar-sub,
+.sidebar.collapsed .nav-label,
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .nav-badge,
+.sidebar.collapsed .sidebar-search,
+.sidebar.collapsed .user-info { display: none; }
+.sidebar.collapsed .sidebar-header { justify-content: center; }
+.sidebar.collapsed .sidebar-logo .text { display: none; }
+.sidebar.collapsed .nav-item { justify-content: center; padding: 10px; }
+.sidebar.collapsed .nav-icon { margin: 0; }
+
+.sidebar-header {
+  padding: 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sidebar-logo {
+  font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700;
+  display: flex; align-items: center; gap: 2px; cursor: default;
+}
+.sidebar-logo .zehn { color: var(--text); }
+.sidebar-logo .x { color: var(--logo-enterprise); transition: color 0.4s; }
+.sidebar-sub {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+  margin-top: 2px;
+}
+.collapse-btn {
+  width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-muted); cursor: pointer; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+}
+.collapse-btn:hover { background: var(--surface-raised); color: var(--text); }
+
+.sidebar-search {
+  margin: 12px 12px 4px; padding: 8px 12px; border-radius: 8px;
+  background: var(--bg); border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 13px; display: flex; align-items: center; gap: 8px;
+  cursor: pointer; transition: border-color 0.2s;
+}
+.sidebar-search:hover { border-color: var(--border-strong); }
+.sidebar-search kbd {
+  margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--text-dim); background: var(--surface-raised); padding: 2px 6px;
+  border-radius: 4px; border: 1px solid var(--border);
+}
+
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 8px; }
+.nav-section { margin-bottom: 12px; }
+.nav-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--text-dim); padding: 8px 12px 4px; font-weight: 500;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+  border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text-sec);
+  cursor: pointer; transition: all 0.15s; text-decoration: none; position: relative;
+}
+.nav-item:hover { background: var(--surface-raised); color: var(--text); }
+.nav-item.active { background: var(--nav-active-bg); color: var(--nav-active-text); }
+.nav-icon { width: 18px; text-align: center; font-size: 14px; flex-shrink: 0; }
+.nav-text { white-space: nowrap; }
+.nav-badge {
+  margin-left: auto; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 600; padding: 2px 6px;
+  border-radius: 4px; background: var(--accent-subtle); color: var(--nav-active-text);
+}
+
+.sidebar-user {
+  padding: 16px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.user-avatar {
+  width: 32px; height: 32px; border-radius: 8px; background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: white; flex-shrink: 0;
+}
+.user-info { flex: 1; min-width: 0; }
+.user-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.user-role { font-size: 11px; color: var(--text-muted); }
+
+/* ================================================================
+   MAIN CONTENT
+   ================================================================ */
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+.topbar {
+  height: 52px; padding: 0 28px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+.breadcrumb { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+.breadcrumb span { color: var(--text); font-weight: 500; }
+.topbar-right { display: flex; align-items: center; gap: 8px; }
+
+.theme-toggle {
+  display: flex; gap: 0; border-radius: 6px; overflow: hidden;
+  border: 1px solid var(--border); background: var(--theme-toggle-bg);
+}
+.theme-btn {
+  background: none; border: none; color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 6px 10px; cursor: pointer; transition: all 0.2s;
+}
+.theme-btn:hover { color: var(--text-sec); }
+.theme-btn.active { color: var(--text); background: var(--surface-raised); }
+.theme-btn + .theme-btn { border-left: 1px solid var(--border); }
+
+.content-wrap { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 28px; }
+
+/* ================================================================
+   SCREENS
+   ================================================================ */
+.screen { display: none; animation: fadeIn 0.2s ease; }
+.screen.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+.screen-header { margin-bottom: 28px; }
+.screen-overline {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+}
+.screen-title {
+  font-family: 'Instrument Serif', Georgia, serif; font-style: italic;
+  font-size: 32px; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.screen-subtitle { font-size: 14px; color: var(--text-sec); font-weight: 300; }
+
+/* ---- GRIDS ---- */
+.grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-6 { grid-template-columns: repeat(6, 1fr); }
+.grid-23 { grid-template-columns: 2fr 1fr; }
+.grid-32 { grid-template-columns: 1fr 2fr; }
+
+/* ---- CARDS ---- */
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px; transition: all 0.2s;
+}
+.card:hover { border-color: var(--border-strong); }
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.card-title { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; }
+.card-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* ---- KPI CARDS ---- */
+.kpi {
+  background: var(--surface); border: 1px solid var(--stat-border); border-radius: 12px;
+  padding: 24px; position: relative; overflow: hidden; transition: all 0.2s;
+  box-shadow: var(--stat-glow);
+}
+.kpi:hover { border-color: var(--border-strong); }
+.kpi::before {
+  content: attr(data-index);
+  position: absolute; top: 10px; right: 12px;
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  color: var(--stat-sub); letter-spacing: 1px; opacity: 0.5;
+}
+.kpi-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--stat-sub); margin-bottom: 8px;
+}
+.kpi-val {
+  font-family: 'JetBrains Mono', monospace; font-weight: 500;
+  font-size: 28px; letter-spacing: -0.04em; color: var(--stat-color); line-height: 1;
+}
+.kpi-trend {
+  display: inline-flex; align-items: center; gap: 4px; margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+}
+.kpi-trend.up { color: var(--success); }
+.kpi-trend.down { color: var(--danger); }
+.kpi-bar {
+  position: absolute; bottom: 0; left: 0; height: 2px;
+  background: var(--accent); opacity: 0.4; transition: width 1s ease;
+}
+
+/* ---- STAT BLOCK (inline) ---- */
+.stat-row { display: flex; gap: 0; border: 1px solid var(--stat-border); border-radius: 12px; overflow: hidden; box-shadow: var(--stat-glow); }
+.stat-cell { flex: 1; padding: 20px; border-right: 1px solid var(--stat-border); position: relative; }
+.stat-cell:last-child { border-right: none; }
+.stat-cell::before {
+  content: attr(data-index); position: absolute; top: 8px; right: 10px;
+  font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--stat-sub); opacity: 0.5;
+}
+.stat-val { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 22px; color: var(--stat-color); line-height: 1; margin-bottom: 4px; }
+.stat-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--stat-sub); }
+
+/* ---- TABLES ---- */
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tbl th {
+  text-align: left; padding: 10px 16px; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);
+  border-bottom: 1px solid var(--border-strong);
+  font-family: 'JetBrains Mono', monospace;
+}
+.tbl td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-sec); }
+.tbl tr:hover td { background: var(--accent-subtle); }
+.tbl .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+/* ---- BADGES / PILLS ---- */
+.pill {
+  display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 100px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+.pill-accent { background: var(--accent-subtle); color: var(--accent); }
+.pill-green { background: var(--green-bg); color: var(--green); }
+.pill-amber { background: var(--amber-bg); color: var(--amber); }
+.pill-red { background: var(--red-bg); color: var(--red); }
+.pill-gold { background: rgba(212,168,83,0.1); color: var(--gold); }
+
+/* ---- BUTTONS ---- */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
+  border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all 0.15s; border: none; font-family: inherit;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-sec); }
+.btn-ghost:hover { border-color: var(--border-strong); color: var(--text); }
+.btn-gold { background: rgba(212,168,83,0.15); color: var(--gold); border: 1px solid rgba(212,168,83,0.2); }
+
+/* ---- PROGRESS BAR ---- */
+.progress { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+.progress-accent .progress-fill { background: var(--accent); }
+.progress-green .progress-fill { background: var(--green); }
+.progress-gold .progress-fill { background: var(--gold); }
+
+/* ---- CHART (CSS-only bar chart) ---- */
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 180px; padding-top: 20px; }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.bar { width: 100%; border-radius: 4px 4px 0 0; background: var(--accent); opacity: 0.8; transition: height 0.6s ease, opacity 0.2s; min-height: 4px; }
+.bar:hover { opacity: 1; }
+.bar.secondary { background: var(--green); opacity: 0.6; }
+.bar-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-dim); text-transform: uppercase; }
+
+/* ---- HEATMAP ---- */
+.heatmap { display: grid; gap: 2px; }
+.heat-cell {
+  aspect-ratio: 1; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; transition: all 0.2s;
+}
+.heat-1 { background: var(--red-bg); color: var(--red); }
+.heat-2 { background: var(--amber-bg); color: var(--amber); }
+.heat-3 { background: rgba(234,179,8,0.08); color: #EAB308; }
+.heat-4 { background: rgba(52,211,153,0.08); color: #34D399; }
+.heat-5 { background: var(--green-bg); color: var(--green); }
+
+/* ---- CHAT ---- */
+.chat-wrap { display: flex; gap: 0; height: calc(100vh - 160px); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.chat-main { flex: 1; display: flex; flex-direction: column; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.chat-msg { display: flex; gap: 12px; max-width: 80%; }
+.chat-msg.ai { align-self: flex-start; }
+.chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.chat-avatar {
+  width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.chat-msg.ai .chat-avatar { background: var(--accent-subtle); color: var(--accent); }
+.chat-msg.user .chat-avatar { background: var(--gradient); color: white; font-size: 12px; font-weight: 700; }
+.chat-bubble {
+  padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.7; color: var(--text-sec);
+}
+.chat-msg.ai .chat-bubble { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); }
+.chat-msg.user .chat-bubble { background: var(--accent-subtle); }
+.chat-input-wrap {
+  padding: 16px; border-top: 1px solid var(--border); display: flex; gap: 8px;
+}
+.chat-input {
+  flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font-size: 14px; font-family: inherit;
+  outline: none; transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--accent); }
+.chat-send { width: 40px; height: 40px; border-radius: 8px; background: var(--accent); color: white; border: none; cursor: pointer; font-size: 16px; }
+.chat-sidebar { width: 280px; border-left: 1px solid var(--border); padding: 20px; overflow-y: auto; background: var(--surface); }
+
+/* ---- BADGE (hexagonal) ---- */
+.hex-badge {
+  width: 72px; height: 72px; position: relative; margin: 0 auto 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.hex-badge::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--accent-subtle); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 2px solid var(--accent);
+}
+
+/* ---- MISC ---- */
+.divider { height: 1px; background: var(--border); margin: 24px 0; }
+.section-title {
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600;
+  margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dot-green { background: var(--green); }
+.dot-amber { background: var(--amber); }
+.dot-red { background: var(--red); }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.text-muted { color: var(--text-muted); }
+.text-sec { color: var(--text-sec); }
+.text-accent { color: var(--accent); }
+.text-gold { color: var(--gold); }
+.text-sm { font-size: 12px; }
+.text-xs { font-size: 11px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.gap-8 { gap: 8px; }
+.gap-24 { gap: 24px; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.flex-1 { flex: 1; }
+.relative { position: relative; }
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+</style>
+</head>
+<body>
+<div style="display:flex;width:100%;height:100vh;">
+
+<!-- ================================================================
+     SIDEBAR
+     ================================================================ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div>
+      <div class="sidebar-logo"><span class="zehn">Zehn</span><span class="x">X</span></div>
+      <div class="sidebar-sub">Enterprise</div>
+    </div>
+    <button class="collapse-btn" id="collapseBtn" title="Sidebar ein-/ausklappen">☰</button>
+  </div>
+
+  <div class="sidebar-search" onclick="document.getElementById('searchInput').focus()">
+    <span>🔍</span> <span class="nav-text">Suche…</span> <kbd>⌘K</kbd>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-label">Übersicht</div>
+      <div class="nav-item active" data-screen="dashboard"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></div>
+      <div class="nav-item" data-screen="analytics"><span class="nav-icon">📈</span><span class="nav-text">Analytics & Reports</span></div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Learning</div>
+      <div class="nav-item" data-screen="cohorts"><span class="nav-icon">🎯</span><span class="nav-text">Sprint Cohorts</span><span class="nav-badge">4</span></div>
+      <div class="nav-item" data-screen="intelligence"><span class="nav-icon">🧠</span><span class="nav-text">Intelligence Hub</span></div>
+      <div class="nav-item" data-screen="skills"><span class="nav-icon">🗺️</span><span class="nav-text">Skill-Mapping</span></div>
+      <div class="nav-item" data-screen="coach"><span class="nav-icon">🤖</span><span class="nav-text">AI Learning Coach</span><span class="nav-badge">Neu</span></div>
+      <div class="nav-item" data-screen="content"><span class="nav-icon">📚</span><span class="nav-text">Content Studio</span></div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Management</div>
+      <div class="nav-item" data-screen="team"><span class="nav-icon">👥</span><span class="nav-text">Team & Rollen</span></div>
+      <div class="nav-item" data-screen="workspace"><span class="nav-icon">🏢</span><span class="nav-text">Workspace</span></div>
+      <div class="nav-item" data-screen="integrations"><span class="nav-icon">🔗</span><span class="nav-text">Integrationen & API</span></div>
+      <div class="nav-item" data-screen="security"><span class="nav-icon">🔒</span><span class="nav-text">Security & Compliance</span></div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Credentials</div>
+      <div class="nav-item" data-screen="credentials"><span class="nav-icon">🏅</span><span class="nav-text">Micro-Credentials</span></div>
+      <div class="nav-item" data-screen="champions"><span class="nav-icon">🏆</span><span class="nav-text">Champions Program</span></div>
+    </div>
+  </nav>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">TF</div>
+    <div class="user-info">
+      <div class="user-name">Thomas Frerich</div>
+      <div class="user-role">Enterprise Admin</div>
+    </div>
+  </div>
+</aside>
+
+<!-- ================================================================
+     MAIN CONTENT
+     ================================================================ -->
+<div class="main">
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="breadcrumb">Enterprise Studio <span style="color:var(--text-dim)">→</span> <span id="breadcrumbPage">Dashboard</span></div>
+    </div>
+    <div class="topbar-right">
+      <input type="text" id="searchInput" placeholder="Suche… ⌘K" style="width:200px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;font-family:inherit;outline:none;">
+      <div class="theme-toggle">
+        <button class="theme-btn active" data-theme="dark">Dark</button>
+        <button class="theme-btn" data-theme="light">Light</button>
+        <button class="theme-btn" data-theme="phosphor">Phosphor</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="content-wrap">
+
+    <!-- ================================================================
+         SCREEN: DASHBOARD
+         ================================================================ -->
+    <div class="screen active" data-screen="dashboard">
+      <div class="screen-header">
+        <div class="screen-overline">Command Center</div>
+        <div class="screen-title">Dashboard</div>
+        <div class="screen-subtitle">Übersicht über alle Enterprise-KPIs und Aktivitäten</div>
+      </div>
+
+      <div class="grid grid-4 mb-24">
+        <div class="kpi" data-index="001">
+          <div class="kpi-label">Active Learners</div>
+          <div class="kpi-val" data-count="2847">2,847</div>
+          <div class="kpi-trend up">↑ 12.3%</div>
+          <div class="kpi-bar" style="width:78%"></div>
+        </div>
+        <div class="kpi" data-index="002">
+          <div class="kpi-label">Completion Rate</div>
+          <div class="kpi-val" data-count="87">87.4%</div>
+          <div class="kpi-trend up">↑ 3.1%</div>
+          <div class="kpi-bar" style="width:87%"></div>
+        </div>
+        <div class="kpi" data-index="003">
+          <div class="kpi-label">Avg. AI Score</div>
+          <div class="kpi-val" data-count="742">742</div>
+          <div class="kpi-trend up">↑ 28pts</div>
+          <div class="kpi-bar" style="width:74%"></div>
+        </div>
+        <div class="kpi" data-index="004">
+          <div class="kpi-label">ROI Multiplier</div>
+          <div class="kpi-val" style="color:var(--gold)" data-count="8">8.2x</div>
+          <div class="kpi-trend up">↑ 1.4x</div>
+          <div class="kpi-bar" style="width:82%;background:var(--gold)"></div>
+        </div>
+      </div>
+
+      <div class="grid grid-23 mb-24">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Wöchentliche Aktivität</div>
+            <div class="mono text-xs text-muted">KW 12 · 2026</div>
+          </div>
+          <div class="bar-chart">
+            <div class="bar-col"><div class="bar" style="height:45%"></div><div class="bar-label">Mo</div></div>
+            <div class="bar-col"><div class="bar" style="height:72%"></div><div class="bar-label">Di</div></div>
+            <div class="bar-col"><div class="bar" style="height:88%"></div><div class="bar-label">Mi</div></div>
+            <div class="bar-col"><div class="bar" style="height:65%"></div><div class="bar-label">Do</div></div>
+            <div class="bar-col"><div class="bar" style="height:93%"></div><div class="bar-label">Fr</div></div>
+            <div class="bar-col"><div class="bar" style="height:38%"></div><div class="bar-label">Sa</div></div>
+            <div class="bar-col"><div class="bar" style="height:22%"></div><div class="bar-label">So</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Aktive Cohorts</div><span class="pill pill-accent">4 aktiv</span></div>
+          <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px;">
+            <div><div class="flex justify-between mb-16" style="margin-bottom:4px"><span class="text-sm">AI Fundamentals Q1</span><span class="mono text-xs text-accent">67%</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:67%"></div></div></div>
+            <div><div class="flex justify-between" style="margin-bottom:4px"><span class="text-sm">Prompt Engineering Sprint</span><span class="mono text-xs text-accent">89%</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:89%"></div></div></div>
+            <div><div class="flex justify-between" style="margin-bottom:4px"><span class="text-sm">Data Analytics Bootcamp</span><span class="mono text-xs text-accent">34%</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:34%"></div></div></div>
+            <div><div class="flex justify-between" style="margin-bottom:4px"><span class="text-sm">Leadership AI</span><span class="mono text-xs" style="color:var(--gold)">12%</span></div><div class="progress progress-gold"><div class="progress-fill" style="width:12%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Top Performers</div></div>
+          <table class="tbl">
+            <thead><tr><th>Name</th><th>Score</th><th>Department</th><th>Streak</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Lena Müller</strong></td><td class="mono">981</td><td><span class="pill pill-accent">Engineering</span></td><td class="mono">42d</td></tr>
+              <tr><td><strong>Markus Weber</strong></td><td class="mono">954</td><td><span class="pill pill-green">Product</span></td><td class="mono">38d</td></tr>
+              <tr><td><strong>Sophie Chen</strong></td><td class="mono">947</td><td><span class="pill pill-amber">Data Science</span></td><td class="mono">35d</td></tr>
+              <tr><td><strong>Jonas Schmidt</strong></td><td class="mono">923</td><td><span class="pill pill-accent">Engineering</span></td><td class="mono">28d</td></tr>
+              <tr><td><strong>Anna Berger</strong></td><td class="mono">912</td><td><span class="pill pill-gold">Leadership</span></td><td class="mono">25d</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Letzte Aktivitäten</div></div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="flex items-center gap-8"><span>🎯</span><div class="flex-1"><div class="text-sm"><strong>Lena</strong> hat "Prompt Engineering" abgeschlossen</div><div class="mono text-xs text-muted">vor 12 Min.</div></div></div>
+            <div class="flex items-center gap-8"><span>🏅</span><div class="flex-1"><div class="text-sm"><strong>Markus</strong> hat Badge "AI Fundamentals" erhalten</div><div class="mono text-xs text-muted">vor 34 Min.</div></div></div>
+            <div class="flex items-center gap-8"><span>📚</span><div class="flex-1"><div class="text-sm"><strong>Sophie</strong> hat Kurs "ML Basics" gestartet</div><div class="mono text-xs text-muted">vor 1 Std.</div></div></div>
+            <div class="flex items-center gap-8"><span>🧠</span><div class="flex-1"><div class="text-sm"><strong>AI Coach</strong> hat 12 neue Empfehlungen generiert</div><div class="mono text-xs text-muted">vor 2 Std.</div></div></div>
+            <div class="flex items-center gap-8"><span>👥</span><div class="flex-1"><div class="text-sm"><strong>3 neue Mitglieder</strong> im Sprint Cohort Q1</div><div class="mono text-xs text-muted">vor 3 Std.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: ANALYTICS
+         ================================================================ -->
+    <div class="screen" data-screen="analytics">
+      <div class="screen-header">
+        <div class="screen-overline">Data & Insights</div>
+        <div class="screen-title">Analytics & Reports</div>
+        <div class="flex items-center gap-8 mt-16">
+          <button class="btn btn-ghost" style="font-size:12px;padding:4px 12px;">7D</button>
+          <button class="btn btn-primary" style="font-size:12px;padding:4px 12px;">30D</button>
+          <button class="btn btn-ghost" style="font-size:12px;padding:4px 12px;">90D</button>
+          <button class="btn btn-ghost" style="font-size:12px;padding:4px 12px;">1Y</button>
+        </div>
+      </div>
+      <div class="grid grid-6 mb-24">
+        <div class="kpi" data-index="001" style="padding:16px"><div class="kpi-label">Enrollments</div><div class="kpi-val" style="font-size:22px">4,312</div><div class="kpi-trend up">↑ 8.7%</div></div>
+        <div class="kpi" data-index="002" style="padding:16px"><div class="kpi-label">Completions</div><div class="kpi-val" style="font-size:22px">3,847</div><div class="kpi-trend up">↑ 12.1%</div></div>
+        <div class="kpi" data-index="003" style="padding:16px"><div class="kpi-label">Active Users</div><div class="kpi-val" style="font-size:22px">2,156</div><div class="kpi-trend up">↑ 5.3%</div></div>
+        <div class="kpi" data-index="004" style="padding:16px"><div class="kpi-label">Avg. Time</div><div class="kpi-val" style="font-size:22px">4.2h</div><div class="kpi-trend down">↓ 0.3h</div></div>
+        <div class="kpi" data-index="005" style="padding:16px"><div class="kpi-label">NPS Score</div><div class="kpi-val" style="font-size:22px">72</div><div class="kpi-trend up">↑ 4pts</div></div>
+        <div class="kpi" data-index="006" style="padding:16px"><div class="kpi-label">Revenue</div><div class="kpi-val" style="font-size:22px;color:var(--gold)">€94K</div><div class="kpi-trend up">↑ 18.2%</div></div>
+      </div>
+      <div class="card mb-24">
+        <div class="card-header"><div class="card-title">Monatliche Übersicht</div><div class="flex gap-8"><span class="flex items-center gap-8 text-xs"><span class="dot" style="background:var(--chart-1)"></span> Enrollments</span><span class="flex items-center gap-8 text-xs"><span class="dot" style="background:var(--chart-2)"></span> Completions</span></div></div>
+        <div class="bar-chart" style="height:220px">
+          <div class="bar-col"><div class="bar" style="height:32%"></div><div class="bar secondary" style="height:28%"></div><div class="bar-label">Jan</div></div>
+          <div class="bar-col"><div class="bar" style="height:38%"></div><div class="bar secondary" style="height:32%"></div><div class="bar-label">Feb</div></div>
+          <div class="bar-col"><div class="bar" style="height:45%"></div><div class="bar secondary" style="height:40%"></div><div class="bar-label">Mär</div></div>
+          <div class="bar-col"><div class="bar" style="height:52%"></div><div class="bar secondary" style="height:44%"></div><div class="bar-label">Apr</div></div>
+          <div class="bar-col"><div class="bar" style="height:61%"></div><div class="bar secondary" style="height:53%"></div><div class="bar-label">Mai</div></div>
+          <div class="bar-col"><div class="bar" style="height:58%"></div><div class="bar secondary" style="height:50%"></div><div class="bar-label">Jun</div></div>
+          <div class="bar-col"><div class="bar" style="height:72%"></div><div class="bar secondary" style="height:62%"></div><div class="bar-label">Jul</div></div>
+          <div class="bar-col"><div class="bar" style="height:68%"></div><div class="bar secondary" style="height:58%"></div><div class="bar-label">Aug</div></div>
+          <div class="bar-col"><div class="bar" style="height:78%"></div><div class="bar secondary" style="height:68%"></div><div class="bar-label">Sep</div></div>
+          <div class="bar-col"><div class="bar" style="height:85%"></div><div class="bar secondary" style="height:74%"></div><div class="bar-label">Okt</div></div>
+          <div class="bar-col"><div class="bar" style="height:92%"></div><div class="bar secondary" style="height:82%"></div><div class="bar-label">Nov</div></div>
+          <div class="bar-col"><div class="bar" style="height:100%"></div><div class="bar secondary" style="height:89%"></div><div class="bar-label">Dez</div></div>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="section-title">Department Breakdown</div>
+          <table class="tbl"><thead><tr><th>Department</th><th>Users</th><th>Completion</th><th>Avg Score</th></tr></thead>
+          <tbody>
+            <tr><td>Engineering</td><td class="mono">847</td><td class="mono">92%</td><td class="mono">812</td></tr>
+            <tr><td>Product</td><td class="mono">423</td><td class="mono">88%</td><td class="mono">764</td></tr>
+            <tr><td>Data Science</td><td class="mono">312</td><td class="mono">94%</td><td class="mono">856</td></tr>
+            <tr><td>Marketing</td><td class="mono">256</td><td class="mono">76%</td><td class="mono">698</td></tr>
+            <tr><td>Sales</td><td class="mono">198</td><td class="mono">71%</td><td class="mono">642</td></tr>
+            <tr><td>Leadership</td><td class="mono">87</td><td class="mono">96%</td><td class="mono">878</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <div class="section-title">Top Skills <span><button class="btn btn-ghost" style="font-size:11px;padding:3px 10px;">PDF</button> <button class="btn btn-ghost" style="font-size:11px;padding:3px 10px;">XLSX</button></span></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div><div class="flex justify-between text-sm" style="margin-bottom:3px"><span>Prompt Engineering</span><span class="mono text-xs">847 users</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:92%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:3px"><span>Data Analysis</span><span class="mono text-xs">723 users</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:78%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:3px"><span>AI Strategy</span><span class="mono text-xs">612 users</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:66%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:3px"><span>ML Basics</span><span class="mono text-xs">534 users</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:58%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:3px"><span>Automation</span><span class="mono text-xs">456 users</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:49%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:3px"><span>AI Ethics</span><span class="mono text-xs">389 users</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:42%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: SPRINT COHORTS
+         ================================================================ -->
+    <div class="screen" data-screen="cohorts">
+      <div class="screen-header flex justify-between items-center">
+        <div>
+          <div class="screen-overline">Group Learning</div>
+          <div class="screen-title">Sprint Cohorts</div>
+        </div>
+        <button class="btn btn-primary">+ Cohort erstellen</button>
+      </div>
+      <div class="grid grid-3 mb-24">
+        <div class="card" style="border-top:3px solid var(--accent)">
+          <div class="flex justify-between items-center mb-16"><span class="pill pill-green">Aktiv</span><span class="mono text-xs text-muted">Woche 3/6</span></div>
+          <div style="font-weight:600;margin-bottom:4px;">AI Fundamentals Q1</div>
+          <div class="text-sm text-sec" style="margin-bottom:12px">32 Teilnehmer · 18 Tage übrig</div>
+          <div class="flex justify-between text-xs" style="margin-bottom:4px"><span>Fortschritt</span><span class="mono text-accent">67%</span></div>
+          <div class="progress progress-accent"><div class="progress-fill" style="width:67%"></div></div>
+        </div>
+        <div class="card" style="border-top:3px solid var(--green)">
+          <div class="flex justify-between items-center mb-16"><span class="pill pill-green">Aktiv</span><span class="mono text-xs text-muted">Woche 5/6</span></div>
+          <div style="font-weight:600;margin-bottom:4px;">Prompt Engineering Sprint</div>
+          <div class="text-sm text-sec" style="margin-bottom:12px">28 Teilnehmer · 7 Tage übrig</div>
+          <div class="flex justify-between text-xs" style="margin-bottom:4px"><span>Fortschritt</span><span class="mono" style="color:var(--green)">89%</span></div>
+          <div class="progress progress-green"><div class="progress-fill" style="width:89%"></div></div>
+        </div>
+        <div class="card" style="border-top:3px solid var(--amber)">
+          <div class="flex justify-between items-center mb-16"><span class="pill pill-amber">Startet</span><span class="mono text-xs text-muted">In 5 Tagen</span></div>
+          <div style="font-weight:600;margin-bottom:4px;">Data Analytics Bootcamp</div>
+          <div class="text-sm text-sec" style="margin-bottom:12px">24 Teilnehmer · 42 Tage geplant</div>
+          <div class="flex justify-between text-xs" style="margin-bottom:4px"><span>Registrierung</span><span class="mono" style="color:var(--amber)">80%</span></div>
+          <div class="progress" style="background:var(--border)"><div class="progress-fill" style="width:80%;background:var(--amber)"></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-title">Alle Cohorts</div>
+        <table class="tbl"><thead><tr><th>Name</th><th>Teilnehmer</th><th>Fortschritt</th><th>Start</th><th>Ende</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AI Fundamentals Q1</strong></td><td class="mono">32</td><td class="mono">67%</td><td class="mono">2026-02-01</td><td class="mono">2026-03-15</td><td><span class="pill pill-green">Aktiv</span></td></tr>
+          <tr><td><strong>Prompt Engineering Sprint</strong></td><td class="mono">28</td><td class="mono">89%</td><td class="mono">2026-02-10</td><td class="mono">2026-03-24</td><td><span class="pill pill-green">Aktiv</span></td></tr>
+          <tr><td><strong>Data Analytics Bootcamp</strong></td><td class="mono">24</td><td class="mono">0%</td><td class="mono">2026-03-27</td><td class="mono">2026-05-08</td><td><span class="pill pill-amber">Geplant</span></td></tr>
+          <tr><td><strong>Leadership AI</strong></td><td class="mono">16</td><td class="mono">12%</td><td class="mono">2026-03-15</td><td class="mono">2026-04-26</td><td><span class="pill pill-green">Aktiv</span></td></tr>
+          <tr><td><strong>ML Practitioner</strong></td><td class="mono">40</td><td class="mono">100%</td><td class="mono">2025-12-01</td><td class="mono">2026-01-31</td><td><span class="pill pill-accent">Abgeschl.</span></td></tr>
+          <tr><td><strong>Automation Basics</strong></td><td class="mono">35</td><td class="mono">100%</td><td class="mono">2025-11-01</td><td class="mono">2025-12-15</td><td><span class="pill pill-accent">Abgeschl.</span></td></tr>
+        </tbody></table>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: INTELLIGENCE HUB
+         ================================================================ -->
+    <div class="screen" data-screen="intelligence">
+      <div class="screen-header">
+        <div class="screen-overline">AI-Powered Analytics</div>
+        <div class="screen-title">Intelligence Hub</div>
+        <div class="screen-subtitle">KI-gestützte Analysen, Skill-Gap-Erkennung und Handlungsempfehlungen</div>
+      </div>
+      <div class="grid grid-23 mb-24">
+        <div class="card" style="text-align:center;padding:32px">
+          <div class="mono text-xs text-muted mb-16" style="letter-spacing:2px">AI READINESS SCORE</div>
+          <div style="width:160px;height:160px;border-radius:50%;border:6px solid var(--border);position:relative;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;">
+            <div style="position:absolute;inset:0;border-radius:50%;border:6px solid var(--accent);border-right-color:transparent;border-bottom-color:transparent;transform:rotate(-30deg);"></div>
+            <div><div class="kpi-val" style="font-size:42px">74</div><div class="mono text-xs text-muted">/100</div></div>
+          </div>
+          <div class="text-sm text-sec">Ihr Unternehmen liegt <strong style="color:var(--accent)">12 Punkte</strong> über dem Branchendurchschnitt.</div>
+        </div>
+        <div class="card">
+          <div class="section-title">Score Breakdown</div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div><div class="flex justify-between text-sm" style="margin-bottom:4px"><span>Data Literacy</span><span class="mono text-xs text-accent">82/100</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:82%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:4px"><span>AI Tools Proficiency</span><span class="mono text-xs text-accent">71/100</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:71%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:4px"><span>Prompt Engineering</span><span class="mono text-xs text-accent">68/100</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:68%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:4px"><span>AI Strategy</span><span class="mono text-xs text-accent">76/100</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:76%"></div></div></div>
+            <div><div class="flex justify-between text-sm" style="margin-bottom:4px"><span>Ethics & Governance</span><span class="mono text-xs text-accent">73/100</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:73%"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-2 mb-24">
+        <div class="card">
+          <div class="section-title">Kritische Skill-Gaps</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="flex items-center gap-8" style="padding:10px;border-radius:8px;background:var(--red-bg)"><span class="dot dot-red"></span><div class="flex-1"><div class="text-sm"><strong>Advanced Prompt Patterns</strong></div><div class="text-xs text-muted">Nur 23% der Belegschaft proficient</div></div><span class="pill pill-red">Kritisch</span></div>
+            <div class="flex items-center gap-8" style="padding:10px;border-radius:8px;background:var(--red-bg)"><span class="dot dot-red"></span><div class="flex-1"><div class="text-sm"><strong>AI Security & Privacy</strong></div><div class="text-xs text-muted">Nur 31% der Belegschaft proficient</div></div><span class="pill pill-red">Kritisch</span></div>
+            <div class="flex items-center gap-8" style="padding:10px;border-radius:8px;background:var(--amber-bg)"><span class="dot dot-amber"></span><div class="flex-1"><div class="text-sm"><strong>MLOps & Deployment</strong></div><div class="text-xs text-muted">Nur 42% der Belegschaft proficient</div></div><span class="pill pill-amber">Mittel</span></div>
+            <div class="flex items-center gap-8" style="padding:10px;border-radius:8px;background:var(--amber-bg)"><span class="dot dot-amber"></span><div class="flex-1"><div class="text-sm"><strong>AI Ethics Framework</strong></div><div class="text-xs text-muted">Nur 48% der Belegschaft proficient</div></div><span class="pill pill-amber">Mittel</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">AI-Empfehlungen <span class="pill pill-accent" style="font-size:9px">KI-generiert</span></div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="padding:12px;border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--accent)"><div class="text-sm" style="margin-bottom:4px"><strong>Sprint Cohort "AI Security"</strong> erstellen</div><div class="text-xs text-muted">Schließt kritischen Gap für 156 Mitarbeiter</div><div class="mono text-xs text-accent" style="margin-top:6px">Konfidenz: 94%</div></div>
+            <div style="padding:12px;border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--accent)"><div class="text-sm" style="margin-bottom:4px"><strong>Prompt Engineering</strong> als Pflichtmodul</div><div class="text-xs text-muted">Größter Impact auf Gesamtscore (+8pts)</div><div class="mono text-xs text-accent" style="margin-top:6px">Konfidenz: 91%</div></div>
+            <div style="padding:12px;border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--green)"><div class="text-sm" style="margin-bottom:4px"><strong>Peer-Mentoring</strong> im Engineering aktivieren</div><div class="text-xs text-muted">Top-Performer können 3x schneller skalieren</div><div class="mono text-xs" style="color:var(--green);margin-top:6px">Konfidenz: 87%</div></div>
+            <div style="padding:12px;border-radius:8px;border:1px solid var(--border);border-left:3px solid var(--green)"><div class="text-sm" style="margin-bottom:4px"><strong>Leadership AI-Workshop</strong> ansetzen</div><div class="text-xs text-muted">Management buy-in steigert Completion +22%</div><div class="mono text-xs" style="color:var(--green);margin-top:6px">Konfidenz: 83%</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-cell" data-index="001"><div class="stat-val">74</div><div class="stat-label">Your Score</div></div>
+        <div class="stat-cell" data-index="002"><div class="stat-val">62</div><div class="stat-label">Industry Avg</div></div>
+        <div class="stat-cell" data-index="003"><div class="stat-val">+19%</div><div class="stat-label">Vs. Vorquartal</div></div>
+        <div class="stat-cell" data-index="004"><div class="stat-val">Top 8%</div><div class="stat-label">Branchenranking</div></div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: SKILL-MAPPING
+         ================================================================ -->
+    <div class="screen" data-screen="skills">
+      <div class="screen-header flex justify-between items-center">
+        <div>
+          <div class="screen-overline">Competency Matrix</div>
+          <div class="screen-title">Skill-Mapping</div>
+        </div>
+        <select style="padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px;font-family:inherit;">
+          <option>Alle Departments</option><option>Engineering</option><option>Product</option><option>Data Science</option>
+        </select>
+      </div>
+      <div class="card mb-24">
+        <div class="section-title">Kompetenz-Heatmap</div>
+        <div style="overflow-x:auto;">
+          <table class="tbl" style="min-width:700px">
+            <thead><tr><th></th><th>AI Strategy</th><th>Prompt Eng.</th><th>Data Analysis</th><th>ML Basics</th><th>Ethics</th><th>Automation</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Lena M.</strong></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td></tr>
+              <tr><td><strong>Markus W.</strong></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-2" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">2</span></td></tr>
+              <tr><td><strong>Sophie C.</strong></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td></tr>
+              <tr><td><strong>Jonas S.</strong></td><td><span class="heat-cell heat-2" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">2</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-2" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">2</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td></tr>
+              <tr><td><strong>Anna B.</strong></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td><td><span class="heat-cell heat-2" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">2</span></td><td><span class="heat-cell heat-1" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">1</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td></tr>
+              <tr><td><strong>Felix K.</strong></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td><td><span class="heat-cell heat-5" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">5</span></td><td><span class="heat-cell heat-3" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">3</span></td><td><span class="heat-cell heat-4" style="display:inline-flex;width:36px;height:28px;border-radius:4px;">4</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex gap-8 mt-16 text-xs text-muted"><span class="heat-cell heat-1" style="width:20px;height:20px;font-size:9px">1</span>Anfänger <span class="heat-cell heat-3" style="width:20px;height:20px;font-size:9px">3</span>Fortgeschr. <span class="heat-cell heat-5" style="width:20px;height:20px;font-size:9px">5</span>Experte</div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card" style="border-top:3px solid var(--accent)">
+          <div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px;">AI STRATEGIST PATH</div>
+          <div style="font-weight:600;margin-bottom:4px;">6 Module · ~40 Std.</div>
+          <div class="text-sm text-sec" style="margin-bottom:12px">Für Führungskräfte und Entscheider</div>
+          <div class="progress progress-accent" style="margin-bottom:8px"><div class="progress-fill" style="width:45%"></div></div>
+          <div class="mono text-xs text-muted">45% abgeschlossen</div>
+        </div>
+        <div class="card" style="border-top:3px solid var(--green)">
+          <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:8px;">AI ENGINEER PATH</div>
+          <div style="font-weight:600;margin-bottom:4px;">8 Module · ~64 Std.</div>
+          <div class="text-sm text-sec" style="margin-bottom:12px">Für Entwickler und Data Scientists</div>
+          <div class="progress progress-green" style="margin-bottom:8px"><div class="progress-fill" style="width:72%"></div></div>
+          <div class="mono text-xs text-muted">72% abgeschlossen</div>
+        </div>
+        <div class="card" style="border-top:3px solid var(--gold)">
+          <div style="font-size:12px;color:var(--gold);font-weight:600;margin-bottom:8px;">AI CHAMPION PATH</div>
+          <div style="font-weight:600;margin-bottom:4px;">4 Module · ~24 Std.</div>
+          <div class="text-sm text-sec" style="margin-bottom:12px">Für interne Multiplikatoren</div>
+          <div class="progress progress-gold" style="margin-bottom:8px"><div class="progress-fill" style="width:28%"></div></div>
+          <div class="mono text-xs text-muted">28% abgeschlossen</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: AI LEARNING COACH
+         ================================================================ -->
+    <div class="screen" data-screen="coach">
+      <div class="screen-header">
+        <div class="screen-overline">AI-Powered</div>
+        <div class="screen-title">Learning Coach</div>
+      </div>
+      <div class="chat-wrap">
+        <div class="chat-main">
+          <div class="chat-messages">
+            <div class="chat-msg ai"><div class="chat-avatar">✦</div><div class="chat-bubble">Hallo Thomas! Ich bin dein persönlicher AI Learning Coach. Basierend auf deinem Profil und den Skill-Gaps deines Teams habe ich einige Empfehlungen für dich. Womit möchtest du starten?</div></div>
+            <div class="chat-msg user"><div class="chat-avatar">TF</div><div class="chat-bubble">Welche Skills sollte ich als nächstes priorisieren?</div></div>
+            <div class="chat-msg ai"><div class="chat-avatar">✦</div><div class="chat-bubble">Basierend auf deiner Rolle als Enterprise Admin und den aktuellen Skill-Gaps empfehle ich:<br><br><strong>1. AI Security & Privacy</strong> — Kritischer Gap (nur 31% proficient). Als Admin solltest du hier führen.<br><br><strong>2. Advanced Prompt Patterns</strong> — Größter Hebel für dein Team (+8pts auf AI Score).<br><br><strong>3. AI Ethics Framework</strong> — Wichtig für Compliance und Governance.<br><br>Soll ich dir einen personalisierten Lernplan erstellen?</div></div>
+            <div class="chat-msg user"><div class="chat-avatar">TF</div><div class="chat-bubble">Ja, erstelle einen Lernplan für AI Security. Wie lange würde das dauern?</div></div>
+            <div class="chat-msg ai"><div class="chat-avatar">✦</div><div class="chat-bubble">Perfekt! Hier ist dein personalisierter Plan für <strong>AI Security & Privacy</strong>:<br><br>📅 <strong>Woche 1–2:</strong> Grundlagen der AI Security (8 Std.)<br>📅 <strong>Woche 3:</strong> Privacy-by-Design Patterns (4 Std.)<br>📅 <strong>Woche 4:</strong> Hands-on Lab: Threat Modeling (6 Std.)<br>📅 <strong>Woche 5:</strong> Assessment & Zertifizierung (4 Std.)<br><br>Gesamt: <strong>~22 Stunden über 5 Wochen</strong>. Bei 1 Stunde pro Tag schaffst du das locker neben der Arbeit. Soll ich dich anmelden?</div></div>
+          </div>
+          <div class="chat-input-wrap">
+            <input type="text" class="chat-input" placeholder="Frage deinen AI Coach…">
+            <button class="chat-send">→</button>
+          </div>
+        </div>
+        <div class="chat-sidebar">
+          <div class="section-title" style="font-size:13px">Vorgeschlagene Themen</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">
+            <span class="pill pill-accent" style="cursor:pointer">Skill-Gaps</span>
+            <span class="pill pill-accent" style="cursor:pointer">Lernplan</span>
+            <span class="pill pill-accent" style="cursor:pointer">Team-Analyse</span>
+            <span class="pill pill-accent" style="cursor:pointer">Benchmarks</span>
+          </div>
+          <div class="divider"></div>
+          <div class="section-title" style="font-size:13px">Dein Fortschritt</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+            <div><div class="flex justify-between text-xs" style="margin-bottom:3px"><span>AI Strategy</span><span class="mono text-accent">76%</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:76%"></div></div></div>
+            <div><div class="flex justify-between text-xs" style="margin-bottom:3px"><span>Prompt Eng.</span><span class="mono text-accent">68%</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:68%"></div></div></div>
+            <div><div class="flex justify-between text-xs" style="margin-bottom:3px"><span>Data Literacy</span><span class="mono text-accent">82%</span></div><div class="progress progress-accent"><div class="progress-fill" style="width:82%"></div></div></div>
+          </div>
+          <div class="divider"></div>
+          <div class="section-title" style="font-size:13px">Empfohlen</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="padding:10px;border-radius:8px;border:1px solid var(--border);cursor:pointer;"><div class="text-sm" style="font-weight:600">AI Security Basics</div><div class="text-xs text-muted">8 Std. · Anfänger</div></div>
+            <div style="padding:10px;border-radius:8px;border:1px solid var(--border);cursor:pointer;"><div class="text-sm" style="font-weight:600">Prompt Mastery</div><div class="text-xs text-muted">12 Std. · Fortgeschritten</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: CONTENT STUDIO
+         ================================================================ -->
+    <div class="screen" data-screen="content">
+      <div class="screen-header flex justify-between items-center">
+        <div>
+          <div class="screen-overline">Content Management</div>
+          <div class="screen-title">Content Studio</div>
+        </div>
+        <div class="flex gap-8"><button class="btn btn-ghost">Import</button><button class="btn btn-primary">+ Neuer Kurs</button></div>
+      </div>
+      <div class="grid grid-2 mb-24">
+        <div class="card"><div style="height:100px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7C3AED);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:16px;">🧠</div><div class="flex justify-between items-center mb-16"><div style="font-weight:600">AI Fundamentals</div><span class="pill pill-green">Published</span></div><div class="text-sm text-sec" style="margin-bottom:8px">Grundlagen der KI für alle Mitarbeiter</div><div class="flex justify-between text-xs text-muted"><span>12 Module · 24 Std.</span><span class="mono">847 Enrolled</span></div></div>
+        <div class="card"><div style="height:100px;border-radius:8px;background:linear-gradient(135deg,var(--green),#059669);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:16px;">⚡</div><div class="flex justify-between items-center mb-16"><div style="font-weight:600">Prompt Engineering Pro</div><span class="pill pill-green">Published</span></div><div class="text-sm text-sec" style="margin-bottom:8px">Fortgeschrittene Prompt-Techniken</div><div class="flex justify-between text-xs text-muted"><span>8 Module · 16 Std.</span><span class="mono">623 Enrolled</span></div></div>
+        <div class="card"><div style="height:100px;border-radius:8px;background:linear-gradient(135deg,var(--amber),#B45309);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:16px;">📊</div><div class="flex justify-between items-center mb-16"><div style="font-weight:600">Data Analytics Deep Dive</div><span class="pill pill-amber">Draft</span></div><div class="text-sm text-sec" style="margin-bottom:8px">Datenanalyse mit KI-Tools</div><div class="flex justify-between text-xs text-muted"><span>10 Module · 20 Std.</span><span class="mono">Draft</span></div></div>
+        <div class="card"><div style="height:100px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#A07C28);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:16px;">🏛️</div><div class="flex justify-between items-center mb-16"><div style="font-weight:600">AI Ethics & Governance</div><span class="pill pill-accent">Review</span></div><div class="text-sm text-sec" style="margin-bottom:8px">Ethische KI-Nutzung im Unternehmen</div><div class="flex justify-between text-xs text-muted"><span>6 Module · 12 Std.</span><span class="mono">Review</span></div></div>
+      </div>
+      <div class="section-title">Templates</div>
+      <div class="grid grid-3">
+        <div class="card" style="text-align:center;cursor:pointer"><div style="font-size:28px;margin-bottom:8px">🚀</div><div style="font-weight:600;margin-bottom:4px">Quick Start</div><div class="text-xs text-muted">4 Module, 8 Std., Assessment</div></div>
+        <div class="card" style="text-align:center;cursor:pointer"><div style="font-size:28px;margin-bottom:8px">📖</div><div style="font-weight:600;margin-bottom:4px">Deep Dive</div><div class="text-xs text-muted">12 Module, Hands-on Labs, Projekt</div></div>
+        <div class="card" style="text-align:center;cursor:pointer"><div style="font-size:28px;margin-bottom:8px">✅</div><div style="font-weight:600;margin-bottom:4px">Assessment Only</div><div class="text-xs text-muted">Prüfung, Zertifikat, Badge</div></div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: TEAM & ROLES
+         ================================================================ -->
+    <div class="screen" data-screen="team">
+      <div class="screen-header flex justify-between items-center">
+        <div>
+          <div class="screen-overline">People Management</div>
+          <div class="screen-title">Team & Rollen</div>
+        </div>
+        <div class="flex gap-8">
+          <input type="text" placeholder="Suche…" style="padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;font-family:inherit;outline:none;width:180px;">
+          <button class="btn btn-primary">+ Einladen</button>
+        </div>
+      </div>
+      <div class="grid grid-4 mb-24">
+        <div class="kpi" data-index="001" style="padding:16px"><div class="kpi-label">Team Members</div><div class="kpi-val" style="font-size:22px">2,847</div></div>
+        <div class="kpi" data-index="002" style="padding:16px"><div class="kpi-label">Active Today</div><div class="kpi-val" style="font-size:22px">1,423</div></div>
+        <div class="kpi" data-index="003" style="padding:16px"><div class="kpi-label">Departments</div><div class="kpi-val" style="font-size:22px">12</div></div>
+        <div class="kpi" data-index="004" style="padding:16px"><div class="kpi-label">Pending Invites</div><div class="kpi-val" style="font-size:22px">38</div></div>
+      </div>
+      <div class="card">
+        <table class="tbl"><thead><tr><th>Name</th><th>E-Mail</th><th>Rolle</th><th>Department</th><th>Letzter Login</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Thomas Frerich</strong></td><td class="mono text-xs"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="37435f585a5644774d525f594f195352">[email&#160;protected]</a></td><td><span class="pill pill-gold">Admin</span></td><td>Leadership</td><td class="mono text-xs">Jetzt</td><td><span class="dot dot-green"></span></td></tr>
+          <tr><td><strong>Lena Müller</strong></td><td class="mono text-xs"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cca0e2a1b9a9a0a0a9be8cb6a9a4a2b4e2a8a9">[email&#160;protected]</a></td><td><span class="pill pill-accent">Manager</span></td><td>Engineering</td><td class="mono text-xs">vor 5 Min.</td><td><span class="dot dot-green"></span></td></tr>
+          <tr><td><strong>Markus Weber</strong></td><td class="mono text-xs"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9d497cedcdbdccbf9c3dcd1d7c197dddc">[email&#160;protected]</a></td><td><span class="pill pill-green">Learner</span></td><td>Product</td><td class="mono text-xs">vor 1 Std.</td><td><span class="dot dot-green"></span></td></tr>
+          <tr><td><strong>Sophie Chen</strong></td><td class="mono text-xs"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4a396429222f240a302f222432642e2f">[email&#160;protected]</a></td><td><span class="pill pill-accent">Manager</span></td><td>Data Science</td><td class="mono text-xs">vor 2 Std.</td><td><span class="dot dot-green"></span></td></tr>
+          <tr><td><strong>Jonas Schmidt</strong></td><td class="mono text-xs"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a1cb8fd2c2c9ccc8c5d5e1dbc4c9cfd98fc5c4">[email&#160;protected]</a></td><td><span class="pill pill-green">Learner</span></td><td>Engineering</td><td class="mono text-xs">Gestern</td><td><span class="dot dot-amber"></span></td></tr>
+          <tr><td><strong>Anna Berger</strong></td><td class="mono text-xs"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e786c9858295808295a79d828f899fc98382">[email&#160;protected]</a></td><td><span class="pill pill-gold">Admin</span></td><td>Leadership</td><td class="mono text-xs">vor 3 Std.</td><td><span class="dot dot-green"></span></td></tr>
+          <tr><td><strong>Felix Klein</strong></td><td class="mono text-xs"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6e084005020b07002e140b060016400a0b">[email&#160;protected]</a></td><td><span class="pill pill-green">Learner</span></td><td>Marketing</td><td class="mono text-xs">vor 2 Tagen</td><td><span class="dot dot-red"></span></td></tr>
+          <tr><td><strong>Laura Braun</strong></td><td class="mono text-xs"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe92d09c8c9f8b90be849b969086d09a9b">[email&#160;protected]</a></td><td><span class="pill pill-green">Learner</span></td><td>Sales</td><td class="mono text-xs">vor 1 Tag</td><td><span class="dot dot-amber"></span></td></tr>
+        </tbody></table>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: WORKSPACE
+         ================================================================ -->
+    <div class="screen" data-screen="workspace">
+      <div class="screen-header">
+        <div class="screen-overline">Company Configuration</div>
+        <div class="screen-title">Workspace</div>
+        <div class="screen-subtitle">White-Label-Konfiguration und Unternehmenseinstellungen</div>
+      </div>
+      <div class="grid grid-2 mb-24">
+        <div class="card">
+          <div class="section-title">Branding</div>
+          <div style="margin-bottom:16px"><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Company Name</label><input type="text" value="Frerich United Ventures GmbH" style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;font-family:inherit;"></div>
+          <div style="margin-bottom:16px"><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Logo</label><div style="border:2px dashed var(--border);border-radius:8px;padding:24px;text-align:center;color:var(--text-muted);font-size:13px;cursor:pointer">📎 Logo hochladen (SVG, PNG)</div></div>
+          <div style="margin-bottom:16px"><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Primary Color</label><div class="flex items-center gap-8"><div style="width:32px;height:32px;border-radius:6px;background:var(--accent);border:1px solid var(--border)"></div><input type="text" value="#6366F1" style="flex:1;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;"></div></div>
+          <div><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Custom Domain</label><input type="text" value="academy.frerich-ventures.de" style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;"></div>
+        </div>
+        <div class="card">
+          <div class="section-title">Allgemein</div>
+          <div style="margin-bottom:16px"><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Branche</label><select style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;font-family:inherit;"><option>Technologie & Software</option></select></div>
+          <div style="margin-bottom:16px"><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Unternehmensgröße</label><select style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;font-family:inherit;"><option>50–200 Mitarbeiter</option></select></div>
+          <div style="margin-bottom:16px"><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Zeitzone</label><select style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;font-family:inherit;"><option>Europe/Berlin (CET)</option></select></div>
+          <div><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Sprache</label><select style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;font-family:inherit;"><option>Deutsch</option></select></div>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="section-title">Notifications</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <label class="flex items-center justify-between" style="cursor:pointer"><span class="text-sm">E-Mail-Benachrichtigungen</span><input type="checkbox" checked></label>
+            <label class="flex items-center justify-between" style="cursor:pointer"><span class="text-sm">Slack-Integration</span><input type="checkbox" checked></label>
+            <label class="flex items-center justify-between" style="cursor:pointer"><span class="text-sm">Wöchentlicher Digest</span><input type="checkbox" checked></label>
+            <label class="flex items-center justify-between" style="cursor:pointer"><span class="text-sm">Cohort-Reminders</span><input type="checkbox" checked></label>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">Billing</div>
+          <div class="flex justify-between items-center mb-16"><span class="text-sm">Aktueller Plan</span><span class="pill pill-gold">Enterprise</span></div>
+          <div class="flex justify-between items-center mb-16"><span class="text-sm">Nächste Rechnung</span><span class="mono text-sm">01.04.2026</span></div>
+          <div class="flex justify-between items-center mb-16"><span class="text-sm">Users</span><span class="mono text-sm">2,847 / 5,000</span></div>
+          <div class="progress progress-accent"><div class="progress-fill" style="width:57%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: INTEGRATIONS & API
+         ================================================================ -->
+    <div class="screen" data-screen="integrations">
+      <div class="screen-header">
+        <div class="screen-overline">Ecosystem</div>
+        <div class="screen-title">Integrationen & API</div>
+      </div>
+      <div class="grid grid-3 mb-24">
+        <div class="card" style="text-align:center"><div style="font-size:32px;margin-bottom:8px">💬</div><div style="font-weight:600;margin-bottom:4px">Slack</div><div class="text-xs text-muted mb-16">Team-Notifications</div><div class="flex items-center justify-between"><span class="dot dot-green"></span><button class="btn btn-ghost" style="font-size:11px;padding:3px 10px;">Konfigurieren</button></div></div>
+        <div class="card" style="text-align:center"><div style="font-size:32px;margin-bottom:8px">🟦</div><div style="font-weight:600;margin-bottom:4px">Microsoft Teams</div><div class="text-xs text-muted mb-16">Chat & Meetings</div><div class="flex items-center justify-between"><span class="dot dot-green"></span><button class="btn btn-ghost" style="font-size:11px;padding:3px 10px;">Konfigurieren</button></div></div>
+        <div class="card" style="text-align:center"><div style="font-size:32px;margin-bottom:8px">🏢</div><div style="font-weight:600;margin-bottom:4px">SAP SuccessFactors</div><div class="text-xs text-muted mb-16">HR-Daten Sync</div><div class="flex items-center justify-between"><span class="dot dot-green"></span><button class="btn btn-ghost" style="font-size:11px;padding:3px 10px;">Konfigurieren</button></div></div>
+        <div class="card" style="text-align:center"><div style="font-size:32px;margin-bottom:8px">👤</div><div style="font-weight:600;margin-bottom:4px">Workday</div><div class="text-xs text-muted mb-16">Employee Directory</div><div class="flex items-center justify-between"><span class="dot dot-amber"></span><button class="btn btn-primary" style="font-size:11px;padding:3px 10px;">Verbinden</button></div></div>
+        <div class="card" style="text-align:center"><div style="font-size:32px;margin-bottom:8px">📋</div><div style="font-weight:600;margin-bottom:4px">Jira</div><div class="text-xs text-muted mb-16">Project Tracking</div><div class="flex items-center justify-between"><span class="dot dot-green"></span><button class="btn btn-ghost" style="font-size:11px;padding:3px 10px;">Konfigurieren</button></div></div>
+        <div class="card" style="text-align:center"><div style="font-size:32px;margin-bottom:8px">🐙</div><div style="font-weight:600;margin-bottom:4px">GitHub</div><div class="text-xs text-muted mb-16">Code & Repos</div><div class="flex items-center justify-between"><span class="dot dot-green"></span><button class="btn btn-ghost" style="font-size:11px;padding:3px 10px;">Konfigurieren</button></div></div>
+      </div>
+      <div class="card">
+        <div class="section-title">API Access</div>
+        <div class="grid grid-2" style="gap:24px">
+          <div>
+            <label class="text-xs text-muted" style="display:block;margin-bottom:4px">API Key</label>
+            <div class="flex items-center gap-8"><input type="password" value="zx_ent_k7s9d2f4g6h8j0" style="flex:1;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;font-family:'JetBrains Mono',monospace;" id="apiKey"><button class="btn btn-ghost" style="font-size:11px;padding:6px 10px;" onclick="let k=document.getElementById('apiKey');k.type=k.type==='password'?'text':'password'">👁</button></div>
+            <div class="mt-16"><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Webhook URL</label><input type="text" value="https://api.zehnx.de/webhooks/ent/v1" style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;font-family:'JetBrains Mono',monospace;"></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-16"><span class="text-sm">Rate Limit</span><span class="mono text-sm">2,847 / 10,000</span></div>
+            <div class="progress progress-accent" style="margin-bottom:16px"><div class="progress-fill" style="width:28%"></div></div>
+            <div class="mono text-xs text-muted">Requests diesen Monat</div>
+            <div class="bar-chart" style="height:80px;margin-top:12px;">
+              <div class="bar-col"><div class="bar" style="height:35%"></div></div>
+              <div class="bar-col"><div class="bar" style="height:52%"></div></div>
+              <div class="bar-col"><div class="bar" style="height:78%"></div></div>
+              <div class="bar-col"><div class="bar" style="height:45%"></div></div>
+              <div class="bar-col"><div class="bar" style="height:62%"></div></div>
+              <div class="bar-col"><div class="bar" style="height:38%"></div></div>
+              <div class="bar-col"><div class="bar" style="height:28%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: SECURITY & COMPLIANCE
+         ================================================================ -->
+    <div class="screen" data-screen="security">
+      <div class="screen-header">
+        <div class="screen-overline">Trust & Safety</div>
+        <div class="screen-title">Security & Compliance</div>
+      </div>
+      <div class="grid grid-23 mb-24">
+        <div class="card" style="text-align:center;padding:32px">
+          <div class="mono text-xs text-muted mb-16" style="letter-spacing:2px">COMPLIANCE SCORE</div>
+          <div class="kpi-val" style="font-size:48px;color:var(--green)">96</div>
+          <div class="mono text-xs text-muted">/100</div>
+          <div class="flex gap-8 justify-between mt-24" style="justify-content:center;gap:24px">
+            <div style="text-align:center"><div style="font-size:24px;margin-bottom:4px">🛡️</div><div class="text-xs">SOC 2</div></div>
+            <div style="text-align:center"><div style="font-size:24px;margin-bottom:4px">🔐</div><div class="text-xs">ISO 27001</div></div>
+            <div style="text-align:center"><div style="font-size:24px;margin-bottom:4px">🇪🇺</div><div class="text-xs">DSGVO</div></div>
+            <div style="text-align:center"><div style="font-size:24px;margin-bottom:4px">✅</div><div class="text-xs">GDPR</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title">SSO Configuration</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <label class="flex items-center justify-between" style="cursor:pointer"><span class="text-sm">SAML 2.0</span><input type="checkbox" checked></label>
+            <label class="flex items-center justify-between" style="cursor:pointer"><span class="text-sm">OAuth 2.0 / OpenID Connect</span><input type="checkbox" checked></label>
+            <div style="margin-top:8px"><label class="text-xs text-muted" style="display:block;margin-bottom:4px">Identity Provider</label><select style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;font-family:inherit;"><option>Azure AD / Entra ID</option></select></div>
+            <label class="flex items-center justify-between" style="cursor:pointer"><span class="text-sm">MFA erzwingen</span><input type="checkbox" checked></label>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-2 mb-24">
+        <div class="card">
+          <div class="section-title">Audit Log</div>
+          <table class="tbl"><thead><tr><th>Zeitpunkt</th><th>User</th><th>Aktion</th><th>IP</th></tr></thead>
+          <tbody>
+            <tr><td class="mono text-xs">22.03 14:23</td><td>Thomas F.</td><td>Login</td><td class="mono text-xs">192.168.1.42</td></tr>
+            <tr><td class="mono text-xs">22.03 14:18</td><td>Lena M.</td><td>Role Change</td><td class="mono text-xs">10.0.0.85</td></tr>
+            <tr><td class="mono text-xs">22.03 13:45</td><td>System</td><td>Backup</td><td class="mono text-xs">—</td></tr>
+            <tr><td class="mono text-xs">22.03 12:30</td><td>Anna B.</td><td>Export Data</td><td class="mono text-xs">10.0.0.22</td></tr>
+            <tr><td class="mono text-xs">22.03 11:15</td><td>Sophie C.</td><td>Login</td><td class="mono text-xs">172.16.0.15</td></tr>
+            <tr><td class="mono text-xs">22.03 10:02</td><td>System</td><td>SSO Sync</td><td class="mono text-xs">—</td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <div class="section-title">Data Governance</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="flex items-center justify-between"><span class="text-sm">Data Retention</span><span class="mono text-sm pill pill-accent">24 Monate</span></div>
+            <div class="flex items-center justify-between"><span class="text-sm">Verschlüsselung (at rest)</span><span style="color:var(--green)">✓ AES-256</span></div>
+            <div class="flex items-center justify-between"><span class="text-sm">Verschlüsselung (in transit)</span><span style="color:var(--green)">✓ TLS 1.3</span></div>
+            <div class="flex items-center justify-between"><span class="text-sm">DSGVO-konform</span><span style="color:var(--green)">✓ Verifiziert</span></div>
+            <div class="flex items-center justify-between"><span class="text-sm">Data Processing Agreement</span><span style="color:var(--green)">✓ Aktiv</span></div>
+            <div class="flex items-center justify-between"><span class="text-sm">Server-Standort</span><span class="mono text-sm">EU (Frankfurt)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: MICRO-CREDENTIALS
+         ================================================================ -->
+    <div class="screen" data-screen="credentials">
+      <div class="screen-header">
+        <div class="screen-overline">Open Badges 3.0</div>
+        <div class="screen-title">Micro-Credentials</div>
+      </div>
+      <div class="grid grid-3 mb-24">
+        <div class="card" style="text-align:center;padding:24px">
+          <div class="hex-badge"><span style="position:relative;z-index:1">🧠</span></div>
+          <div style="font-weight:600;margin-bottom:4px">AI Fundamentals</div>
+          <div class="text-xs text-muted mb-16">Grundlagen der KI</div>
+          <div class="flex justify-between text-xs"><span>Vergeben:</span><span class="mono text-accent">847×</span></div>
+          <div class="flex gap-8 mt-16" style="justify-content:center"><span class="pill pill-accent" style="font-size:9px">Beginner</span></div>
+        </div>
+        <div class="card" style="text-align:center;padding:24px">
+          <div class="hex-badge"><span style="position:relative;z-index:1">⚡</span></div>
+          <div style="font-weight:600;margin-bottom:4px">Prompt Engineering Pro</div>
+          <div class="text-xs text-muted mb-16">Fortgeschrittene Prompts</div>
+          <div class="flex justify-between text-xs"><span>Vergeben:</span><span class="mono text-accent">423×</span></div>
+          <div class="flex gap-8 mt-16" style="justify-content:center"><span class="pill pill-amber" style="font-size:9px">Advanced</span></div>
+        </div>
+        <div class="card" style="text-align:center;padding:24px">
+          <div class="hex-badge"><span style="position:relative;z-index:1">📊</span></div>
+          <div style="font-weight:600;margin-bottom:4px">Data Analysis Expert</div>
+          <div class="text-xs text-muted mb-16">Datenanalyse & Insights</div>
+          <div class="flex justify-between text-xs"><span>Vergeben:</span><span class="mono text-accent">312×</span></div>
+          <div class="flex gap-8 mt-16" style="justify-content:center"><span class="pill pill-amber" style="font-size:9px">Advanced</span></div>
+        </div>
+        <div class="card" style="text-align:center;padding:24px">
+          <div class="hex-badge"><span style="position:relative;z-index:1">🤖</span></div>
+          <div style="font-weight:600;margin-bottom:4px">ML Practitioner</div>
+          <div class="text-xs text-muted mb-16">Machine Learning Praxis</div>
+          <div class="flex justify-between text-xs"><span>Vergeben:</span><span class="mono text-accent">198×</span></div>
+          <div class="flex gap-8 mt-16" style="justify-content:center"><span class="pill pill-red" style="font-size:9px">Expert</span></div>
+        </div>
+        <div class="card" style="text-align:center;padding:24px">
+          <div class="hex-badge"><span style="position:relative;z-index:1">🏛️</span></div>
+          <div style="font-weight:600;margin-bottom:4px">AI Ethics Champion</div>
+          <div class="text-xs text-muted mb-16">Ethische KI-Nutzung</div>
+          <div class="flex justify-between text-xs"><span>Vergeben:</span><span class="mono text-accent">156×</span></div>
+          <div class="flex gap-8 mt-16" style="justify-content:center"><span class="pill pill-accent" style="font-size:9px">Beginner</span></div>
+        </div>
+        <div class="card" style="text-align:center;padding:24px">
+          <div class="hex-badge"><span style="position:relative;z-index:1">⚙️</span></div>
+          <div style="font-weight:600;margin-bottom:4px">Automation Specialist</div>
+          <div class="text-xs text-muted mb-16">Prozessautomatisierung</div>
+          <div class="flex justify-between text-xs"><span>Vergeben:</span><span class="mono text-accent">234×</span></div>
+          <div class="flex gap-8 mt-16" style="justify-content:center"><span class="pill pill-amber" style="font-size:9px">Advanced</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-title">Zertifizierungspfade</div>
+        <div class="grid grid-2" style="gap:16px">
+          <div style="padding:16px;border:1px solid var(--border);border-radius:8px;">
+            <div style="font-weight:600;margin-bottom:8px">AI Professional Certificate</div>
+            <div class="flex items-center gap-8 text-sm text-sec">🧠 → ⚡ → 📊 → 🤖 → <span class="pill pill-gold" style="font-size:10px">🎓 Zertifikat</span></div>
+            <div class="text-xs text-muted mt-16">4 Badges + Final Assessment = Professional Certificate</div>
+          </div>
+          <div style="padding:16px;border:1px solid var(--border);border-radius:8px;">
+            <div style="font-weight:600;margin-bottom:8px">AI Leadership Certificate</div>
+            <div class="flex items-center gap-8 text-sm text-sec">🧠 → 🏛️ → ⚙️ → <span class="pill pill-gold" style="font-size:10px">🎓 Zertifikat</span></div>
+            <div class="text-xs text-muted mt-16">3 Badges + Strategy Project = Leadership Certificate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         SCREEN: CHAMPIONS PROGRAM
+         ================================================================ -->
+    <div class="screen" data-screen="champions">
+      <div class="screen-header">
+        <div class="screen-overline">Community & Gamification</div>
+        <div class="screen-title">Champions Program</div>
+      </div>
+      <div class="grid grid-3 mb-24">
+        <div class="card" style="text-align:center;border-top:3px solid #CD7F32;padding:24px">
+          <div style="font-size:36px;margin-bottom:8px">🥉</div>
+          <div style="font-weight:600;margin-bottom:4px;">Bronze Champion</div>
+          <div class="text-xs text-muted mb-16">3+ Badges · 7-Tage-Streak</div>
+          <div class="mono text-sm text-sec">142 Champions</div>
+        </div>
+        <div class="card" style="text-align:center;border-top:3px solid #C0C0C0;padding:24px">
+          <div style="font-size:36px;margin-bottom:8px">🥈</div>
+          <div style="font-weight:600;margin-bottom:4px;">Silver Champion</div>
+          <div class="text-xs text-muted mb-16">5+ Badges · 30-Tage-Streak · Mentor</div>
+          <div class="mono text-sm text-sec">67 Champions</div>
+        </div>
+        <div class="card" style="text-align:center;border-top:3px solid var(--gold);padding:24px">
+          <div style="font-size:36px;margin-bottom:8px">🥇</div>
+          <div style="font-weight:600;margin-bottom:4px;">Gold Champion</div>
+          <div class="text-xs text-muted mb-16">8+ Badges · 90-Tage-Streak · 5 Mentees</div>
+          <div class="mono text-sm" style="color:var(--gold)">12 Champions</div>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="section-title">Top Champions</div>
+          <table class="tbl"><thead><tr><th>#</th><th>Name</th><th>Score</th><th>Badges</th><th>Streak</th><th>Tier</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">1</td><td><strong>Lena Müller</strong></td><td class="mono">9,812</td><td class="mono">12</td><td class="mono">97d</td><td><span style="color:var(--gold)">🥇</span></td></tr>
+            <tr><td class="mono">2</td><td><strong>Sophie Chen</strong></td><td class="mono">8,945</td><td class="mono">10</td><td class="mono">84d</td><td><span style="color:var(--gold)">🥇</span></td></tr>
+            <tr><td class="mono">3</td><td><strong>Felix Klein</strong></td><td class="mono">7,823</td><td class="mono">9</td><td class="mono">72d</td><td><span style="color:var(--gold)">🥇</span></td></tr>
+            <tr><td class="mono">4</td><td><strong>Markus Weber</strong></td><td class="mono">6,547</td><td class="mono">7</td><td class="mono">56d</td><td><span style="color:#C0C0C0">🥈</span></td></tr>
+            <tr><td class="mono">5</td><td><strong>Anna Berger</strong></td><td class="mono">5,923</td><td class="mono">6</td><td class="mono">45d</td><td><span style="color:#C0C0C0">🥈</span></td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <div class="section-title">Letzte Champion-Aktivitäten</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="flex items-center gap-8"><span>🏅</span><div class="flex-1"><div class="text-sm"><strong>Lena</strong> wurde Gold Champion</div><div class="mono text-xs text-muted">vor 2 Std.</div></div></div>
+            <div class="flex items-center gap-8"><span>🎯</span><div class="flex-1"><div class="text-sm"><strong>Felix</strong> hat 9. Badge erhalten</div><div class="mono text-xs text-muted">vor 5 Std.</div></div></div>
+            <div class="flex items-center gap-8"><span>🔥</span><div class="flex-1"><div class="text-sm"><strong>Sophie</strong> hat 84-Tage-Streak</div><div class="mono text-xs text-muted">vor 1 Tag</div></div></div>
+            <div class="flex items-center gap-8"><span>👥</span><div class="flex-1"><div class="text-sm"><strong>Markus</strong> mentort 3 neue Learner</div><div class="mono text-xs text-muted">vor 1 Tag</div></div></div>
+            <div class="flex items-center gap-8"><span>📈</span><div class="flex-1"><div class="text-sm"><strong>Anna</strong> hat Top-10 erreicht</div><div class="mono text-xs text-muted">vor 2 Tagen</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content-wrap -->
+</div><!-- /main -->
+</div><!-- /flex container -->
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function() {
+  // Theme Toggle
+  const themeBtns = document.querySelectorAll('.theme-btn');
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    themeBtns.forEach(b => b.classList.toggle('active', b.dataset.theme === t));
+    try { localStorage.setItem('zx-theme', t); } catch(e) {}
+  }
+  themeBtns.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.theme)));
+  try { const saved = localStorage.getItem('zx-theme'); if (saved && ['dark','light','phosphor'].includes(saved)) setTheme(saved); } catch(e) {}
+
+  // Screen Navigation
+  const navItems = document.querySelectorAll('.nav-item');
+  const screens = document.querySelectorAll('.screen');
+  const breadcrumb = document.getElementById('breadcrumbPage');
+
+  function showScreen(name) {
+    screens.forEach(s => s.classList.remove('active'));
+    navItems.forEach(n => n.classList.remove('active'));
+    const target = document.querySelector('.screen[data-screen="'+name+'"]');
+    const nav = document.querySelector('.nav-item[data-screen="'+name+'"]');
+    if (target) { target.classList.add('active'); target.scrollTop = 0; }
+    if (nav) { nav.classList.add('active'); breadcrumb.textContent = nav.querySelector('.nav-text')?.textContent || name; }
+    try { localStorage.setItem('zx-screen', name); } catch(e) {}
+  }
+  navItems.forEach
