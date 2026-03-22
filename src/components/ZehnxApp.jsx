@@ -14,6 +14,7 @@ import PaywallGate from "./PaywallGate";
 import StripeCheckout from "./StripeCheckout";
 import CollectiveBrain from "./CollectiveBrain";
 import Enterprise from "./Enterprise";
+import EnterpriseAssessment from "./EnterpriseAssessment";
 import Agentur from "./Agentur";
 import BusinessInquiry from "./BusinessInquiry";
 import Legal from "./Legal";
@@ -732,7 +733,8 @@ export default function ZehnxAcademy() {
       {screen === "skills" && <SkillProfile user={user} />}
           {screen === "path" && <LearningPath />}
           {screen === "checkout" && <StripeCheckout onBack={() => setScreen("home")} />}
-          {screen === "enterprise" && <Enterprise onContact={(type) => { if(type==="assessment") setScreen("readiness"); }} />}
+          {screen === "enterprise-assessment" && <EnterpriseAssessment onBack={() => setScreen("enterprise")} onContact={(type) => console.log("Contact:", type)} />}
+          {screen === "enterprise" && <Enterprise onContact={(type) => { if(type==="assessment") setScreen("enterprise-assessment"); else if(type==="demo") setScreen("enterprise-assessment"); else if(type==="team") setScreen("enterprise-assessment"); else if(type==="enterprise") setScreen("enterprise-assessment"); }} />}
           {screen === "agentur" && <Agentur />}
           {screen === "brain" && <CollectiveBrain />}
           {screen === "business" && <Agentur />}
