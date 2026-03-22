@@ -21,19 +21,19 @@ const REFERENZEN = [
   {
     name: "Sonnentaucher",
     url: "sonnentaucher.app",
-    desc: "Familien-PWA mit 32 DB-Tabellen, AI-Features, DSGVO Gold",
+    desc: "Full-Stack PWA: 32 DB-Tabellen, AI-Features, DSGVO Gold, Stripe Payments",
     stack: ["React", "Supabase", "Stripe", "PWA"],
   },
   {
     name: "ZEHNX Academy",
     url: "zehnx.me",
-    desc: "AI-Lernplattform, 324 Sprints, 3 Claude-Bots, Skill-System",
+    desc: "AI-Lernplattform: 324 Sprints, 3 AI-Bots, Skill-System, Enterprise-Suite",
     stack: ["React", "Supabase", "Claude AI", "Vercel"],
   },
   {
     name: "Automation Projekte",
     url: "",
-    desc: "n8n Workflows, Rechnungs-Pipelines, CRM-Integration, E-Mail-Sequenzen",
+    desc: "Prozess-Automatisierung: n8n Workflows, CRM-Integration, AI-Pipelines",
     stack: ["n8n", "Stripe", "IONOS SMTP", "Webhooks"],
   },
 ];
@@ -66,7 +66,7 @@ export default function Agentur() {
             Wir bauen Ihr <span style={{ color: Z.bl }}>digitales Produkt.</span>
           </h1>
           <p style={{ fontSize: 16, color: Z.g500, maxWidth: 520, margin: "0 auto 28px", lineHeight: 1.6 }}>
-            Von der Landing Page bis zur AI-App — moderne Technik, deutsche Server, faire Preise. Unverbindlichen Kostenvoranschlag in 2 Minuten.
+            AI-Implementierung von Strategie bis Produktion. In Wochen, nicht Monaten. Beratung + Umsetzung + Training aus einer Hand.
           </p>
           <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
             <button onClick={() => setView("calculator")} style={{
@@ -84,7 +84,7 @@ export default function Agentur() {
 
         {/* TECH STACK */}
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 8, marginBottom: 40 }}>
-          {["React", "Supabase", "Vercel", "Stripe", "Claude AI", "n8n", "Astro", "Tailwind", "DSGVO-konform", "Hetzner EU"].map(t => (
+          {["Claude AI", "GPT-4", "Python", "React", "Supabase", "n8n", "Hetzner Frankfurt", "DSGVO-konform", "EU AI Act", "ISO 27001"].map(t => (
             <span key={t} style={{ fontSize: 12, padding: "5px 12px", borderRadius: 8, background: Z.g100, color: Z.g500, fontWeight: 500 }}>{t}</span>
           ))}
         </div>
@@ -94,12 +94,12 @@ export default function Agentur() {
           <div style={{ fontSize: 11, fontWeight: 700, color: Z.am, letterSpacing: "0.06em", marginBottom: 12 }}>LEISTUNGEN</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 10 }}>
             {[
-              { icon: "◎", name: "Landing Page", desc: "Conversion-optimiert fuer Produkt, Service oder Event", range: "2.500 – 5.000 €", time: "2–3 Wo." },
-              { icon: "◈", name: "Unternehmens-Website", desc: "Mehrseitig mit CMS, mehrsprachig moeglich", range: "5.000 – 12.000 €", time: "4–8 Wo." },
-              { icon: "◆", name: "Web-App (MVP)", desc: "Custom App mit Auth, Datenbank, Dashboard", range: "8.000 – 20.000 €", time: "6–12 Wo." },
-              { icon: "◇", name: "AI Chatbot / Assistent", desc: "Support, Beratung oder Lead-Generierung", range: "3.000 – 8.000 €", time: "2–4 Wo." },
-              { icon: "⚡", name: "Prozess-Automation", desc: "n8n Workflows, E-Mail-Sequenzen, CRM-Anbindung", range: "2.000 – 6.000 €", time: "1–3 Wo." },
-              { icon: "◉", name: "E-Commerce / Payments", desc: "Stripe-Integration, Abo-Modelle, Checkout", range: "6.000 – 15.000 €", time: "4–8 Wo." },
+              { icon: "◎", name: "AI-Strategie", desc: "AI-Strategie & Roadmap-Entwicklung fuer Ihren Use Case", range: "5.000 – 15.000 €", time: "3–6 Wo." },
+              { icon: "◈", name: "Custom AI-Entwicklung", desc: "Custom AI-Loesungen: NLP, Computer Vision, Predictive Analytics", range: "15.000 – 40.000 €", time: "4–12 Wo." },
+              { icon: "◆", name: "AI Governance", desc: "Prozessoptimierung & Automatisierung mit AI", range: "50.000 – 150.000 €", time: "4–12 Wo." },
+              { icon: "◇", name: "Generative AI", desc: "Generative AI-Anwendungen fuer interne und externe Prozesse", range: "30.000 – 80.000 €", time: "3–6 Wo." },
+              { icon: "⚡", name: "AI Governance", desc: "EU AI Act Compliance, AI Governance, Risikobewertung", range: "20.000 – 60.000 €", time: "4–8 Wo." },
+              { icon: "◉", name: "AI-Training", desc: "AI-Training & Capability Building fuer Ihr Team", range: "50.000 – 200.000 €", time: "4–12 Wo." },
             ].map(s => (
               <div key={s.name} onClick={() => setView("calculator")} style={{
                 background: Z.w, borderRadius: 16, border: `1px solid ${Z.g200}`,
@@ -138,6 +138,30 @@ export default function Agentur() {
           </div>
         </div>
 
+        
+        {/* DIFFERENZIERUNG */}
+        <div style={{ marginBottom: 48 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: Z.am, letterSpacing: "0.06em", marginBottom: 12 }}>WARUM ZEHNX</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
+            {[
+              { label: "Grosse Beratungen", speed: "6-12 Monate", cost: "EUR 250K+ Minimum", result: "Empfehlungen" },
+              { label: "Boutique-Agenturen", speed: "Variabel", cost: "EUR 20K-100K", result: "Teilloesung" },
+              { label: "zehnx Agentur", speed: "4-12 Wochen bis MVP", cost: "EUR 50K-250K", result: "Funktionierendes AI-System", highlight: true },
+            ].map(d => (
+              <div key={d.label} style={{
+                background: d.highlight ? Z.x : Z.w, borderRadius: 16,
+                border: d.highlight ? "none" : "1px solid " + Z.g200,
+                padding: "18px 16px", color: d.highlight ? "#fff" : Z.x,
+              }}>
+                <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 12 }}>{d.label}</div>
+                <div style={{ fontSize: 12, color: d.highlight ? "#94A3B8" : Z.g500, marginBottom: 4 }}>Speed: {d.speed}</div>
+                <div style={{ fontSize: 12, color: d.highlight ? "#94A3B8" : Z.g500, marginBottom: 4 }}>Budget: {d.cost}</div>
+                <div style={{ fontSize: 12, color: d.highlight ? Z.bl : Z.gn, fontWeight: 600 }}>Ergebnis: {d.result}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* REFERENZEN */}
         <div style={{ marginBottom: 48 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: Z.am, letterSpacing: "0.06em", marginBottom: 12 }}>REFERENZEN</div>
@@ -167,9 +191,9 @@ export default function Agentur() {
           background: Z.x, borderRadius: 20, padding: "36px 28px",
           textAlign: "center", color: "#fff",
         }}>
-          <div style={{ fontSize: 22, fontWeight: 800, marginBottom: 8 }}>Projekt besprechen?</div>
+          <div style={{ fontSize: 22, fontWeight: 800, marginBottom: 8 }}>Vom Wissen zur Wertschoepfung</div>
           <p style={{ fontSize: 14, color: "#94A3B8", maxWidth: 400, margin: "0 auto 20px" }}>
-            Kostenloses Erstgespraech — wir schaetzen Aufwand, Timeline und Kosten.
+            Jedes Projekt wird zum Case Study, jeder Case Study zum Sprint-Inhalt. Kostenloses Erstgespraech — Aufwand, Timeline und Kosten in 48h.
           </p>
           <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
             <button onClick={() => setView("calculator")} style={{

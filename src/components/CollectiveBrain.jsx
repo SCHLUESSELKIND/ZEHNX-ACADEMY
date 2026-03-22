@@ -182,7 +182,7 @@ export default function CollectiveBrain() {
             <span style={{ fontSize: 11, fontWeight: 700, color: Z.gn, letterSpacing: "0.06em" }}>{s.activeNow} LERNENDE AKTIV</span>
           </div>
           <h1 style={{ fontSize: "clamp(28px,4vw,42px)", fontWeight: 900, letterSpacing: "-0.04em", margin: 0 }}>Collective Brain</h1>
-          <p style={{ fontSize: 15, color: Z.g500, marginTop: 6, maxWidth: 460 }}>Das neuronale Netzwerk der ZEHNX Community. Jeder Sprint staerkt die Verbindungen.</p>
+          <p style={{ fontSize: 15, color: Z.g500, marginTop: 6, maxWidth: 460 }}>Das neuronale Netzwerk der ZEHNX Community. 9+ Mrd. EUR AI-Markt — lerne mit denen, die ihn gestalten.</p>
         </div>
 
         {/* STATS */}

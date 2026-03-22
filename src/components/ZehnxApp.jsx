@@ -231,19 +231,19 @@ function Home({ go }) {
       <div style={{ position: "absolute", top: -160, left: "50%", transform: "translateX(-50%)", width: 700, height: 700, borderRadius: "50%", background: `radial-gradient(circle, ${Z.blL}50 0%, transparent 65%)`, pointerEvents: "none" }} />
       <div style={{ position: "relative", maxWidth: 640, margin: "0 auto" }}>
         <div style={{ display: "inline-flex", padding: "5px 14px", borderRadius: 20, background: Z.w, border: `1px solid ${Z.g200}`, fontSize: 12, color: Z.g600, fontWeight: 600, marginBottom: 22, gap: 6, alignItems: "center", boxShadow: `0 1px 4px ${Z.x}06` }}>
-          <span style={{ width: 6, height: 6, borderRadius: "50%", background: Z.gn }} />Die freie AI Sprint-Akademie
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: Z.gn }} />Deutschlands AI-Lernplattform
         </div>
         <h1 style={{ fontSize: 50, fontWeight: 900, color: Z.x, lineHeight: 1.08, margin: "0 0 18px", letterSpacing: "-0.035em" }}>Verzehnfache<br />dein Wissen.</h1>
-        <p style={{ fontSize: 18, color: Z.g500, lineHeight: 1.6, margin: "0 0 30px" }}>Keine Kurse. Sprints an deinem echten Projekt —<br />mit sofort sichtbaren Ergebnissen.</p>
+        <p style={{ fontSize: 18, color: Z.g500, lineHeight: 1.6, margin: "0 0 30px" }}>Keine Kurse. Praxis-Sprints fuer deinen echten Job —<br />mit sofort sichtbaren Ergebnissen. Auf Deutsch, DSGVO-konform.</p>
         <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
           <Btn primary onClick={() => go("assess")}>Kostenlos starten</Btn>
-          <Btn>Enterprise Demo</Btn>
+          <Btn>Fuer Unternehmen</Btn>
         </div>
       </div>
     </section>
     <section style={{ maxWidth: 720, margin: "-10px auto 0", padding: "0 20px", position: "relative", zIndex: 10 }}>
       <div style={{ display: "flex", background: Z.w, borderRadius: 14, border: `1px solid ${Z.g200}`, overflow: "hidden", boxShadow: `0 2px 10px ${Z.x}06` }}>
-        {[{ v: "324", l: "Sprints" }, { v: "14", l: "Departments" }, { v: "A1→C2", l: "Sprachlevel" }, { v: "0 €", l: "Für immer frei" }].map((s, i) => (
+        {[{ v: "324+", l: "Sprints" }, { v: "14", l: "Departments" }, { v: "A1→C2", l: "Sprachlevel" }, { v: "0 €", l: "Für immer frei" }].map((s, i) => (
           <div key={i} style={{ flex: 1, padding: "18px 12px", textAlign: "center", borderRight: i < 3 ? `1px solid ${Z.g100}` : "none" }}>
             <div style={{ fontSize: 24, fontWeight: 900, color: Z.x }}>{s.v}</div>
             <div style={{ fontSize: 11, color: Z.g400, marginTop: 2 }}>{s.l}</div>
@@ -300,7 +300,7 @@ function Home({ go }) {
     </section>
     <footer style={{ borderTop: `1px solid ${Z.g200}`, padding: "20px", background: Z.w }}>
       <div style={{ maxWidth: 860, margin: "0 auto", display: "flex", justifyContent: "space-between", fontSize: 11, color: Z.g400 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 4 }}><Logo s={12} /><span>· ZEHNX Academy · Köln</span></div>
+        <div style={{ display: "flex", alignItems: "center", gap: 4 }}><Logo s={12} /><span>· ZEHNX Academy · Köln · Hosting: Hetzner Frankfurt · DSGVO-konform</span></div>
         <div style={{ display: "flex", gap: 14 }}><span style={{ cursor: "pointer" }}>Impressum</span><span style={{ cursor: "pointer" }}>Datenschutz</span><span style={{ cursor: "pointer" }}>AI Act</span></div>
       </div>
     </footer>

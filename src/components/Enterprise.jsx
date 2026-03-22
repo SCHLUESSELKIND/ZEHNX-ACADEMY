@@ -158,7 +158,7 @@ export default function Enterprise({ onContact }) {
         </h1>
 
         <p style={{ fontSize: 17, color: D.sec, maxWidth: 540, position: "relative", lineHeight: 1.7 }}>
-          324 Sprints, AI Act Compliance, Skill-Mapping — alles was L&D-Teams und CTOs brauchen. Ohne Enterprise-Bloat.
+          AI-Transformation fuer den deutschen Mittelstand. Von Skills-Analyse bis EU AI Act Compliance — in Wochen, nicht Monaten.
         </p>
 
         {/* CTA */}
@@ -247,7 +247,7 @@ export default function Enterprise({ onContact }) {
           marginBottom: 64, fontSize: 14, color: D.sec, lineHeight: 1.7,
         }}>
           <strong style={{ color: D.text }}>ZehnX-Differenzierung:</strong>{" "}
-          Die grossen Player (Coursera for Business ab $399/User/Jahr, LinkedIn Learning ab $380/User/Jahr) bieten breite Kataloge. ZehnX hebt sich ab durch: Hybrid-Positionierung (News + Sprints), reiner AI-Fokus, und radikal bessere UX — Apple-Level in einem Markt voller Legacy-Interfaces.
+          EUR 9+ Mrd. AI-Markt in Deutschland, 26% CAGR. 40,9% der Unternehmen nutzen bereits AI — aber 72% nennen fehlende Expertise als groessten Blocker. Der deutsche Mittelstand (EUR 50M-500M) ist zu gross fuer Boutiquen, zu klein fuer McKinsey. ZehnX fuellt diese Luecke: Beratung + Umsetzung + Training aus einer Hand.
           <div style={{ fontSize: 11, color: D.dim, marginTop: 8, fontFamily: "'JetBrains Mono', monospace" }}>Quellen: Josh Bersin, Forrester 2024, McKinsey 2025</div>
         </div>
 
@@ -308,6 +308,17 @@ export default function Enterprise({ onContact }) {
             ))}
           </div>
         </section>
+
+        
+        {/* Sales Cycle Note */}
+        <div style={{
+          padding: "20px 24px", borderRadius: 16,
+          border: "1px dashed " + D.border, background: D.bgSub,
+          marginBottom: 48, fontSize: 13, color: D.sec, lineHeight: 1.7,
+        }}>
+          <strong style={{ color: D.text }}>Sales-Cycle DACH:</strong>{" "}
+          Mittelstand 3-4 Monate, Enterprise 6-18 Monate. Wir starten mit einem kostenlosen AI Readiness Assessment — kein Risiko, sofortige Insights. Pilotprojekte innerhalb von 4 Wochen.
+        </div>
 
         {/* ═══ FINAL CTA ═══ */}
         <div style={{
