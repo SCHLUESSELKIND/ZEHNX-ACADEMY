@@ -454,28 +454,28 @@ body {
   <nav class="sidebar-nav">
     <div class="nav-section">
       <div class="nav-label">Übersicht</div>
-      <div class="nav-item active" data-screen="dashboard"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></div>
-      <div class="nav-item" data-screen="analytics"><span class="nav-icon">📈</span><span class="nav-text">Analytics & Reports</span></div>
+      <div class="nav-item active" data-screen="dashboard" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="dashboard"]');if(sc)sc.classList.add('active');"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></div>
+      <div class="nav-item" data-screen="analytics" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="analytics"]');if(sc)sc.classList.add('active');"><span class="nav-icon">📈</span><span class="nav-text">Analytics & Reports</span></div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Learning</div>
-      <div class="nav-item" data-screen="cohorts"><span class="nav-icon">🎯</span><span class="nav-text">Sprint Cohorts</span><span class="nav-badge">4</span></div>
-      <div class="nav-item" data-screen="intelligence"><span class="nav-icon">🧠</span><span class="nav-text">Intelligence Hub</span></div>
-      <div class="nav-item" data-screen="skills"><span class="nav-icon">🗺️</span><span class="nav-text">Skill-Mapping</span></div>
-      <div class="nav-item" data-screen="coach"><span class="nav-icon">🤖</span><span class="nav-text">AI Learning Coach</span><span class="nav-badge">Neu</span></div>
-      <div class="nav-item" data-screen="content"><span class="nav-icon">📚</span><span class="nav-text">Content Studio</span></div>
+      <div class="nav-item" data-screen="cohorts" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="cohorts"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🎯</span><span class="nav-text">Sprint Cohorts</span><span class="nav-badge">4</span></div>
+      <div class="nav-item" data-screen="intelligence" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="intelligence"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🧠</span><span class="nav-text">Intelligence Hub</span></div>
+      <div class="nav-item" data-screen="skills" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="skills"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🗺️</span><span class="nav-text">Skill-Mapping</span></div>
+      <div class="nav-item" data-screen="coach" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="coach"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🤖</span><span class="nav-text">AI Learning Coach</span><span class="nav-badge">Neu</span></div>
+      <div class="nav-item" data-screen="content" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="content"]');if(sc)sc.classList.add('active');"><span class="nav-icon">📚</span><span class="nav-text">Content Studio</span></div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Management</div>
-      <div class="nav-item" data-screen="team"><span class="nav-icon">👥</span><span class="nav-text">Team & Rollen</span></div>
-      <div class="nav-item" data-screen="workspace"><span class="nav-icon">🏢</span><span class="nav-text">Workspace</span></div>
-      <div class="nav-item" data-screen="integrations"><span class="nav-icon">🔗</span><span class="nav-text">Integrationen & API</span></div>
-      <div class="nav-item" data-screen="security"><span class="nav-icon">🔒</span><span class="nav-text">Security & Compliance</span></div>
+      <div class="nav-item" data-screen="team" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="team"]');if(sc)sc.classList.add('active');"><span class="nav-icon">👥</span><span class="nav-text">Team & Rollen</span></div>
+      <div class="nav-item" data-screen="workspace" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="workspace"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🏢</span><span class="nav-text">Workspace</span></div>
+      <div class="nav-item" data-screen="integrations" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="integrations"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🔗</span><span class="nav-text">Integrationen & API</span></div>
+      <div class="nav-item" data-screen="security" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="security"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🔒</span><span class="nav-text">Security & Compliance</span></div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Credentials</div>
-      <div class="nav-item" data-screen="credentials"><span class="nav-icon">🏅</span><span class="nav-text">Micro-Credentials</span></div>
-      <div class="nav-item" data-screen="champions"><span class="nav-icon">🏆</span><span class="nav-text">Champions Program</span></div>
+      <div class="nav-item" data-screen="credentials" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="credentials"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🏅</span><span class="nav-text">Micro-Credentials</span></div>
+      <div class="nav-item" data-screen="champions" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));this.classList.add('active');var sc=document.querySelector('.screen[data-screen="champions"]');if(sc)sc.classList.add('active');"><span class="nav-icon">🏆</span><span class="nav-text">Champions Program</span></div>
     </div>
   </nav>
 
@@ -499,9 +499,9 @@ body {
     <div class="topbar-right">
       <input type="text" id="searchInput" placeholder="Suche… ⌘K" style="width:200px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;font-family:inherit;outline:none;">
       <div class="theme-toggle">
-        <button class="theme-btn active" data-theme="dark">Dark</button>
-        <button class="theme-btn" data-theme="light">Light</button>
-        <button class="theme-btn" data-theme="phosphor">Phosphor</button>
+        <button class="theme-btn active" data-theme="dark" onclick="document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.documentElement.setAttribute('data-theme','dark')">Dark</button>
+        <button class="theme-btn" data-theme="light" onclick="document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.documentElement.setAttribute('data-theme','light')">Light</button>
+        <button class="theme-btn" data-theme="phosphor" onclick="document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');document.documentElement.setAttribute('data-theme','phosphor')">Phosphor</button>
       </div>
     </div>
   </header>
