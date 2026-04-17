@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZehnX Academy — Verzehnfache dein Wissen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --indigo: #4F46E5;
+    --indigo-light: #818CF8;
+    --indigo-dark: #3730A3;
+    --violet: #7C3AED;
+    --pink: #EC4899;
+    --green: #10B981;
+    --amber: #F59E0B;
+    --gradient: linear-gradient(135deg, #4F46E5, #7C3AED);
+    --gradient-wide: linear-gradient(135deg, #4F46E5, #7C3AED, #EC4899);
+    --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 20px;
+  }
+
+  [data-theme="light"] {
+    --black: #0A0A0B; --white: #FAFAFA; --bg: #FFFFFF;
+    --gray-50: #F7F7F8; --gray-100: #EBEBEF; --gray-200: #D1D1D9; --gray-300: #B4B4BF;
+    --gray-400: #9494A0; --gray-500: #74747E; --gray-600: #5C5C6B; --gray-800: #2E2E38; --gray-900: #1A1A23;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04); --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+    --nav-bg: rgba(255,255,255,0.72); --nav-border: rgba(0,0,0,0.04);
+    --hero-glow: rgba(79,70,229,0.06);
+    --card-bg: #FFFFFF; --card-hover: #FFFFFF; --stat-color: #0A0A0B;
+  }
+
+  [data-theme="dark"] {
+    --black: #E8E8EC; --white: #0A0A0B; --bg: #0A0A0B;
+    --gray-50: #141418; --gray-100: rgba(255,255,255,0.06); --gray-200: rgba(255,255,255,0.1);
+    --gray-300: rgba(255,255,255,0.15); --gray-400: #5C5C6B; --gray-500: #9494A0;
+    --gray-600: #B4B4BF; --gray-800: #D1D1D9; --gray-900: #E8E8EC;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3); --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+    --nav-bg: rgba(10,10,11,0.82); --nav-border: rgba(255,255,255,0.04);
+    --hero-glow: rgba(79,70,229,0.12);
+    --card-bg: #18181F; --card-hover: #1E1E28; --stat-color: #E8E8EC;
+  }
+
+  [data-theme="phosphor"] {
+    --black: #B8F4B8; --white: #030D03; --bg: #030D03;
+    --gray-50: #0A1A0A; --gray-100: rgba(184,244,184,0.08); --gray-200: rgba(184,244,184,0.12);
+    --gray-300: rgba(184,244,184,0.15); --gray-400: #5DA65D; --gray-500: #2F6B2F;
+    --gray-600: rgba(184,244,184,0.4); --gray-800: rgba(184,244,184,0.6); --gray-900: #B8F4B8;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.5); --shadow-md: 0 4px 16px rgba(0,0,0,0.6);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.7);
+    --nav-bg: rgba(3,13,3,0.85); --nav-border: rgba(52,211,153,0.08);
+    --hero-glow: rgba(52,211,153,0.15);
+    --card-bg: #0A1A0A; --card-hover: #0F2410; --stat-color: #B8F4B8;
+    --indigo: #34D399; --violet: #4ADE80;
+  }
+  [data-theme="phosphor"] body { text-shadow: 0 0 1px rgba(74,222,128,0.15); }
+  [data-theme="phosphor"] .stat-val,
+  [data-theme="phosphor"] .pricing-price,
+  [data-theme="phosphor"] .bildung-val { text-shadow: 0 0 20px rgba(74,222,128,0.3); }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--gray-900);
+    line-height: 1.6; -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; transition: background 0.4s, color 0.4s;
+  }
+
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ============ NAV — Clean & Minimal ============ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--nav-border);
+    transition: all 0.3s;
+  }
+
+  nav.scrolled { box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+
+  .nav-inner {
+    max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; height: 56px; gap: 32px;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; flex-shrink: 0;
+  }
+
+  .nav-logo svg { width: 28px; height: 28px; }
+
+  .nav-logo-text {
+    font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700;
+    color: var(--black); letter-spacing: -0.5px;
+  }
+
+  .x-academy { color: #6366F1; }
+  [data-theme="dark"] .x-academy { color: #6366F1; }
+  [data-theme="phosphor"] .x-academy { color: #34D399; }
+
+  .nav-links { display: flex; align-items: center; gap: 24px; margin-left: auto; }
+
+  .nav-links a {
+    font-size: 13px; font-weight: 500; color: var(--gray-500);
+    text-decoration: none; transition: color 0.2s; white-space: nowrap;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-divider { width: 1px; height: 20px; background: var(--gray-200); margin: 0 4px; }
+
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+  .theme-toggle {
+    display: flex; align-items: center; gap: 2px; padding: 2px;
+    background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 6px;
+  }
+
+  .theme-btn {
+    padding: 3px 7px; border-radius: 4px; border: none; cursor: pointer;
+    font-size: 11px; font-weight: 600; font-family: inherit;
+    background: transparent; color: var(--gray-400); transition: all 0.2s;
+  }
+
+  .theme-btn.active { background: var(--indigo); color: white; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+  }
+
+  .btn-primary { background: #0A0A0B; color: #FAFAFA; }
+  [data-theme="dark"] .btn-primary { background: #FAFAFA; color: #0A0A0B; }
+  [data-theme="phosphor"] .btn-primary { background: #B8F4B8; color: #030D03; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+  .btn-ghost { background: transparent; color: var(--gray-600); }
+  .btn-ghost:hover { color: var(--black); }
+
+  .btn-accent { background: var(--indigo); color: white; }
+  .btn-accent:hover { background: var(--indigo-dark); transform: translateY(-1px); }
+
+  .btn-lg { padding: 14px 28px; font-size: 16px; border-radius: 12px; }
+
+  .btn .arrow { transition: transform 0.2s; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .mobile-menu-btn svg { width: 22px; height: 22px; color: var(--black); }
+
+  /* ============ HERO — Compact & Focused ============ */
+  .hero {
+    padding: 120px 0 80px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px; border-radius: 50%;
+    background: radial-gradient(circle, var(--hero-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; border-radius: 100px;
+    background: rgba(79,70,229,0.06); border: 1px solid rgba(79,70,229,0.12);
+    font-size: 13px; font-weight: 500; color: var(--indigo); margin-bottom: 24px;
+  }
+
+  [data-theme="phosphor"] .hero-badge {
+    background: rgba(52,211,153,0.06); border-color: rgba(52,211,153,0.12);
+    color: #34D399;
+  }
+
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: dotPulse 2s infinite; }
+
+  @keyframes dotPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(38px, 5.5vw, 64px); font-weight: 700;
+    letter-spacing: -2px; line-height: 1.05; margin-bottom: 16px; color: var(--black);
+  }
+
+  .hero h1 .gradient { background: var(--gradient-wide); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  [data-theme="phosphor"] .hero h1 .gradient {
+    background: linear-gradient(135deg, #34D399, #4ADE80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(74,222,128,0.2);
+  }
+
+  [data-theme="phosphor"] .hero h1 {
+    text-shadow: 0 0 20px rgba(74,222,128,0.1);
+  }
+
+  .hero .subtitle {
+    font-size: 17px; color: var(--gray-500); max-width: 460px;
+    margin: 0 auto 32px; line-height: 1.6;
+  }
+
+  .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* Stats — inline under hero */
+  .stats-row {
+    display: flex; justify-content: center; gap: 40px;
+    margin-top: 48px; padding-top: 32px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .stat { text-align: center; }
+
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500;
+    color: var(--stat-color); letter-spacing: -0.5px;
+  }
+
+  .stat-label { font-size: 11px; color: var(--gray-400); margin-top: 2px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ============ HOW IT WORKS ============ */
+  .how-it-works { padding: 80px 0; }
+
+  .section-header { text-align: center; margin-bottom: 48px; }
+
+  .section-tag {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--indigo); font-weight: 600; margin-bottom: 12px;
+  }
+
+  [data-theme="phosphor"] .section-tag { color: #34D399; }
+
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(26px, 3.5vw, 36px); font-weight: 700;
+    letter-spacing: -1px; color: var(--black); margin-bottom: 8px;
+  }
+
+  .section-header .section-desc { font-size: 15px; color: var(--gray-500); max-width: 440px; margin: 0 auto; }
+
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .step-card {
+    padding: 32px 24px; border-radius: var(--radius-lg); position: relative;
+    background: var(--gray-50); border: 1px solid var(--gray-100); transition: all 0.3s;
+  }
+
+  .step-card:hover { background: var(--card-hover); border-color: rgba(79,70,229,0.15); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+  .step-number {
+    font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700;
+    color: var(--gray-100); line-height: 1; margin-bottom: 12px;
+  }
+
+  .step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--black); }
+
+  .step-card p { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+
+  /* ============ DEPARTMENTS ============ */
+  .departments { padding: 80px 0; background: var(--gray-50); }
+
+  [data-theme="dark"] .departments { background: var(--gray-50); }
+
+  .dept-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+  .dept-card {
+    padding: 20px; border-radius: var(--radius-md); background: var(--card-bg);
+    border: 1px solid var(--gray-100); transition: all 0.3s; cursor: pointer;
+  }
+
+  .dept-card:hover { border-color: rgba(79,70,229,0.2); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+  .dept-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; margin-bottom: 12px;
+  }
+
+  .dept-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 2px; color: var(--black); }
+
+  .dept-card .dept-sub { font-size: 12px; color: var(--gray-400); margin-bottom: 10px; }
+
+  .dept-card .dept-link {
+    font-size: 12px; font-weight: 600; color: var(--indigo);
+    text-decoration: none; display: flex; align-items: center; gap: 4px;
+  }
+
+  [data-theme="phosphor"] .dept-card .dept-link { color: #34D399; }
+
+  .dept-card:hover .dept-link span { transform: translateX(3px); }
+
+  .dept-card .dept-link span { transition: transform 0.2s; display: inline-block; }
+
+  /* ============ AI LEVEL ============ */
+  .ailevel { padding: 80px 0; }
+
+  .ailevel-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+
+  .ailevel-visual {
+    background: var(--card-bg); border: 1px solid var(--gray-100); border-radius: var(--radius-xl);
+    padding: 28px; box-shadow: var(--shadow-lg);
+  }
+
+  .ailevel-meter {
+    width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 20px;
+    background: conic-gradient(var(--indigo) 0deg, var(--violet) 200deg, var(--gray-100) 200deg, var(--gray-100) 360deg);
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+
+  [data-theme="phosphor"] .ailevel-meter {
+    background: conic-gradient(#34D399 0deg, #4ADE80 200deg, rgba(52,211,153,0.15) 200deg, rgba(52,211,153,0.15) 360deg);
+  }
+
+  .ailevel-meter::after {
+    content: ''; position: absolute; width: 124px; height: 124px;
+    border-radius: 50%; background: var(--card-bg);
+  }
+
+  .ailevel-value { position: relative; z-index: 1; text-align: center; }
+
+  .ailevel-value .number {
+    font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700;
+    color: var(--black); letter-spacing: -1px;
+  }
+
+  .ailevel-value .label { font-size: 11px; color: var(--gray-400); font-weight: 500; }
+
+  .ailevel-bars { display: flex; flex-direction: column; gap: 10px; }
+
+  .ailevel-bar-item label { font-size: 11px; font-weight: 600; color: var(--gray-600); margin-bottom: 3px; display: block; }
+
+  .ailevel-bar { height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+
+  .ailevel-bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease-out; }
+
+  /* ============ ENTERPRISE SECTION ============ */
+  .enterprise { padding: 80px 0; background: var(--gray-50); }
+
+  [data-theme="dark"] .enterprise { background: var(--gray-50); }
+
+  .enterprise-header { text-align: center; margin-bottom: 56px; }
+
+  .enterprise-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 3.5vw, 40px); font-weight: 700;
+    letter-spacing: -1px; color: var(--black); margin-bottom: 12px;
+  }
+
+  .enterprise-header p { font-size: 16px; color: var(--gray-500); max-width: 560px; margin: 0 auto; }
+
+  .enterprise-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px;
+  }
+
+  .enterprise-card {
+    background: var(--card-bg); border: 1px solid var(--gray-100); border-radius: var(--radius-lg);
+    padding: 32px; transition: all 0.3s;
+  }
+
+  .enterprise-card:hover { border-color: rgba(79,70,229,0.15); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+  .enterprise-card-tag {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--indigo); font-weight: 600; margin-bottom: 12px;
+  }
+
+  [data-theme="phosphor"] .enterprise-card-tag { color: #34D399; }
+
+  .enterprise-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .enterprise-card p { font-size: 14px; color: var(--gray-500); line-height: 1.7; margin-bottom: 20px; }
+
+  .enterprise-features { display: flex; flex-direction: column; gap: 10px; }
+
+  .enterprise-features li {
+    font-size: 13px; color: var(--gray-600); display: flex; align-items: flex-start; gap: 8px;
+    list-style: none;
+  }
+
+  .enterprise-features li::before { content: '✓'; color: var(--indigo); font-weight: 700; flex-shrink: 0; }
+
+  [data-theme="phosphor"] .enterprise-features li::before { color: #34D399; }
+
+  .enterprise-stats {
+    background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: var(--radius-lg);
+    padding: 40px; margin-top: 40px;
+  }
+
+  [data-theme="dark"] .enterprise-stats { background: var(--gray-50); }
+
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px;
+  }
+
+  .stat {
+    position: relative; padding: 20px; background: var(--card-bg);
+    border: 1px solid var(--gray-100); border-radius: var(--radius-md);
+  }
+
+  .stat-index {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500;
+    color: var(--gray-400); letter-spacing: 1px;
+  }
+
+  .stat-val {
+    font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500;
+    color: var(--stat-color); letter-spacing: -0.5px; margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 12px; color: var(--gray-500); font-weight: 500; margin-bottom: 12px;
+  }
+
+  .stat-bar {
+    height: 3px; background: var(--gray-100); border-radius: 2px; overflow: hidden;
+  }
+
+  .stat-bar-fill { height: 100%; background: var(--indigo); border-radius: 2px; width: 75%; }
+
+  [data-theme="phosphor"] .stat-bar-fill { background: #34D399; }
+
+  /* ============ PRICING ============ */
+  .pricing { padding: 80px 0; }
+
+  .pricing-header { text-align: center; margin-bottom: 56px; }
+
+  .pricing-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 3.5vw, 40px); font-weight: 700;
+    letter-spacing: -1px; color: var(--black); margin-bottom: 12px;
+  }
+
+  .pricing-header p { font-size: 16px; color: var(--gray-500); max-width: 560px; margin: 0 auto; }
+
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+
+  .pricing-card {
+    background: var(--card-bg); border: 1px solid var(--gray-100); border-radius: var(--radius-lg);
+    padding: 32px; text-align: center; transition: all 0.3s;
+  }
+
+  .pricing-card:hover { border-color: rgba(79,70,229,0.2); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+  .pricing-card.featured {
+    border-color: var(--indigo); box-shadow: 0 0 0 2px rgba(79,70,229,0.1);
+    transform: translateY(-8px);
+  }
+
+  [data-theme="phosphor"] .pricing-card.featured {
+    border-color: #34D399;
+    box-shadow: 0 0 0 2px rgba(52,211,153,0.1);
+  }
+
+  .pricing-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 8px;
+  }
+
+  .pricing-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px; font-weight: 700; color: var(--stat-color); margin-bottom: 4px;
+  }
+
+  .pricing-desc { font-size: 13px; color: var(--gray-500); margin-bottom: 24px; }
+
+  .pricing-cta { width: 100%; margin-bottom: 24px; }
+
+  .pricing-features {
+    display: flex; flex-direction: column; gap: 12px; text-align: left;
+  }
+
+  .pricing-features li {
+    font-size: 13px; color: var(--gray-600); display: flex; align-items: flex-start; gap: 8px;
+    list-style: none;
+  }
+
+  .pricing-features li::before { content: '✓'; color: var(--indigo); font-weight: 700; flex-shrink: 0; }
+
+  [data-theme="phosphor"] .pricing-features li::before { color: #34D399; }
+
+  /* ============ FEATURES — Compact Bento ============ */
+  .features { padding: 80px 0; background: var(--gray-50); }
+
+  .bento-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .bento-card {
+    border-radius: var(--radius-lg); padding: 28px;
+    border: 1px solid var(--gray-100); transition: all 0.3s;
+    background: var(--card-bg);
+  }
+
+  .bento-card:hover { border-color: rgba(79,70,229,0.15); box-shadow: var(--shadow-lg); }
+
+  .bento-card.wide { grid-column: span 2; }
+
+  .bento-card.accent {
+    background: linear-gradient(135deg, #4F46E5, #6D28D9); color: white; border-color: transparent;
+  }
+
+  [data-theme="phosphor"] .bento-card.accent {
+    background: linear-gradient(135deg, #34D399, #4ADE80);
+  }
+
+  .bento-card.accent .bento-desc { color: rgba(255,255,255,0.7); }
+
+  .bento-card.accent .bento-tag { color: rgba(255,255,255,0.5); }
+
+  .bento-tag {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--indigo); font-weight: 600; margin-bottom: 10px;
+  }
+
+  [data-theme="phosphor"] .bento-tag { color: #34D399; }
+
+  .bento-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px;
+  }
+
+  .bento-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+
+  /* ============ NEWSLETTER ============ */
+  .newsletter { padding: 80px 0; }
+
+  .newsletter-card {
+    background: var(--card-bg); border: 1px solid var(--gray-100);
+    border-radius: var(--radius-xl); padding: 48px;
+    display: flex; align-items: center; gap: 48px;
+  }
+
+  .newsletter-content { flex: 1; }
+
+  .newsletter-content h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700;
+    letter-spacing: -0.5px; color: var(--black); margin-bottom: 8px;
+  }
+
+  .newsletter-content p { font-size: 14px; color: var(--gray-500); line-height: 1.6; max-width: 400px; }
+
+  .newsletter-form { display: flex; gap: 8px; flex-shrink: 0; }
+
+  .newsletter-form input {
+    padding: 12px 16px; border-radius: 10px; border: 1px solid var(--gray-200);
+    background: var(--bg); color: var(--gray-900); font-size: 14px; font-family: inherit;
+    width: 260px; outline: none; transition: border-color 0.2s;
+  }
+
+  .newsletter-form input:focus { border-color: var(--indigo); }
+
+  .newsletter-form input::placeholder { color: var(--gray-400); }
+
+  .newsletter-form .btn { white-space: nowrap; }
+
+  .newsletter-stats { display: flex; gap: 24px; margin-top: 16px; }
+
+  .newsletter-stats span { font-size: 12px; color: var(--gray-400); display: flex; align-items: center; gap: 4px; }
+
+  .newsletter-stats .dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ============ STREAK BANNER ============ */
+  .streak-banner {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 20px; border-radius: 12px; margin-top: 16px;
+    background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.12);
+    font-size: 13px; color: var(--green); font-weight: 600;
+  }
+
+  .streak-days { display: flex; gap: 4px; }
+
+  .streak-dot {
+    width: 8px; height: 8px; border-radius: 2px; background: var(--green); opacity: 0.2;
+  }
+
+  .streak-dot.active { opacity: 1; }
+
+  /* ============ TRUST SIGNALS BAR ============ */
+  .trust-bar { padding: 32px 0; border-bottom: 1px solid var(--gray-100); background: var(--bg); }
+  .trust-bar .container { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+  .trust-badge { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--gray-400); transition: color 0.2s; }
+  .trust-badge:hover { color: var(--gray-600); }
+  .trust-badge-icon { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--card-bg); }
+  .trust-badge span.label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.5px; }
+
+  /* ============ BILDUNGSGUTSCHEIN ============ */
+  .bildung { padding: 80px 0; background: var(--gray-50); }
+  .bildung-card { background: var(--card-bg); border: 1px solid var(--gray-100); border-radius: var(--radius-xl); padding: 56px; display: flex; gap: 48px; align-items: center; overflow: hidden; position: relative; }
+  .bildung-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--indigo), var(--green)); }
+  [data-theme="phosphor"] .bildung-card::before { background: linear-gradient(180deg, #34D399, #4ADE80); }
+  .bildung-content { flex: 1; }
+  .bildung-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 3vw, 36px); font-weight: 700; letter-spacing: -0.5px; color: var(--black); margin-bottom: 12px; }
+  .bildung-content p { font-size: 15px; color: var(--gray-500); line-height: 1.7; max-width: 500px; margin-bottom: 24px; }
+  .bildung-checks { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+  .bildung-checks li { font-size: 14px; color: var(--gray-600); display: flex; align-items: center; gap: 10px; list-style: none; }
+  .bildung-checks li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 16px; }
+  .bildung-badge { flex-shrink: 0; width: 220px; text-align: center; }
+  .bildung-seal { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--indigo); display: flex; align-items: center; justify-content: center; font-size: 52px; margin: 0 auto 16px; background: var(--gray-50); }
+  [data-theme="phosphor"] .bildung-seal { border-color: #34D399; }
+  .bildung-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-400); }
+  .bildung-val { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 700; color: var(--stat-color); margin-top: 4px; }
+
+  /* ============ REFERRAL CTA ============ */
+  .referral-bar { padding: 48px 0; }
+  .referral-card { background: linear-gradient(135deg, rgba(79,70,229,0.06), rgba(124,58,237,0.06)); border: 1px solid rgba(79,70,229,0.12); border-radius: var(--radius-xl); padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  [data-theme="phosphor"] .referral-card { background: linear-gradient(135deg, rgba(52,211,153,0.06), rgba(74,222,128,0.06)); border-color: rgba(52,211,153,0.12); }
+  .referral-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .referral-content p { font-size: 14px; color: var(--gray-500); }
+  .referral-reward { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+  .referral-reward-icon { font-size: 32px; }
+  .referral-reward-text { font-family: 'JetBrains Mono', monospace; }
+  .referral-reward-val { font-size: 20px; font-weight: 700; color: var(--stat-color); }
+  .referral-reward-label { font-size: 11px; color: var(--gray-400); }
+
+  /* ============ CTA ============ */
+  .cta-section { padding: 80px 0; }
+
+  .cta-card {
+    background: #0A0A0B; border-radius: var(--radius-xl); padding: 56px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+
+  [data-theme="phosphor"] .cta-card { background: #030D03; }
+
+  .cta-card::before {
+    content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(79,70,229,0.15) 0%, transparent 70%);
+  }
+
+  [data-theme="phosphor"] .cta-card::before {
+    background: radial-gradient(circle, rgba(52,211,153,0.15) 0%, transparent 70%);
+  }
+
+  .cta-content { position: relative; z-index: 1; max-width: 480px; }
+
+  .cta-card .tag {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--indigo-light); font-weight: 600; margin-bottom: 12px;
+  }
+
+  [data-theme="phosphor"] .cta-card .tag { color: #34D399; }
+
+  .cta-card h2 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700;
+    color: white; letter-spacing: -1px; margin-bottom: 10px; line-height: 1.15;
+  }
+
+  .cta-card p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  .cta-card .btn {
+    position: relative; z-index: 1; background: white; color: #0A0A0B;
+    padding: 14px 28px; font-size: 15px; border-radius: 12px;
+  }
+
+  [data-theme="phosphor"] .cta-card .btn { background: #B8F4B8; color: #030D03; }
+
+  .cta-card .btn:hover { background: #E8E8EC; transform: translateY(-1px); }
+
+  [data-theme="phosphor"] .cta-card .btn:hover { background: #A0E4A0; }
+
+  /* ============ FOOTER — Minimal ============ */
+  footer { padding: 48px 0 32px; border-top: 1px solid var(--gray-100); }
+
+  .footer-inner {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 48px;
+  }
+
+  .footer-brand { max-width: 260px; }
+
+  .footer-brand .logo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+
+  .footer-brand .logo-row svg { width: 22px; height: 22px; }
+
+  .footer-brand .logo-row span {
+    font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--black);
+  }
+
+  .footer-brand p { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+
+  .footer-links { display: flex; gap: 48px; }
+
+  .footer-col h4 { font-size: 12px; font-weight: 600; color: var(--black); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .footer-col a { display: block; font-size: 13px; color: var(--gray-500); text-decoration: none; margin-bottom: 6px; transition: color 0.2s; }
+
+  .footer-col a:hover { color: var(--indigo); }
+
+  [data-theme="phosphor"] .footer-col a:hover { color: #34D399; }
+
+  .footer-bottom {
+    margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--gray-100);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--gray-400);
+  }
+
+  .footer-bottom a { color: var(--gray-400); text-decoration: none; margin-left: 16px; }
+
+  .footer-bottom a:hover { color: var(--indigo); }
+
+  [data-theme="phosphor"] .footer-bottom a:hover { color: #34D399; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 768px) {
+    .nav-links, .nav-divider { display: none; }
+    .mobile-menu-btn { display: block; }
+    .nav-inner { gap: 12px; }
+    .hero { padding: 100px 0 60px; }
+    .hero h1 { font-size: 32px; letter-spacing: -1px; }
+    .hero .subtitle { font-size: 15px; max-width: 320px; }
+    .hero-ctas { flex-direction: column; align-items: center; }
+    .hero-ctas .btn { width: 100%; max-width: 280px; text-align: center; }
+    .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; padding-top: 24px; }
+    .stats-row .stat { text-align: center; }
+    .stat-value { font-size: 18px; }
+    .trust-bar .container { gap: 16px; justify-content: center; }
+    .trust-badge { font-size: 11px; }
+    .trust-badge .label { font-size: 10px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .section-header h2 { font-size: 24px; }
+    section { padding: 60px 0; }
+    .dept-grid { grid-template-columns: 1fr; }
+    .ailevel-layout { grid-template-columns: 1fr; gap: 32px; }
+    .ailevel-visual { height: 280px; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-card.wide { grid-column: span 1; }
+    .enterprise-grid { grid-template-columns: 1fr; }
+    .enterprise-header h2 { font-size: 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .bildung-card { flex-direction: column; padding: 28px 20px; gap: 24px; }
+    .bildung-content h2 { font-size: 22px; }
+    .bildung-badge { width: 100%; }
+    .bildung-seal { width: 80px; height: 80px; font-size: 36px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 24px 20px; }
+    .newsletter-card { flex-direction: column; text-align: center; padding: 32px 20px; }
+    .newsletter-form { flex-direction: column; width: 100%; }
+    .newsletter-form input { width: 100%; }
+    .newsletter-stats { justify-content: center; }
+    .cta-card { flex-direction: column; text-align: center; padding: 36px 20px; gap: 20px; }
+    .cta-content h2 { font-size: 22px; }
+    .footer-inner { flex-direction: column; gap: 32px; }
+    .footer-links { flex-wrap: wrap; gap: 24px; }
+    .referral-bar .container { flex-direction: column; gap: 16px; text-align: center; }
+    .referral-bar { padding: 40px 0; }
+    .container { padding: 0 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 28px; }
+    .stats-row { gap: 12px; }
+    .stat-value { font-size: 16px; }
+    .dept-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .enterprise-card { padding: 20px 16px; }
+    .trust-bar .container { gap: 12px; }
+    .trust-badge-icon { font-size: 14px; }
+  }
+
+  /* ============ DARK MODE OVERRIDES ============ */
+  [data-theme="dark"] .step-card { background: var(--card-bg); border-color: rgba(255,255,255,0.06); }
+  [data-theme="dark"] .step-card:hover { background: var(--card-hover); }
+  [data-theme="dark"] .dept-card { background: var(--card-bg); border-color: rgba(255,255,255,0.06); }
+  [data-theme="dark"] .ailevel-visual { background: var(--card-bg); border-color: rgba(255,255,255,0.06); }
+  [data-theme="dark"] .ailevel-meter::after { background: var(--card-bg); }
+  [data-theme="dark"] .bento-card { background: var(--card-bg); border-color: rgba(255,255,255,0.06); }
+  [data-theme="dark"] .cta-card { background: #FAFAFA; }
+  [data-theme="dark"] .cta-card h2 { color: #0A0A0B; }
+  [data-theme="dark"] .cta-card p { color: rgba(0,0,0,0.5); }
+  [data-theme="dark"] .cta-card .tag { color: var(--indigo); }
+  [data-theme="dark"] .cta-card .btn { background: #0A0A0B; color: #FAFAFA; }
+  [data-theme="dark"] .btn-ghost { color: var(--gray-600); }
+  [data-theme="dark"] .step-number { color: rgba(255,255,255,0.06); }
+
+  /* ============ PHOSPHOR MODE OVERRIDES ============ */
+  [data-theme="phosphor"] .step-card { background: var(--card-bg); border-color: rgba(52,211,153,0.1); }
+  [data-theme="phosphor"] .step-card:hover { background: var(--card-hover); border-color: rgba(52,211,153,0.2); }
+  [data-theme="phosphor"] .dept-card { background: var(--card-bg); border-color: rgba(52,211,153,0.1); }
+  [data-theme="phosphor"] .ailevel-visual { background: var(--card-bg); border-color: rgba(52,211,153,0.1); }
+  [data-theme="phosphor"] .ailevel-meter::after { background: var(--card-bg); }
+  [data-theme="phosphor"] .bento-card { background: var(--card-bg); border-color: rgba(52,211,153,0.1); }
+  [data-theme="phosphor"] .step-number { color: rgba(184,244,184,0.06); }
+  [data-theme="phosphor"] .enterprise-card { background: var(--card-bg); border-color: rgba(52,211,153,0.1); }
+  [data-theme="phosphor"] .enterprise-card:hover { border-color: rgba(52,211,153,0.2); }
+  [data-theme="phosphor"] .pricing-card { background: var(--card-bg); border-color: rgba(52,211,153,0.1); }
+  [data-theme="phosphor"] .pricing-card:hover { border-color: rgba(52,211,153,0.2); }
+  [data-theme="phosphor"] .newsletter-card { background: var(--card-bg); border-color: rgba(52,211,153,0.1); }
+  [data-theme="phosphor"] .newsletter-form input { background: var(--bg); color: var(--black); border-color: rgba(52,211,153,0.1); }
+  [data-theme="phosphor"] .newsletter-form input:focus { border-color: #34D399; }
+
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV — Clean: Icon + Text Logo | 3 Links | Theme + CTA -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="navG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#4F46E5"/><stop offset="50%" style="stop-color:#7C3AED"/><stop offset="100%" style="stop-color:#818CF8"/></linearGradient></defs>
+        <polygon points="50,8 92,50 50,92 8,50" fill="none" stroke="url(#navG)" stroke-width="3"/>
+        <polygon points="50,8 70,35 50,50 30,35" fill="url(#navG)" opacity="0.9"/>
+        <polygon points="70,35 92,50 70,65 50,50" fill="url(#navG)" opacity="0.6"/>
+        <polygon points="50,50 70,65 50,92 30,65" fill="url(#navG)" opacity="0.4"/>
+        <polygon points="30,35 50,50 30,65 8,50" fill="url(#navG)" opacity="0.5"/>
+      </svg>
+      <span class="nav-logo-text">Zehn<span class="x-academy">X</span> Academy</span>
+    </a>
+    <div class="nav-links">
+      <a href="#sprints">So funktioniert's</a>
+      <a href="#departments">Departments</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Preise</a>
+    </div>
+    <div class="nav-actions">
+      <div class="theme-toggle">
+        <button class="theme-btn active" data-t="dark" title="Dunkel">☾</button>
+        <button class="theme-btn" data-t="light" title="Hell">☀</button>
+        <button class="theme-btn" data-t="phosphor" title="Phosphor">◎</button>
+      </div>
+      <a href="#" class="btn btn-ghost">Log in</a>
+      <a href="#" class="btn btn-primary">Starten <span class="arrow">→</span></a>
+    </div>
+    <button class="mobile-menu-btn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="fade-up">
+      <div class="hero-badge"><span class="dot"></span> AI-News + Lernsprints in einer Plattform</div>
+      <h1>Lerne AI.<br>Bleib <span class="gradient">vorne.</span></h1>
+      <p class="subtitle">Die erste Plattform, die AI-News und hands-on Lernsprints vereint. Täglich kuratiert, projektbasiert, kostenlos.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn btn-primary btn-lg">Kostenlos starten <span class="arrow">→</span></a>
+        <a href="#" class="btn btn-ghost btn-lg">Demo ansehen</a>
+      </div>
+    </div>
+    <div class="stats-row fade-up" style="transition-delay: 0.15s;">
+      <div class="stat">
+        <div class="stat-value">406+</div>
+        <div class="stat-label">Sprints</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">14</div>
+        <div class="stat-label">Departments</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">A1→C2</div>
+        <div class="stat-label">Sprachlevel</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" style="color: var(--green);">0 €</div>
+        <div class="stat-label">Für immer frei</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST SIGNALS -->
+<div class="trust-bar fade-up">
+  <div class="container">
+    <div class="trust-badge"><div class="trust-badge-icon">🛡️</div><span class="label">DSGVO konform</span></div>
+    <div class="trust-badge"><div class="trust-badge-icon">🇩🇪</div><span class="label">Made in Germany</span></div>
+    <div class="trust-badge"><div class="trust-badge-icon">🏗️</div><span class="label">Hosted in Deutschland</span></div>
+    <div class="trust-badge"><div class="trust-badge-icon">⚡</div><span class="label">406 Sprints · 14 Departments</span></div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="sprints">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">So funktioniert's</div>
+      <h2>Drei Schritte. Echte Ergebnisse.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-number">01</div>
+        <h3>Projekt beschreiben</h3>
+        <p>Was baust du? Die Plattform analysiert deinen Stand und schlägt den optimalen Lernpfad vor.</p>
+      </div>
+      <div class="step-card fade-up" style="transition-delay: 0.1s;">
+        <div class="step-number">02</div>
+        <h3>Sprint starten</h3>
+        <p>3–5 Tage, 1–2h pro Tag. Am Ende steht etwas Fertiges. Kein passives Zuschauen — du baust.</p>
+      </div>
+      <div class="step-card fade-up" style="transition-delay: 0.2s;">
+        <div class="step-number">03</div>
+        <h3>Ergebnis & Wachstum</h3>
+        <p>Feature funktioniert. Wissensbaum wächst. AI Level steigt. Nächster Sprint wartet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section class="departments" id="departments">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">8 Departments</div>
+      <h2>Wähle dein Fachgebiet</h2>
+    </div>
+    <div class="dept-grid">
+      <div class="dept-card fade-up">
+        <div class="dept-icon" style="background: rgba(239,68,68,0.08);">✦</div>
+        <h3>Design Studio</h3>
+        <div class="dept-sub">Visual AI & Branding</div>
+        <a href="#" class="dept-link">12 Sprints <span>→</span></a>
+      </div>
+      <div class="dept-card fade-up" style="transition-delay: 0.05s;">
+        <div class="dept-icon" style="background: rgba(79,70,229,0.08);">◆</div>
+        <h3>App Lab</h3>
+        <div class="dept-sub">Full-Stack AI Apps</div>
+        <a href="#" class="dept-link">14 Sprints <span>→</span></a>
+      </div>
+      <div class="dept-card fade-up" style="transition-delay: 0.1s;">
+        <div class="dept-icon" style="background: rgba(16,185,129,0.08);">◎</div>
+        <h3>Conversational AI</h3>
+        <div class="dept-sub">Chatbots & Voice</div>
+        <a href="#" class="dept-link">10 Sprints <span>→</span></a>
+      </div>
+      <div class="dept-card fade-up" style="transition-delay: 0.15s;">
+        <div class="dept-icon" style="background: rgba(245,158,11,0.08);">◻</div>
+        <h3>Automation HQ</h3>
+        <div class="dept-sub">Workflows & Pipelines</div>
+        <a href="#" class="dept-link">11 Sprints <span>→</span></a>
+      </div>
+      <div class="dept-card fade-up" style="transition-delay: 0.2s;">
+        <div class="dept-icon" style="background: rgba(239,68,68,0.08);">✶</div>
+        <h3>Content Factory</h3>
+        <div class="dept-sub">Text, Video & Audio</div>
+        <a href="#" class="dept-link">9 Sprints <span>→</span></a>
+      </div>
+      <div class="dept-card fade-up" style="transition-delay: 0.25s;">
+        <div class="dept-icon" style="background: rgba(124,58,237,0.08);">●</div>
+        <h3>Data Intelligence</h3>
+        <div class="dept-sub">Analytics & BI</div>
+        <a href="#" class="dept-link">10 Sprints <span>→</span></a>
+      </div>
+      <div class="dept-card fade-up" style="transition-delay: 0.3s;">
+        <div class="dept-icon" style="background: rgba(16,185,129,0.08);">◎</div>
+        <h3>Business School</h3>
+        <div class="dept-sub">Strategie & AI Act</div>
+        <a href="#" class="dept-link">8 Sprints <span>→</span></a>
+      </div>
+      <div class="dept-card fade-up" style="transition-delay: 0.35s;">
+        <div class="dept-icon" style="background: rgba(107,114,128,0.08);">◉</div>
+        <h3>Selbstschutz</h3>
+        <div class="dept-sub">Privacy & Safety</div>
+        <a href="#" class="dept-link">7 Sprints <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI LEVEL -->
+<section class="ailevel" id="ailevel">
+  <div class="container">
+    <div class="ailevel-layout">
+      <div class="fade-up">
+        <div class="section-tag">AI Level</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;letter-spacing:-1px;margin-bottom:12px;color:var(--black);">Dein Wissen,<br>messbar gemacht.</h2>
+        <p style="font-size:15px;color:var(--gray-500);max-width:380px;line-height:1.7;margin-bottom:24px;">Dein persönlicher Kompetenz-Index. Basierend auf abgeschlossenen Sprints, Projekt-Qualität und Skill-Tiefe.</p>
+        <a href="#" class="btn btn-accent">AI Level berechnen <span class="arrow">→</span></a>
+      </div>
+      <div class="ailevel-visual fade-up" style="transition-delay: 0.15s;">
+        <div class="ailevel-meter">
+          <div class="ailevel-value">
+            <div class="number">742</div>
+            <div class="label">AI Level</div>
+          </div>
+        </div>
+        <div class="ailevel-bars">
+          <div class="ailevel-bar-item">
+            <label>Design Studio</label>
+            <div class="ailevel-bar"><div class="ailevel-bar-fill" style="width:85%;background:var(--gradient);"></div></div>
+          </div>
+          <div class="ailevel-bar-item">
+            <label>App Lab</label>
+            <div class="ailevel-bar"><div class="ailevel-bar-fill" style="width:72%;background:var(--gradient);"></div></div>
+          </div>
+          <div class="ailevel-bar-item">
+            <label>Automation HQ</label>
+            <div class="ailevel-bar"><div class="ailevel-bar-fill" style="width:58%;background:var(--gradient);"></div></div>
+          </div>
+          <div class="ailevel-bar-item">
+            <label>Business School</label>
+            <div class="ailevel-bar"><div class="ailevel-bar-fill" style="width:43%;background:var(--gradient);"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTERPRISE SECTION -->
+<section class="enterprise" id="enterprise">
+  <div class="container">
+    <div class="enterprise-header fade-up">
+      <div class="section-tag">Enterprise-Ready</div>
+      <h2>Skalierte Intelligenz für Teams</h2>
+      <p>Volle Kontrolle, vollständige Integration, Made in Germany. KI-Sprints personalisiert für dein Unternehmen.</p>
+    </div>
+    <div class="enterprise-grid">
+      <div class="enterprise-card fade-up">
+        <div class="enterprise-card-tag">Team Learning</div>
+        <h3>Company Workspace</h3>
+        <p>White-Label Plattform für dein Unternehmen. Einzelne Subdomain, dein Branding, deine Policies.</p>
+        <ul class="enterprise-features">
+          <li>SSO & SCIM Integration</li>
+          <li>Admin Dashboard</li>
+          <li>Custom Branding</li>
+        </ul>
+      </div>
+      <div class="enterprise-card fade-up" style="transition-delay: 0.1s;">
+        <div class="enterprise-card-tag">Cohort-Based</div>
+        <h3>Sprint Cohorts</h3>
+        <p>Synchronisierte Team-Sprints. Gleichzeitig lernen, gemeinsam bauen, peer feedback.</p>
+        <ul class="enterprise-features">
+          <li>Cohort Scheduling</li>
+          <li>Team Dashboards</li>
+          <li>Progress Analytics</li>
+        </ul>
+      </div>
+      <div class="enterprise-card fade-up" style="transition-delay: 0.2s;">
+        <div class="enterprise-card-tag">Insights</div>
+        <h3>Intelligence Dashboard</h3>
+        <p>Echtzeit Kompetenz-Tracking. Wer hat welche Skills? Wo sind Gaps? Wo Wachstumspotenziale?</p>
+        <ul class="enterprise-features">
+          <li>Skill-Matrix</li>
+          <li>Gap Analysis</li>
+          <li>ROI Reports</li>
+        </ul>
+      </div>
+      <div class="enterprise-card fade-up">
+        <div class="enterprise-card-tag">AI-Powered</div>
+        <h3>AI Learning Coach</h3>
+        <p>KI-Assistent für personalisierte Lernpfade. Analysiert Team-Profile, schlägt optimale Sprints vor.</p>
+        <ul class="enterprise-features">
+          <li>Personalized Paths</li>
+          <li>Auto-Recommendations</li>
+          <li>Skill Matching</li>
+        </ul>
+      </div>
+      <div class="enterprise-card fade-up" style="transition-delay: 0.1s;">
+        <div class="enterprise-card-tag">Gamification</div>
+        <h3>Team Challenges</h3>
+        <p>Abteilungs- und Team-Wettkämpfe. Leaderboards, Challenges, Badges. Engagement verstärkt sich.</p>
+        <ul class="enterprise-features">
+          <li>Team Leaderboards</li>
+          <li>Challenge Tournaments</li>
+          <li>Reward System</li>
+        </ul>
+      </div>
+      <div class="enterprise-card fade-up" style="transition-delay: 0.2s;">
+        <div class="enterprise-card-tag">Credentials</div>
+        <h3>Micro-Credentials</h3>
+        <p>Zertifizierbare Abschlüsse. Digital verifizierbar, LinkedIn-integrierbar, EU-konform.</p>
+        <ul class="enterprise-features">
+          <li>Digital Badges</li>
+          <li>Verifiable Certs</li>
+          <li>LinkedIn Export</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ENTERPRISE STATS -->
+    <div class="enterprise-stats fade-up">
+      <div class="stats-grid">
+        <div class="stat" data-index="001">
+          <div class="stat-index">001</div>
+          <div class="stat-val">406</div>
+          <div class="stat-label">Praxis-Sprints</div>
+          <div class="stat-bar"><div class="stat-bar-fill"></div></div>
+        </div>
+        <div class="stat" data-index="002">
+          <div class="stat-index">002</div>
+          <div class="stat-val">14</div>
+          <div class="stat-label">Departments</div>
+          <div class="stat-bar"><div class="stat-bar-fill"></div></div>
+        </div>
+        <div class="stat" data-index="003">
+          <div class="stat-index">003</div>
+          <div class="stat-val">A1–C2</div>
+          <div class="stat-label">6 Skill-Level</div>
+          <div class="stat-bar"><div class="stat-bar-fill"></div></div>
+        </div>
+        <div class="stat" data-index="004">
+          <div class="stat-index">004</div>
+          <div class="stat-val">3–5</div>
+          <div class="stat-label">Tage pro Sprint</div>
+          <div class="stat-bar"><div class="stat-bar-fill"></div></div>
+        </div>
+        <div class="stat" data-index="005">
+          <div class="stat-index">005</div>
+          <div class="stat-val">1–2h</div>
+          <div class="stat-label">pro Tag</div>
+          <div class="stat-bar"><div class="stat-bar-fill"></div></div>
+        </div>
+        <div class="stat" data-index="006">
+          <div class="stat-index">006</div>
+          <div class="stat-val">🇩🇪</div>
+          <div class="stat-label">Gehostet in DE</div>
+          <div class="stat-bar"><div class="stat-bar-fill"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BILDUNGSGUTSCHEIN -->
+<section class="bildung" id="bildung">
+  <div class="container">
+    <div class="bildung-card fade-up">
+      <div class="bildung-content">
+        <div class="section-tag">Für Unternehmen & Teams</div>
+        <h2>AI-Weiterbildung für dein Team</h2>
+        <p>ZEHNX Academy bietet personalisierte AI-Sprints für Teams und Unternehmen. Praxisnah, projektbasiert, auf Deutsch.</p>
+        <ul class="bildung-checks">
+          <li>Personalisierte Sprint-Pfade pro Mitarbeiter</li>
+          <li>Admin-Dashboard mit Fortschritts-Tracking</li>
+          <li>EU AI Act konforme Schulungsnachweise</li>
+          <li>Flexible Laufzeiten, keine Mindestvertragslaufzeit</li>
+          <li>Persönliche Beratung & Onboarding</li>
+        </ul>
+        <a href="#" class="btn btn-accent">Kostenlose Demo vereinbaren</a>
+      </div>
+      <div class="bildung-badge">
+        <div class="bildung-seal">🚀</div>
+        <div class="bildung-label">Sprints ab</div>
+        <div class="bildung-val">Tag 1</div>
+        <div style="font-size:12px;color:var(--gray-400);margin-top:4px;">sofort starten</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-header fade-up">
+      <div class="section-tag">Einfache Preise</div>
+      <h2>Investiere in AI-Skills, nicht in Bürokratie</h2>
+      <p>Kostenlos starten, jederzeit upgraden. Keine Kreditkarte nötig.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">Free</div>
+        <div class="pricing-price">0 €</div>
+        <div class="pricing-desc">Für immer kostenlos</div>
+        <a href="#" class="btn btn-accent pricing-cta">Jetzt starten</a>
+        <ul class="pricing-features">
+          <li>Täglicher AI-News Feed</li>
+          <li>3 Basis-Sprints</li>
+          <li>Community-Zugang</li>
+          <li>Basis AI Level & Streak</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured fade-up" style="transition-delay: 0.1s;">
+        <div style="text-align:center;margin-bottom:8px;"><span style="background:var(--indigo);color:white;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:0.5px;">BELIEBTESTE WAHL</span></div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-price">29 €</div>
+        <div class="pricing-desc">Pro Person/Monat · <span style="text-decoration:line-through;color:var(--gray-400)">49 €</span></div>
+        <a href="#" class="btn btn-accent pricing-cta">14 Tage testen</a>
+        <ul class="pricing-features">
+          <li>Alle 130+ AI-Sprints</li>
+          <li>Sprint Cohorts</li>
+          <li>Full AI Level & Streaks</li>
+          <li>Micro-Credentials</li>
+          <li>Code-Sandbox</li>
+          <li>AI Learning Coach</li>
+          <li>Team Dashboard</li>
+          <li>Priority Support</li>
+        </ul>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--gray-100);text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);font-weight:600;">ROI: 4.2x in 90 Tagen</div>
+        </div>
+      </div>
+      <div class="pricing-card fade-up" style="transition-delay: 0.2s;">
+        <div class="pricing-name">Enterprise</div>
+        <div class="pricing-price">Custom</div>
+        <div class="pricing-desc">Ab 50 Seats · <span style="color:var(--green);font-weight:600;">Individuelle Konditionen</span></div>
+        <a href="#" class="btn btn-ghost pricing-cta">Demo vereinbaren</a>
+        <ul class="pricing-features">
+          <li>White-Label Plattform</li>
+          <li>SSO, SCIM & SAML</li>
+          <li>Intelligence Dashboard</li>
+          <li>AI Learning Coach Pro</li>
+          <li>Churn Detection & Retention</li>
+          <li>Dedicated CSM</li>
+          <li>SLA 99.9% & EU AI Act</li>
+        </ul>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--gray-100);text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gray-400);">Individuelle Konditionen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Features</div>
+      <h2>Gebaut für echtes Lernen</h2>
+    </div>
+    <div class="bento-grid">
+      <div class="bento-card wide fade-up">
+        <div class="bento-tag">Hybrid-Plattform</div>
+        <h3>AI-News + Lernsprints</h3>
+        <p class="bento-desc">Täglich kuratiertes AI-Briefing mit 5–10 Stories. Wenn GPT-5 released wird, siehst du sofort den passenden Lernpfad dazu. News und Lernen verschmelzen.</p>
+      </div>
+      <div class="bento-card accent fade-up" style="transition-delay: 0.1s;">
+        <div class="bento-tag">Code-Sandbox</div>
+        <h3>Interaktiv im Browser</h3>
+        <p class="bento-desc">Kein Setup, kein Download. Browser-basierte Coding-Umgebung direkt im Sprint. Build, don't watch.</p>
+      </div>
+      <div class="bento-card fade-up" style="transition-delay: 0.15s;">
+        <div class="bento-tag">Streaks & AI Level</div>
+        <h3>Gamification, die bindet</h3>
+        <p class="bento-desc">Tägliche Streaks, Leaderboards und dein persönlicher AI Level als Skill-Graph. +60% Retention durch bewiesene Mechaniken.</p>
+        <div class="streak-banner" style="margin-top:16px;">
+          <span>7-Tage-Streak</span>
+          <div class="streak-days">
+            <div class="streak-dot active"></div><div class="streak-dot active"></div><div class="streak-dot active"></div>
+            <div class="streak-dot active"></div><div class="streak-dot active"></div><div class="streak-dot active"></div>
+            <div class="streak-dot active"></div>
+          </div>
+        </div>
+      </div>
+      <div class="bento-card fade-up" style="transition-delay: 0.2s;">
+        <div class="bento-tag">Community</div>
+        <h3>Lernen mit Peers</h3>
+        <p class="bento-desc">Cohort-basierte Sprints, Diskussionen und Peer-Feedback. Micro-Communities binden stärker als Solo-Kurse.</p>
+      </div>
+      <div class="bento-card wide fade-up" style="transition-delay: 0.25s;">
+        <div class="bento-tag">Enterprise-Ready</div>
+        <h3>AI-Sprints für ganze Teams</h3>
+        <p class="bento-desc">Personengenau am echten Tagesgeschäft. EU AI Act konform. Made in Germany. Admin-Dashboard, Slack-Integration, Zertifikate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="newsletter">
+  <div class="container">
+    <div class="newsletter-card fade-up">
+      <div class="newsletter-content">
+        <div class="section-tag">Newsletter</div>
+        <h2>Täglich AI. Kostenlos.</h2>
+        <p>5–10 kuratierte AI-Stories jeden Morgen. Die wichtigsten Entwicklungen, erklärt und eingeordnet. Dazu passende Lernpfade.</p>
+        <div class="newsletter-stats">
+          <span><span class="dot" style="background:var(--green);"></span> 12.400+ Leser</span>
+          <span><span class="dot" style="background:var(--indigo);"></span> 45% Open Rate</span>
+          <span><span class="dot" style="background:var(--amber);"></span> Mo–Fr · 5 Min.</span>
+        </div>
+      </div>
+      <form class="newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="deine@email.de" required>
+        <button type="submit" class="btn btn-accent">Abonnieren</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- REFERRAL -->
+<section class="referral-bar" id="referral">
+  <div class="container">
+    <div class="referral-card fade-up">
+      <div class="referral-content">
+        <h3>Empfiehl ZehnX. Verdiene Rewards.</h3>
+        <p>Für jede erfolgreiche Empfehlung: 1 Monat Pro gratis. Ab 5 Referrals: Lifetime Pro Access.</p>
+      </div>
+      <div class="referral-reward">
+        <div class="referral-reward-icon">🚀</div>
+        <div class="referral-reward-text">
+          <div class="referral-reward-val">1.4x</div>
+          <div class="referral-reward-label">Viral Coefficient</div>
+        </div>
+      </div>
+      <a href="#" class="btn btn-accent" style="flex-shrink:0;">Freunde einladen</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-card fade-up">
+      <div class="cta-content">
+        <div class="tag">Jetzt starten</div>
+        <h2>AI lernen.<br>Nicht nur lesen.</h2>
+        <p>Free Tier mit vollem News-Feed und Basis-Lernpfaden. Keine Kreditkarte nötig.</p>
+      </div>
+      <a href="#" class="btn">Kostenlos starten <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-row">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="fG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#4F46E5"/><stop offset="50%" style="stop-color:#7C3AED"/><stop offset="100%" style="stop-color:#818CF8"/></linearGradient></defs>
+            <polygon points="50,8 92,50 50,92 8,50" fill="none" stroke="url(#fG)" stroke-width="3"/>
+            <polygon points="50,8 70,35 50,50 30,35" fill="url(#fG)" opacity="0.9"/>
+            <polygon points="70,35 92,50 70,65 50,50" fill="url(#fG)" opacity="0.6"/>
+            <polygon points="50,50 70,65 50,92 30,65" fill="url(#fG)" opacity="0.4"/>
+            <polygon points="30,35 50,50 30,65 8,50" fill="url(#fG)" opacity="0.5"/>
+          </svg>
+          <span>ZehnX Academy</span>
+        </div>
+        <p>Die freie AI Sprint-Akademie. Verzehnfache dein Wissen mit projektbasierten Sprints.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Produkt</h4>
+          <a href="#sprints">Sprints</a>
+          <a href="#departments">Departments</a>
+          <a href="#ailevel">AI Level</a>
+          <a href="#enterprise">Enterprise</a>
+          <a href="#pricing">Preise</a>
+        </div>
+        <div class="footer-col">
+          <h4>Ressourcen</h4>
+          <a href="#">Newsroom</a>
+          <a href="#">Dokumentation</a>
+          <a href="#">Changelog</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+          <a href="#">AGB</a>
+          <a href="#">Status</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ZehnX Academy · Köln</span>
+      <div>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Theme system with 3 modes (Light / Dark / Phosphor)
+  function applyTheme(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.toggle('active', b.dataset.t === mode));
+  }
+  // Default: dark theme
+  applyTheme(localStorage.getItem('zehnx-theme') || 'dark');
+  document.querySelectorAll('.theme-btn').forEach(b => b.addEventListener('click', () => {
+    localStorage.setItem('zehnx-theme', b.dataset.t); applyTheme(b.dataset.t);
+  }));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZehnX Enterprise — Feature-Konzept</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ================================================================
+     ZehnX Enterprise · Manager Magazin × Techbro × Apple × Campus
+     3 Themes: Dark · Light · Phosphor
+     ================================================================ */
+
+  /* ---- DARK (default) ---- */
+  :root, [data-theme="dark"] {
+    --bg: #09090B;
+    --bg-warm: #0D0D0F;
+    --surface: #131316;
+    --surface-raised: #1A1A1E;
+    --text: #ECECEC;
+    --text-sec: #8E8E93;
+    --text-muted: #5A5A5E;
+    --text-dim: #38383C;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --accent: #6366F1;
+    --accent-glow: rgba(99,102,241,0.15);
+    --gold: #D4A853;
+    --stat-color: #ECECEC;
+    --stat-sub: #5A5A5E;
+    --stat-border: rgba(255,255,255,0.08);
+    --stat-glow: none;
+    --logo-academy: #6366F1;
+    --logo-agentur: #34D399;
+    --logo-enterprise: #D4A853;
+    --tag-border: rgba(255,255,255,0.1);
+    --tag-text: #8E8E93;
+    --callout-bg: #131316;
+    --tier-feat-bg: #131316;
+    --tier-feat-bar: linear-gradient(180deg, #6366F1, #8B5CF6);
+    --selection: rgba(99,102,241,0.3);
+    --theme-toggle-bg: #131316;
+  }
+
+  /* ---- LIGHT ---- */
+  [data-theme="light"] {
+    --bg: #FAFAF8;
+    --bg-warm: #F5F5F0;
+    --surface: #FFFFFF;
+    --surface-raised: #F0F0EC;
+    --text: #1A1A1A;
+    --text-sec: #6B6B6B;
+    --text-muted: #9A9A9A;
+    --text-dim: #CDCDCD;
+    --border: rgba(0,0,0,0.06);
+    --border-strong: rgba(0,0,0,0.12);
+    --accent: #4F46E5;
+    --accent-glow: rgba(79,70,229,0.08);
+    --gold: #A07C28;
+    --stat-color: #1A1A1A;
+    --stat-sub: #9A9A9A;
+    --stat-border: rgba(0,0,0,0.08);
+    --stat-glow: none;
+    --logo-academy: #4F46E5;
+    --logo-agentur: #059669;
+    --logo-enterprise: #A07C28;
+    --tag-border: rgba(0,0,0,0.1);
+    --tag-text: #6B6B6B;
+    --callout-bg: #F5F5F0;
+    --tier-feat-bg: #F5F5F0;
+    --tier-feat-bar: linear-gradient(180deg, #4F46E5, #7C3AED);
+    --selection: rgba(79,70,229,0.15);
+    --theme-toggle-bg: #FFFFFF;
+  }
+
+  /* ---- PHOSPHOR (Fancy Trend Mode) ---- */
+  [data-theme="phosphor"] {
+    --bg: #030D03;
+    --bg-warm: #051205;
+    --surface: #0A1A0A;
+    --surface-raised: #0F220F;
+    --text: #B8F4B8;
+    --text-sec: #5DA65D;
+    --text-muted: #2F6B2F;
+    --text-dim: #1A3D1A;
+    --border: rgba(52,211,153,0.08);
+    --border-strong: rgba(52,211,153,0.16);
+    --accent: #34D399;
+    --accent-glow: rgba(52,211,153,0.12);
+    --gold: #34D399;
+    --stat-color: #4ADE80;
+    --stat-sub: #2F6B2F;
+    --stat-border: rgba(52,211,153,0.12);
+    --stat-glow: 0 0 40px rgba(52,211,153,0.06);
+    --logo-academy: #34D399;
+    --logo-agentur: #34D399;
+    --logo-enterprise: #34D399;
+    --tag-border: rgba(52,211,153,0.15);
+    --tag-text: #5DA65D;
+    --callout-bg: #0A1A0A;
+    --tier-feat-bg: #0A1A0A;
+    --tier-feat-bar: linear-gradient(180deg, #34D399, #4ADE80);
+    --selection: rgba(52,211,153,0.25);
+    --theme-toggle-bg: #0A1A0A;
+  }
+  [data-theme="phosphor"] body { text-shadow: 0 0 1px rgba(74,222,128,0.15); }
+  [data-theme="phosphor"] .stat-val { text-shadow: 0 0 20px rgba(74,222,128,0.3); }
+  [data-theme="phosphor"] .masthead-logo span,
+  [data-theme="phosphor"] .sec-title,
+  [data-theme="phosphor"] .cover h1 { text-shadow: 0 0 30px rgba(74,222,128,0.08); }
+
+  /* ---- BASE ---- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.75; font-size: 15px; font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.5s, color 0.4s;
+  }
+  ::selection { background: var(--selection); }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+
+  /* ---- THEME TOGGLE ---- */
+  .theme-bar {
+    position: fixed; top: 20px; right: 24px; z-index: 1000;
+    display: flex; gap: 0; border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--border-strong);
+    background: var(--theme-toggle-bg);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  }
+  .theme-btn {
+    background: none; border: none; color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 8px 14px; cursor: pointer; transition: all 0.3s;
+    position: relative;
+  }
+  .theme-btn:hover { color: var(--text); }
+  .theme-btn.active {
+    color: var(--text); background: var(--surface-raised);
+  }
+  .theme-btn + .theme-btn { border-left: 1px solid var(--border); }
+
+  /* ---- MASTHEAD ---- */
+  .masthead {
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .masthead-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none; color: var(--text);
+  }
+  .masthead-logo span {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px;
+    letter-spacing: -0.02em;
+  }
+  .masthead-meta {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-muted); letter-spacing: 0.5px;
+  }
+
+  /* ---- COVER ---- */
+  .cover { padding: 140px 0 120px; text-align: center; position: relative; }
+  .cover::after {
+    content: ''; position: absolute; top: 40%; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 400px; border-radius: 50%;
+    background: radial-gradient(ellipse, var(--accent-glow), transparent 70%);
+    pointer-events: none;
+  }
+  .edition-badge {
+    display: inline-block; padding: 6px 20px;
+    border: 1px solid var(--border-strong); border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 48px; position: relative;
+  }
+  .cover h1 {
+    font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-style: italic;
+    font-size: clamp(48px, 7vw, 88px); line-height: 1.0;
+    letter-spacing: -0.03em; margin-bottom: 32px; position: relative;
+  }
+  .cover h1 em {
+    font-style: normal; font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    color: var(--accent);
+  }
+  .cover-sub {
+    font-size: 17px; color: var(--text-sec); max-width: 520px;
+    margin: 0 auto; position: relative; line-height: 1.8; font-weight: 300;
+  }
+
+  /* ---- RULES ---- */
+  .rule { border: none; height: 1px; background: var(--border); margin: 0; }
+  .rule-double { border: none; height: 3px; margin: 0; border-top: 1px solid var(--border-strong); border-bottom: 1px solid var(--border-strong); }
+
+  /* ---- SECTION ---- */
+  section { padding: 100px 0; }
+  .sec-num {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 64px; color: var(--text-dim); line-height: 1; margin-bottom: 12px; opacity: 0.4;
+  }
+  .sec-overline {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 4px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px;
+  }
+  .sec-title {
+    font-family: 'Instrument Serif', serif; font-weight: 400;
+    font-size: clamp(32px, 4vw, 52px); line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .sec-title i { font-style: italic; color: var(--text-sec); }
+  .sec-lead {
+    font-size: 16px; font-weight: 300; color: var(--text-sec);
+    max-width: 560px; line-height: 1.8; margin-bottom: 64px;
+  }
+
+  /* ============================================================
+     STATS — Tech Aesthetic (Monospace, no gradients, raw data)
+     ============================================================ */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border: 1px solid var(--stat-border); margin: 48px 0;
+    box-shadow: var(--stat-glow);
+  }
+  .stat {
+    padding: 36px 24px; text-align: left;
+    border-right: 1px solid var(--stat-border);
+    position: relative; overflow: hidden;
+  }
+  .stat:last-child { border-right: none; }
+  .stat::before {
+    content: attr(data-index);
+    position: absolute; top: 12px; right: 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--stat-sub); letter-spacing: 1px; opacity: 0.6;
+  }
+  .stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500; font-size: 34px; letter-spacing: -0.04em;
+    color: var(--stat-color); line-height: 1; margin-bottom: 8px;
+  }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--stat-sub);
+    line-height: 1.4;
+  }
+  .stat-bar {
+    position: absolute; bottom: 0; left: 0; height: 2px;
+    background: var(--accent); opacity: 0.4;
+  }
+
+  /* ---- LOGO SECTION ---- */
+  .logo-showcase {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border: 1px solid var(--border-strong); margin: 48px 0;
+  }
+  .logo-variant {
+    padding: 48px 36px; text-align: center;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .logo-variant:last-child { border-right: none; }
+  .logo-variant:hover { background: var(--surface); }
+  .logo-wordmark {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    font-size: 28px; letter-spacing: -0.04em; margin-bottom: 6px;
+    display: flex; align-items: center; justify-content: center; gap: 2px;
+  }
+  .logo-wordmark .x { transition: color 0.3s; }
+  .logo-wordmark .x.academy { color: var(--logo-academy); }
+  .logo-wordmark .x.agentur { color: var(--logo-agentur); }
+  .logo-wordmark .x.enterprise { color: var(--logo-enterprise); }
+  .logo-sub {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .logo-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    margin-top: 16px;
+  }
+  .logo-dot.academy { background: var(--logo-academy); }
+  .logo-dot.agentur { background: var(--logo-agentur); }
+  .logo-dot.enterprise { background: var(--logo-enterprise); }
+  .logo-desc {
+    font-size: 12px; color: var(--text-muted); margin-top: 12px;
+    line-height: 1.6; font-weight: 300;
+  }
+
+  /* ---- FEATURE GRID ---- */
+  .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+  .feat-grid.triple { grid-template-columns: 1fr 1fr 1fr; }
+  .feat {
+    background: var(--bg); padding: 40px 36px; transition: background 0.3s;
+  }
+  .feat:hover { background: var(--surface); }
+  .feat.span-2 { grid-column: span 2; }
+  .feat.hero-feat { background: var(--surface); border-left: 3px solid var(--accent); }
+  .feat-num {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: 13px; color: var(--text-dim); margin-bottom: 16px;
+  }
+  .feat h3 {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: 18px; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.3;
+  }
+  .feat p { font-size: 14px; color: var(--text-sec); line-height: 1.75; font-weight: 300; }
+  .feat-tag {
+    display: inline-block; margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--tag-text);
+    padding: 4px 12px; border: 1px solid var(--tag-border); border-radius: 2px;
+  }
+  .feat-tag.gold { border-color: rgba(212,168,83,0.3); color: var(--gold); }
+  .feat-tag.accent { border-color: rgba(99,102,241,0.3); color: var(--accent); }
+
+  /* ---- CALLOUT ---- */
+  .callout { display: grid; grid-template-columns: 3px 1fr; gap: 0; margin: 48px 0; }
+  .callout-bar { background: var(--accent); }
+  .callout-body {
+    padding: 28px 32px; background: var(--callout-bg);
+    font-size: 14px; color: var(--text-sec); line-height: 1.8; font-weight: 300;
+  }
+  .callout-body strong { color: var(--text); font-weight: 500; }
+  .callout-src {
+    display: block; margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--text-dim); letter-spacing: 0.5px;
+  }
+
+  /* ---- PULL QUOTE ---- */
+  .pullquote { padding: 64px 0; text-align: center; }
+  .pullquote p {
+    font-family: 'Instrument Serif', serif; font-style: italic;
+    font-size: clamp(24px, 3vw, 36px); line-height: 1.4;
+    color: var(--text); max-width: 700px; margin: 0 auto; letter-spacing: -0.01em;
+  }
+  .pullquote cite {
+    display: block; margin-top: 20px;
+    font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+  }
+
+  /* ---- PRICING ---- */
+  .tiers {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border: 1px solid var(--border-strong); margin-top: 64px;
+  }
+  .tier {
+    padding: 48px 36px; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+  }
+  .tier:last-child { border-right: none; }
+  .tier.featured { background: var(--tier-feat-bg); position: relative; }
+  .tier.featured::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--tier-feat-bar);
+  }
+  .tier-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+  }
+  .tier-price {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    font-size: 42px; letter-spacing: -0.04em; line-height: 1; margin-bottom: 4px;
+  }
+  .tier-per {
+    font-size: 13px; color: var(--text-muted); font-weight: 300; margin-bottom: 20px;
+  }
+  .tier-desc {
+    font-size: 13px; color: var(--text-muted); line-height: 1.7;
+    padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid var(--border);
+    font-weight: 300;
+  }
+  .tier ul { list-style: none; flex: 1; }
+  .tier li {
+    font-size: 13px; color: var(--text-sec); padding: 7px 0;
+    padding-left: 18px; position: relative; font-weight: 300;
+  }
+  .tier li::before {
+    content: ''; position: absolute; left: 0; top: 14px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  }
+  .tier li.off { color: var(--text-dim); }
+  .tier li.off::before { background: var(--text-dim); opacity: 0.3; }
+
+  /* ---- TIMELINE ---- */
+  .timeline { position: relative; padding-left: 48px; margin-top: 64px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 11px; top: 4px; bottom: 4px;
+    width: 1px; background: var(--border-strong);
+  }
+  .tl-item { position: relative; margin-bottom: 56px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -48px; top: 6px;
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--text-dim); background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tl-dot.done { border-color: var(--accent); }
+  .tl-dot.done::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .tl-phase {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+  }
+  .tl-title { font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1.3; margin-bottom: 8px; }
+  .tl-desc { font-size: 14px; color: var(--text-sec); line-height: 1.75; font-weight: 300; max-width: 520px; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    padding: 48px 0; border-top: 1px solid var(--border-strong);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 12px; color: var(--text-dim); font-weight: 300; }
+  .foot-logo {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: 13px; color: var(--text-muted);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 20px; }
+    section { padding: 60px 0; }
+    .feat-grid, .feat-grid.triple { grid-template-columns: 1fr; }
+    .feat.span-2 { grid-column: span 1; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat { border-bottom: 1px solid var(--stat-border); }
+    .tiers { grid-template-columns: 1fr; }
+    .tier { border-right: none; border-bottom: 1px solid var(--border); }
+    .tier:last-child { border-bottom: none; }
+    .logo-showcase { grid-template-columns: 1fr; }
+    .logo-variant { border-right: none; border-bottom: 1px solid var(--border); }
+    .logo-variant:last-child { border-bottom: none; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .cover { padding: 80px 0 60px; }
+    .cover h1 { font-size: 28px; }
+    .masthead { flex-direction: column; gap: 8px; text-align: center; }
+    .theme-bar { position: static; margin: 16px auto; width: fit-content; }
+    h2 { font-size: 22px !important; }
+    .feat { padding: 20px 16px; }
+    .feat h3 { font-size: 16px; }
+    .feat p { font-size: 13px; }
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ THEME TOGGLE ============ -->
+<div class="theme-bar" id="themeBar">
+  <button class="theme-btn active" data-theme="dark" onclick="setTheme('dark')">Dark</button>
+  <button class="theme-btn" data-theme="light" onclick="setTheme('light')">Light</button>
+  <button class="theme-btn" data-theme="phosphor" onclick="setTheme('phosphor')">Phosphor</button>
+</div>
+
+<script>
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.querySelectorAll('.theme-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.theme === t);
+  });
+  try { localStorage.setItem('zx-theme', t); } catch(e) {}
+}
+try {
+  const saved = localStorage.getItem('zx-theme');
+  if (saved && ['dark','light','phosphor'].includes(saved)) setTheme(saved);
+} catch(e) {}
+</script>
+
+<!-- ============ MASTHEAD ============ -->
+<div class="wrap">
+  <header class="masthead">
+    <a href="/" class="masthead-logo">
+      <svg viewBox="0 0 100 100" width="18" height="18"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:var(--accent)"/><stop offset="100%" style="stop-color:var(--accent);stop-opacity:0.5"/></linearGradient></defs><polygon points="50,8 92,50 50,92 8,50" fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.6"/><polygon points="50,8 70,35 50,50 30,35" fill="var(--accent)" opacity="0.8"/><polygon points="70,35 92,50 70,65 50,50" fill="var(--accent)" opacity="0.5"/><polygon points="50,50 70,65 50,92 30,65" fill="var(--accent)" opacity="0.3"/><polygon points="30,35 50,50 30,65 8,50" fill="var(--accent)" opacity="0.4"/></svg>
+      <span>ZehnX Academy</span>
+    </a>
+    <div class="masthead-meta">Internal · Feature-Konzept · März 2026</div>
+  </header>
+</div>
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div class="wrap" style="text-align:center;">
+    <div class="edition-badge">Enterprise Edition</div>
+    <h1>Build the<br><em>AI-ready</em> company.</h1>
+    <p class="cover-sub">Goldstandard-Features für Enterprise-Kunden, Gruppenschulungen und Premium-Angebote. Recherchiert, benchmarked, durchdacht.</p>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule-double"></div>
+
+<!-- ============ LOGO VARIANTEN ============ -->
+<section id="logos">
+  <div class="wrap">
+    <div class="sec-num">00</div>
+    <div class="sec-overline">Brand Architecture</div>
+    <div class="sec-title">Ein System.<br><i>Drei Marken.</i></div>
+    <div class="sec-lead">Das X trägt die Identität der jeweiligen Subdomain. Farbe signalisiert Kontext — alles andere bleibt konsistent.</div>
+
+    <div class="logo-showcase">
+      <div class="logo-variant">
+        <div class="logo-wordmark">Zehn<span class="x academy">X</span></div>
+        <div class="logo-sub">Academy</div>
+        <div class="logo-dot academy"></div>
+        <div class="logo-desc">Indigo — Wissen, Tiefe, Tech.<br>Für Lerner und die Free-Plattform.</div>
+      </div>
+      <div class="logo-variant">
+        <div class="logo-wordmark">Zehn<span class="x agentur">X</span></div>
+        <div class="logo-sub">Agentur</div>
+        <div class="logo-dot agentur"></div>
+        <div class="logo-desc">Emerald — Wachstum, Execution.<br>Für Beratung und Implementierung.</div>
+      </div>
+      <div class="logo-variant">
+        <div class="logo-wordmark">Zehn<span class="x enterprise">X</span></div>
+        <div class="logo-sub">Enterprise</div>
+        <div class="logo-dot enterprise"></div>
+        <div class="logo-desc">Gold — Premium, Trust, Scale.<br>Für Firmenkunden und B2B.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:32px;">
+      <div class="callout-bar"></div>
+      <div class="callout-body">
+        <strong>System-Logik:</strong> Der Schriftzug "Zehn" bleibt immer in der Textfarbe des jeweiligen Themes. Nur das "X" trägt die Subdomain-Farbe. Im Prism-Icon wird der gleiche Farbwert als Fill verwendet. So entsteht sofortige Zuordnung bei maximaler Konsistenz.
+        <span class="callout-src">Brand System · ZehnX Design Kit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<!-- ============ 01 · MARKTKONTEXT ============ -->
+<section id="market">
+  <div class="wrap">
+    <div class="sec-num">01</div>
+    <div class="sec-overline">Marktkontext</div>
+    <div class="sec-title">Der Enterprise AI-Learning<br>Markt <i>ist broken.</i></div>
+    <div class="sec-lead">$399/User/Jahr für Coursera-Kurse, die niemand fertig macht. Legacy-UIs aus 2014. ZehnX baut das Gegenteil.</div>
+
+    <!-- STATS: Tech Monospace Grid -->
+    <div class="stats-grid">
+      <div class="stat" data-index="001">
+        <div class="stat-val">$5.5T</div>
+        <div class="stat-label">AI Skills Gap<br>Global Cost</div>
+        <div class="stat-bar" style="width:85%"></div>
+      </div>
+      <div class="stat" data-index="002">
+        <div class="stat-val">2.7×</div>
+        <div class="stat-label">Trained vs.<br>Self-Taught ROI</div>
+        <div class="stat-bar" style="width:62%"></div>
+      </div>
+      <div class="stat" data-index="003">
+        <div class="stat-val">$3.70</div>
+        <div class="stat-label">Return per<br>Dollar Invested</div>
+        <div class="stat-bar" style="width:48%"></div>
+      </div>
+      <div class="stat" data-index="004">
+        <div class="stat-val">73%</div>
+        <div class="stat-label">Enterprise AI-LMS<br>Adoption 2026</div>
+        <div class="stat-bar" style="width:73%"></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-bar"></div>
+      <div class="callout-body">
+        <strong>ZehnX-Differenzierung:</strong> Die großen Player bieten breite Kataloge. ZehnX differenziert über drei Hebel: Hybrid-Positionierung (News + Sprints), reiner AI-Fokus, und radikal besseres UX/UI — Apple-Level in einem Markt voller Legacy-Interfaces.
+        <span class="callout-src">Josh Bersin · Forrester 2024 · McKinsey 2025</span>
+      </div>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-num">i.</div>
+        <h3>Goldstandard im Markt</h3>
+        <p>SSO/SAML, SCORM-Export, Admin-Dashboards, Rollenbasierte Zugriffskontrolle, API-Integrationen, White-Labeling, dedizierter CSM, Compliance-Tracking, Skills-Mapping.</p>
+        <span class="feat-tag">Hygiene-Faktoren</span>
+      </div>
+      <div class="feat">
+        <div class="feat-num">ii.</div>
+        <h3>Emerging Differentiators</h3>
+        <p>AI-personalisierte Lernpfade, Cohort-basiertes Lernen, Micro-Credentials &amp; Digital Badges, AI-gestützte Assessments statt Multiple Choice, interaktive Code-Sandboxes.</p>
+        <span class="feat-tag accent">Differenzierung</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<!-- ============ 02 · ENTERPRISE SUITE ============ -->
+<section id="enterprise">
+  <div class="wrap">
+    <div class="sec-num">02</div>
+    <div class="sec-overline">Enterprise Suite</div>
+    <div class="sec-title">Alles, was CTOs brauchen.<br><i>Nichts, was sie nicht brauchen.</i></div>
+    <div class="sec-lead">Enterprise-Features ohne Enterprise-Bloat. Jedes Feature hat einen klaren Business Case.</div>
+
+    <div class="feat-grid">
+      <div class="feat hero-feat span-2">
+        <div class="feat-num">01</div>
+        <h3>Company Workspace</h3>
+        <p>Eigener, gebrandeter Workspace pro Unternehmen. Custom Domain (learn.firmenname.de), eigenes Logo und Farbschema. Mitarbeiter sehen nur freigegebene Departments. Kein Vendor-Logo — die Plattform fühlt sich an wie ein eigenes Produkt.</p>
+        <span class="feat-tag gold">White-Label · Custom Domain</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">02</div>
+        <h3>SSO &amp; Identity</h3>
+        <p>SAML 2.0, OAuth, Azure AD, Okta. Ein-Klick-Login über die bestehende Firmen-Identität. SCIM-Provisioning für automatisches Anlegen und Deaktivieren bei HR-Änderungen.</p>
+        <span class="feat-tag">Enterprise-Standard</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">03</div>
+        <h3>Intelligence Dashboard</h3>
+        <p>Echtzeit-Analytics auf Firmen-, Team- und Mitarbeiter-Ebene. Skill-Progression, Time-to-Competency, Engagement-Heatmaps. Exportierbar als PDF/CSV für Quartals-Reviews.</p>
+        <span class="feat-tag">Enterprise-Standard</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">04</div>
+        <h3>AI Skill-Mapping</h3>
+        <p>Automatische Analyse der AI-Kompetenz pro Mitarbeiter und Team. Heatmap zeigt Stärken und Gaps über alle 8 Departments. Gezielte Lernpfade statt Gießkanne.</p>
+        <span class="feat-tag accent">Differentiator</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">05</div>
+        <h3>AI Learning Coach</h3>
+        <p>Persönlicher AI-Tutor pro Mitarbeiter — kontextuell an ZehnX-Inhalte gebunden, nicht generischer Chatbot. Firmen können eigene Daten und Policies als Kontext einspeisen.</p>
+        <span class="feat-tag accent">Differentiator</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">06</div>
+        <h3>Integrations &amp; API</h3>
+        <p>REST API + Webhooks für jedes Event. Native Integrationen: Slack, Microsoft Teams, HRIS-Systeme. SCORM 1.2 &amp; xAPI-Export für bestehende LMS.</p>
+        <span class="feat-tag">Enterprise-Standard</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">07</div>
+        <h3>Security &amp; Compliance</h3>
+        <p>SOC 2 Type II, DSGVO-konform (Hosting Frankfurt), Verschlüsselung at-rest und in-transit, Audit-Logs, IP-Whitelisting, DPA. On-Premise Deployment Option.</p>
+        <span class="feat-tag">Enterprise-Standard</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">08</div>
+        <h3>Custom Content Studio</h3>
+        <p>Eigene Module und Sprints erstellen — mit dem gleichen Editor, den ZehnX intern nutzt. AI-Assistent erstellt Quizzes und Praxisaufgaben aus Firmendokumenten.</p>
+        <span class="feat-tag accent">Differentiator</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<!-- ============ 03 · GRUPPENSCHULUNG ============ -->
+<section id="group">
+  <div class="wrap">
+    <div class="sec-num">03</div>
+    <div class="sec-overline">Gruppenschulung</div>
+    <div class="sec-title">Teams lernen zusammen.<br><i>Nicht nebeneinander.</i></div>
+    <div class="sec-lead">Selbstgesteuertes Lernen: 5–15% Completion. Cohort-basiert: 60–85%. Der Unterschied ist Struktur.</div>
+
+    <!-- Completion comparison stats -->
+    <div class="stats-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:48px;">
+      <div class="stat" data-index="Self-Paced">
+        <div class="stat-val">~12%</div>
+        <div class="stat-label">Completion Rate<br>Selbstgesteuert</div>
+        <div class="stat-bar" style="width:12%; background: var(--text-dim)"></div>
+      </div>
+      <div class="stat" data-index="Cohort">
+        <div class="stat-val">~78%</div>
+        <div class="stat-label">Completion Rate<br>Cohort-basiert</div>
+        <div class="stat-bar" style="width:78%"></div>
+      </div>
+    </div>
+
+    <div class="feat-grid triple">
+      <div class="feat hero-feat">
+        <div class="feat-num">01</div>
+        <h3>Sprint Cohorts</h3>
+        <p>Manager stellt ein Team zusammen, weist einen Sprint zu. Alle starten gleichzeitig, sehen gegenseitigen Fortschritt, gemeinsame Deadline. Automatische Reminder, Team-Chat, Abschluss-Event.</p>
+        <span class="feat-tag gold">Core</span>
+      </div>
+
+      <div class="feat hero-feat">
+        <div class="feat-num">02</div>
+        <h3>Team Challenges</h3>
+        <p>Echte Aufgaben statt Punkte-Sammeln: "Baut einen Prompt, der euren Sales-Prozess verbessert." Peer-Voting, Manager-Review, Team-Rankings mit Kontext.</p>
+        <span class="feat-tag gold">Core</span>
+      </div>
+
+      <div class="feat hero-feat">
+        <div class="feat-num">03</div>
+        <h3>Cohort Analytics</h3>
+        <p>Auf einen Blick: Wer on track, wer braucht Support? Completion-Velocity, Engagement-Score, vergleichbar mit vorherigen Durchläufen.</p>
+        <span class="feat-tag gold">Core</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">04</div>
+        <h3>Flexible Scheduling</h3>
+        <p>1–4 Wochen, intensiv oder moderat. Kalender-Integration (Google, Outlook). Kein starrer Stundenplan — klare Meilensteine.</p>
+        <span class="feat-tag">Konfigurierbar</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">05</div>
+        <h3>Discussion Spaces</h3>
+        <p>Strukturiert nach Modulen, nicht endloser Chat. Threaded, @-Mentions, Upvotes. AI fasst wöchentlich Key Insights zusammen.</p>
+        <span class="feat-tag">Async-First</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">06</div>
+        <h3>Live Sessions</h3>
+        <p>Optional: Workshops mit Experten oder internen Champions. 60–90 Min, Breakout Rooms. Recording als Sprint-Bonus-Material.</p>
+        <span class="feat-tag">Add-On</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<!-- PULL QUOTE -->
+<div class="wrap">
+  <div class="pullquote">
+    <p>Die besten Plattformen verkaufen keine Kurse. Sie verkaufen Transformation.</p>
+    <cite>ZehnX Design Prinzip</cite>
+  </div>
+</div>
+
+<div class="wrap"><hr class="rule"></div>
+
+<!-- ============ 04 · PREMIUM FEATURES ============ -->
+<section id="premium">
+  <div class="wrap">
+    <div class="sec-num">04</div>
+    <div class="sec-overline">Beyond Enterprise</div>
+    <div class="sec-title">Von Lernplattform<br>zu <i>AI-Ökosystem.</i></div>
+    <div class="sec-lead">Features, die den Moat bauen. Jedes einzelne mit klarem ROI — kein Feature-Bloat.</div>
+
+    <div class="feat-grid">
+      <div class="feat span-2">
+        <div class="feat-num">01</div>
+        <h3>Micro-Credentials &amp; Digital Badges</h3>
+        <p>Verifizierbare Digital Badges mit Verification-URL, LinkedIn-Integration, Open Badges 3.0. 74% der Arbeitgeber bevorzugen verifizierte AI-Credentials gegenüber reinen Abschlüssen. Enterprise-Kunden erstellen eigene interne Zertifikate, gekoppelt an HR-Systeme.</p>
+        <span class="feat-tag accent">$6B Markt bis 2033</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">02</div>
+        <h3>AI Skill Assessment</h3>
+        <p>Kein Multiple Choice. Dynamische, AI-generierte Assessments: Prompt-Aufgaben, Code-Challenges, Szenario-Analysen. Adaptive Difficulty, granulares Skill-Profil statt Pass/Fail.</p>
+        <span class="feat-tag accent">Differentiator</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">03</div>
+        <h3>Code-Sandbox</h3>
+        <p>Python, JavaScript, SQL direkt im Browser. Pre-loaded Datasets, AI-Hints bei Errors, automatisches Code-Review. Enterprise: firmeneigene Sandbox-Environments.</p>
+        <span class="feat-tag">Standard 2026</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">04</div>
+        <h3>Enterprise Newsroom</h3>
+        <p>AI-News kuratiert für die Branche des Unternehmens. Nicht generisch — gefiltert nach Relevanz. Internes Tagging, "Lernpfad verfügbar"-Links zur passenden Sprint-Lektion.</p>
+        <span class="feat-tag gold">Unique · Hybrid USP</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">05</div>
+        <h3>AI Readiness Score</h3>
+        <p>Firmenweiter Score: abgeschlossene Module, Skill-Verteilung, Assessment-Ergebnisse, Adoption-Rate. Benchmarkbar gegen Industrie. Perfekt für Board-Decks.</p>
+        <span class="feat-tag accent">Differentiator</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">06</div>
+        <h3>Champions Programm</h3>
+        <p>Top-Lerner werden AI Champions: eigene Mini-Workshops, Peer-Mentoring, Kollegen-Onboarding. Eigenes Badge, Mentee-Dashboard. Skaliert über L&amp;D hinaus.</p>
+        <span class="feat-tag">Retention</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">07</div>
+        <h3>Role-Based Learning Paths</h3>
+        <p>"AI für Marketing", "AI für HR", "AI für Developers", "AI für Leadership". Kuratiert aus allen Departments. Enterprise erstellt eigene Role Paths.</p>
+        <span class="feat-tag">High Demand</span>
+      </div>
+
+      <div class="feat span-2">
+        <div class="feat-num">08</div>
+        <h3>ZehnX Community · Enterprise Edition</h3>
+        <p>Cross-Company Networking, invite-only Peer Groups nach Branche und Rolle. Monatliche AMAs mit AI-Experten, gemeinsame Challenges, Job Board. Enterprise: geschlossene Firmen-Community plus optionaler Zugang zum Cross-Company Netzwerk. Think: YC für AI-Learner.</p>
+        <span class="feat-tag gold">Community Moat</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<!-- ============ 05 · RETENTION & STICKINESS ============ -->
+<section id="retention">
+  <div class="wrap">
+    <div class="sec-num">05</div>
+    <div class="sec-overline">Retention & Stickiness</div>
+    <div class="sec-title">Von Nutzern zu<br><i>täglichen Gewohnheiten.</i></div>
+    <div class="sec-lead">Die Features, die aus einer Lernplattform ein unverzichtbares Werkzeug machen. Jedes Feature mit bewiesener Retention-Wirkung aus der Analyse 2026.</div>
+
+    <div class="feat-grid">
+      <div class="feat hero-feat span-2">
+        <div class="feat-num">01</div>
+        <h3>Streak-System & Gamification Engine</h3>
+        <p>Tägliche Lerngewohnheiten durch Duolingo-erprobte Mechaniken. Streak-Counter, Streak-Freeze (1 pro Woche), XP-System, tägliche Challenges, Weekly Leaderboards. Bewiesener Impact: +60% 30-Day-Retention, +40% DAU/MAU-Ratio. Streak-Recovery-Nudges bei Abbruchgefahr. Enterprise: Team-Streaks und Abteilungs-Challenges.</p>
+        <span class="feat-tag accent">+60% Retention · Proven</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">02</div>
+        <h3>AI-News Feed (Hybrid-Positionierung)</h3>
+        <p>Kuratierter AI-News-Feed als täglicher Touchpoint. 5–10 Stories morgens, personalisiert nach Branche und Rolle. Jede News verlinkt zum passenden Lernpfad. Nicht nur Lernplattform — Informationsplattform. Hybrid-USP: "Bleib informiert UND qualifiziert."</p>
+        <span class="feat-tag gold">Unique · Hybrid USP · Retention</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">03</div>
+        <h3>Smart Notifications & Nudge Engine</h3>
+        <p>AI-gesteuerte Benachrichtigungen: Streak-Reminders (3h vor Ablauf), Cohort-Updates, personalisierte Kursempfehlungen, Milestone-Celebrations. Kontextuell, nicht spammig. Multi-Channel: Push, E-Mail, Slack, Teams. Enterprise: Admin-konfigurierbare Notification Rules.</p>
+        <span class="feat-tag accent">+25% Re-Engagement</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">04</div>
+        <h3>Community Hub & Social Layer</h3>
+        <p>Peer Learning Discussions, Office Hours, Mentor-Matching, Channel-System (#prompt-engineering, #data-science, etc.). User-generated Content (Fragen, Code-Snippets, Tutorials). Enterprise: geschlossene Firmen-Community. Cross-Company: invite-only Branchengruppen.</p>
+        <span class="feat-tag accent">Social Stickiness</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">05</div>
+        <h3>Churn Detection & Intervention Engine</h3>
+        <p>ML-basierte Churn-Prognose: Login-Frequenz ↓, Streak-Abbruch, Kurs-Abbruch, Community-Inaktivität. Automatische Interventionen: Streak-Freeze, Re-Engagement-Kampagnen, Mentor-Matching, personalisierte Nudges. Enterprise: At-Risk-Dashboard für L&D-Manager. Ziel: Churn ↓ 40%.</p>
+        <span class="feat-tag accent">Predictive · Churn ↓ 40%</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">06</div>
+        <h3>Referral & Viral Growth Engine</h3>
+        <p>Dreistufiges Referral-Programm: Starter (1-5 Referrals → 1 Monat gratis), Growth (6-15 → 3 Monate), Ambassador (16+ → Lifetime + Revenue Share). Personalisierte Referral-Links, Conversion-Tracking, Social Sharing. Ziel: Viral Coefficient &gt; 1.2x.</p>
+        <span class="feat-tag gold">Viral Loop · CAC ↓ 60%</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">07</div>
+        <h3>Guided Onboarding Flow</h3>
+        <p>5-Step Onboarding: Profil → AI Assessment (5 Fragen) → Personalisierter Lernpfad (AI-generiert) → Erste Micro-Lektion (3 Min.) → Community-Beitritt. Ziel: Time-to-Value ≤ 5 Min., Aha-Moment in Step 3.</p>
+        <span class="feat-tag accent">TtV ≤ 5m</span>
+      </div>
+
+      <div class="feat span-2">
+        <div class="feat-num">08</div>
+        <h3>Enterprise Onboarding & Custom Content</h3>
+        <p>Maßgeschneiderte Sprint-Pfade für dein Unternehmen. Eigene Inhalte hochladen, interne Use Cases als Sprints verpacken, Team-spezifische Lernpfade erstellen. White-Label Option für eigenes Branding. Persönliches Onboarding durch ZEHNX Team.</p>
+        <span class="feat-tag gold">Custom Content · White-Label</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">09</div>
+        <h3>Trust & Compliance</h3>
+        <p>DSGVO-konform, gehostet in Deutschland (Hetzner), EU AI Act konform. "Made in Germany" als Qualitätssiegel. Enterprise: Compliance-Dashboard, Audit-Ready Reports, DPA, IP-Whitelisting.</p>
+        <span class="feat-tag">DACH Market Fit</span>
+      </div>
+
+      <div class="feat">
+        <div class="feat-num">10</div>
+        <h3>Contextual Upselling Engine</h3>
+        <p>Intelligente Upgrade-Nudges basierend auf Feature-Usage und Engagement. "Du hast 5 Sprints abgeschlossen — mit Pro bekommst du Code-Sandbox und AI Coach." Kein aggressives Gating — Value-first Upselling. A/B-Testing für Timing und Messaging.</p>
+        <span class="feat-tag">Revenue · Conversion ↑ 23%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule-double"></div>
+
+<!-- ============ 06 · PRICING ============ -->
+<section id="tiers">
+  <div class="wrap">
+    <div class="sec-num">06</div>
+    <div class="sec-overline">Pricing-Struktur</div>
+    <div class="sec-title">Drei Tiers.<br><i>Klar getrennt.</i></div>
+    <div class="sec-lead">Free bleibt kostenlos. Enterprise-Wert kommt aus Features, nicht aus Content-Gating.</div>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-label">Free</div>
+        <div class="tier-price">0€</div>
+        <div class="tier-per">Für immer. Kein Freemium-Bait.</div>
+        <div class="tier-desc">Für Einzellerner, die AI strukturiert lernen wollen.</div>
+        <ul>
+          <li>130+ Module, alle 8 Departments</li>
+          <li>AI Level &amp; Streak-System</li>
+          <li>AI News Feed (allgemein)</li>
+          <li>Newsletter (tägliches Briefing)</li>
+          <li>Community Zugang (öffentlich)</li>
+          <li>Digital Badge pro Department</li>
+          <li>Streak-System & Daily Challenges</li>
+          <li>Referral Rewards (1 Monat Pro)</li>
+          <li class="off">Kein Code-Sandbox</li>
+          <li class="off">Kein AI Coach</li>
+          <li class="off">Keine Custom Paths</li>
+        </ul>
+      </div>
+
+      <div class="tier featured">
+        <div class="tier-label">Team</div>
+        <div class="tier-price">29€</div>
+        <div class="tier-per">pro User / Monat</div>
+        <div class="tier-desc">Für Teams von 5–50. Manager-Features, Cohorts, alles was zählt.</div>
+        <ul>
+          <li>Alles aus Free</li>
+          <li>Sprint Cohorts (Team-Lernen)</li>
+          <li>Team Dashboard &amp; Analytics</li>
+          <li>Team Challenges</li>
+          <li>Code-Sandbox</li>
+          <li>AI Learning Coach</li>
+          <li>Role-Based Learning Paths</li>
+          <li>Micro-Credentials (LinkedIn)</li>
+          <li>Slack Integration</li>
+          <li>Team Streaks & Leaderboards</li>
+          <li>Smart Notifications</li>
+          <li>Community Hub (Firmen-Channel)</li>
+          <li>Priority Support</li>
+        </ul>
+      </div>
+
+      <div class="tier">
+        <div class="tier-label">Enterprise</div>
+        <div class="tier-price">Custom</div>
+        <div class="tier-per">ab 50 User</div>
+        <div class="tier-desc">Alles. White-Label. Dedizierter Customer Success Manager.</div>
+        <ul>
+          <li>Alles aus Team</li>
+          <li>White-Label + Custom Domain</li>
+          <li>SSO/SAML + SCIM</li>
+          <li>Custom Content Studio</li>
+          <li>Enterprise Newsroom</li>
+          <li>AI Readiness Score</li>
+          <li>Champions Programm</li>
+          <li>SCORM/xAPI Export</li>
+          <li>API + Webhooks</li>
+          <li>Churn Detection & Intervention</li>
+          <li>Enterprise Custom Content</li>
+          <li>Guided Enterprise Onboarding</li>
+          <li>Dedizierter CSM</li>
+          <li>SLA + Audit Logs</li>
+          <li>On-Premise Option</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:48px;">
+      <div class="callout-bar"></div>
+      <div class="callout-body">
+        <strong>Pricing-Kontext:</strong> Coursera for Business ~$33/Monat, LinkedIn Learning ~$32/Monat. ZehnX Team bei 29€ ist kompetitiv bei deutlich fokussierterer Zielgruppe. Enterprise custom ($15–25/User bei Volumen). Free bleibt Growth Engine — jeder Enterprise-Deal beginnt mit jemandem, der ZehnX privat nutzt.
+        <span class="callout-src">Capterra · G2 · PeerSpot 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<!-- ============ 06 · ROADMAP ============ -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-num">07</div>
+    <div class="sec-overline">Roadmap</div>
+    <div class="sec-title">Build-Reihenfolge</div>
+    <div class="sec-lead">Pragmatisch priorisiert. Schnellster Wert, geringstes Risiko.</div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-phase">Phase 0 · Jetzt</div>
+        <div class="tl-title">Free Plattform + Design System</div>
+        <div class="tl-desc">130+ Module, 8 Departments, AI Level, Streaks, Newsletter, AI News. Design Kit fertig. Basis steht.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 1 · Q2 2026</div>
+        <div class="tl-title">Team-Basics &amp; Cohorts</div>
+        <div class="tl-desc">Team-Workspace, Sprint Cohorts, Team Dashboard, Slack, Role Paths. Minimal Viable Enterprise — genug für erste Pilot-Kunden.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 2 · Q3 2026</div>
+        <div class="tl-title">Credentials &amp; AI Coach</div>
+        <div class="tl-desc">Digital Badges, AI Learning Coach, Skill Assessment, Team Challenges. Das "Wow" — Features, die kein Wettbewerber in dieser Kombination hat.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 3 · Q4 2026</div>
+        <div class="tl-title">Full Enterprise Suite</div>
+        <div class="tl-desc">SSO/SAML, White-Label, Content Studio, Enterprise Newsroom, API, SCORM, AI Readiness Score. Alles für Enterprise-Sales.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 3.5 · Q4 2026</div>
+        <div class="tl-title">Retention & Growth Engine</div>
+        <div class="tl-desc">Streak-System, Gamification Engine, Churn Detection, Smart Notifications, Referral System, Guided Onboarding, Enterprise Custom Content. Die Retention-Features, die aus Nutzern Gewohnheiten machen.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-phase">Phase 4 · Q1 2027</div>
+        <div class="tl-title">Community, Viral & Scale</div>
+        <div class="tl-desc">Community Hub, Champions Programm, Cross-Company Network, AI-News Feed (Hybrid-Positionierung), Contextual Upselling, Multilingual, On-Premise. Moat + Viral Loop bauen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule-double"></div>
+
+<!-- ============ FOOTER ============ -->
+<div class="wrap">
+  <footer>
+    <div class="foot-logo">
+      <svg viewBox="0 0 100 100" width="14" height="14"><polygon points="50,8 92,50 50,92 8,50" fill="none" stroke="var(--accent)" stroke-width="2.5" opacity="0.5"/><polygon points="50,8 70,35 50,50 30,35" fill="var(--accent)" opacity="0.7"/><polygon points="70,35 92,50 70,65 50,50" fill="var(--accent)" opacity="0.4"/><polygon points="50,50 70,65 50,92 30,65" fill="var(--accent)" opacity="0.25"/><polygon points="30,35 50,50 30,65 8,50" fill="var(--accent)" opacity="0.35"/></svg>
+      ZehnX Academy
+    </div>
+    <p>Enterprise Feature-Konzept · März 2026 · Confidential</p>
+  </footer>
+</div>
+
+</body>
+</html>
